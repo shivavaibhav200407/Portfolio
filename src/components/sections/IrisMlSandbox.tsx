@@ -26,7 +26,7 @@ export default function IrisMlSandbox() {
   const { setosa, versicolor, virginica, predicted } = calculatePredictions();
 
   return (
-    <section id="ml-sandbox" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-cyber-bg">
+    <section id="ml-sandbox" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-[#080C14] transition-colors duration-500">
       <div className="mx-auto max-w-5xl">
         {/* Section Header */}
         <div className="flex flex-col items-start gap-2">
@@ -38,7 +38,7 @@ export default function IrisMlSandbox() {
             Iris Flower Species Classifier
           </h2>
           <p className="max-w-2xl text-sm sm:text-base text-slate-300 mt-1">
-            My first machine learning project completed at Smartuter Research Center (Jan 2026). Try sliding the petal and sepal measurements below to see the model predict the flower species!
+            My first machine learning project completed at Smartuter Research Center (Jan 2026). Drag the sliders below to test the classifier live!
           </p>
         </div>
 
@@ -91,8 +91,8 @@ export default function IrisMlSandbox() {
             {/* Slider: Petal Length */}
             <div className="space-y-1">
               <div className="flex justify-between font-mono text-xs">
-                <span className="text-slate-300">Petal Length (Most Important Feature)</span>
-                <span className="text-cyan-400 font-bold">{petalLength.toFixed(1)} cm</span>
+                <span className="text-slate-300">Petal Length (High Discriminative Weight)</span>
+                <span className="text-[#FF553E] font-bold">{petalLength.toFixed(1)} cm</span>
               </div>
               <input
                 type="range"
@@ -101,7 +101,7 @@ export default function IrisMlSandbox() {
                 step="0.1"
                 value={petalLength}
                 onChange={(e) => setPetalLength(parseFloat(e.target.value))}
-                className="w-full accent-cyan-400 h-1.5 rounded-lg bg-white/10 cursor-pointer"
+                className="w-full accent-[#FF553E] h-1.5 rounded-lg bg-white/10 cursor-pointer"
               />
             </div>
 
@@ -109,7 +109,7 @@ export default function IrisMlSandbox() {
             <div className="space-y-1">
               <div className="flex justify-between font-mono text-xs">
                 <span className="text-slate-300">Petal Width</span>
-                <span className="text-cyan-400 font-bold">{petalWidth.toFixed(1)} cm</span>
+                <span className="text-[#FF553E] font-bold">{petalWidth.toFixed(1)} cm</span>
               </div>
               <input
                 type="range"
@@ -118,11 +118,11 @@ export default function IrisMlSandbox() {
                 step="0.1"
                 value={petalWidth}
                 onChange={(e) => setPetalWidth(parseFloat(e.target.value))}
-                className="w-full accent-cyan-400 h-1.5 rounded-lg bg-white/10 cursor-pointer"
+                className="w-full accent-[#FF553E] h-1.5 rounded-lg bg-white/10 cursor-pointer"
               />
             </div>
 
-            {/* Quick Test Presets */}
+            {/* Presets */}
             <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
               <span className="text-[11px] text-slate-500 self-center">Try presets:</span>
               <button
@@ -132,7 +132,7 @@ export default function IrisMlSandbox() {
                   setPetalLength(1.4);
                   setPetalWidth(0.2);
                 }}
-                className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-400"
+                className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-400 transition-colors"
               >
                 Small (Setosa)
               </button>
@@ -143,7 +143,7 @@ export default function IrisMlSandbox() {
                   setPetalLength(4.2);
                   setPetalWidth(1.3);
                 }}
-                className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-400"
+                className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-400 transition-colors"
               >
                 Medium (Versicolor)
               </button>
@@ -154,7 +154,7 @@ export default function IrisMlSandbox() {
                   setPetalLength(5.5);
                   setPetalWidth(2.0);
                 }}
-                className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-400"
+                className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300 hover:border-[#FF553E] transition-colors"
               >
                 Large (Virginica)
               </button>
@@ -162,7 +162,7 @@ export default function IrisMlSandbox() {
           </div>
 
           {/* Prediction Box */}
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-xl border border-cyan-500/30 bg-cyber-bg/90 p-5 font-mono">
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-xl border border-cyan-500/30 bg-[#080C14]/90 p-5 font-mono">
             <div>
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="text-xs text-slate-400 flex items-center gap-1.5">
@@ -216,11 +216,11 @@ export default function IrisMlSandbox() {
                 <div>
                   <div className="flex justify-between text-slate-400 mb-1">
                     <span>Virginica</span>
-                    <span className="text-purple-300">{virginica}%</span>
+                    <span className="text-[#FF553E]">{virginica}%</span>
                   </div>
                   <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden">
                     <motion.div
-                      className="h-full bg-purple-500"
+                      className="h-full bg-[#FF553E]"
                       animate={{ width: `${virginica}%` }}
                       transition={{ duration: 0.2 }}
                     />

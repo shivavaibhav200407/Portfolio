@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface Ember {
   x: number;
@@ -24,8 +24,9 @@ export default function FlameCursor() {
   const lastPosRef = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
-    // Disable on mobile/touch screens
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    // Only disable if device strictly has no mouse capability at all
+    const isTouchOnly = window.matchMedia("(pointer: coarse) and (hover: none)").matches;
+    if (isTouchOnly) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -43,33 +44,35 @@ export default function FlameCursor() {
     };
     window.addEventListener("resize", handleResize);
 
+    // Accent Colors: Quantum Cyan, Sukuna Flame Coral, and White Core
     const flameColors = [
-      "#00F0FF", // Cyan flame
-      "#38BDF8", // Sky blue flame
-      "#60A5FA", // Blue flame
-      "#FFFFFF", // White hot core
-      "#818CF8", // Sukuna cursed indigo/violet flame
+      "#00F0FF", // Quantum Cyan
+      "#38BDF8", // Sky Blue
+      "#FF553E", // Sukuna Flame Coral
+      "#FFAA00", // Fiery Amber
+      "#FFFFFF", // Hot White Core
     ];
 
     const onMouseMove = (e: MouseEvent) => {
       const x = e.clientX;
       const y = e.clientY;
       setMousePos({ x, y });
+
       if (!isVisible) setIsVisible(true);
 
       // Spawn embers when moving
       const dist = Math.hypot(x - lastPosRef.current.x, y - lastPosRef.current.y);
-      if (dist > 4) {
-        const count = Math.min(Math.floor(dist / 5), 4);
+      if (dist > 3) {
+        const count = Math.min(Math.floor(dist / 4), 3);
         for (let i = 0; i < count; i++) {
-          if (embersRef.current.length < 35) {
+          if (embersRef.current.length < 40) {
             embersRef.current.push({
-              x: x + (Math.random() - 0.5) * 8,
-              y: y + 10 + Math.random() * 6,
-              vx: (Math.random() - 0.5) * 1.5,
-              vy: -(Math.random() * 2 + 1), // Drift upwards like real fire
+              x: x + (Math.random() - 0.5) * 6,
+              y: y + 12 + Math.random() * 4,
+              vx: (Math.random() - 0.5) * 1.6,
+              vy: -(Math.random() * 2.2 + 0.8), // Float upward like real fire embers
               size: Math.random() * 3 + 1.5,
-              alpha: 0.9,
+              alpha: 0.95,
               color: flameColors[Math.floor(Math.random() * flameColors.length)],
             });
           }
@@ -101,12 +104,12 @@ export default function FlameCursor() {
     const onMouseDown = () => {
       setIsClicking(true);
       // Burst of flame embers on click
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 14; i++) {
         embersRef.current.push({
           x: mousePos.x,
           y: mousePos.y,
-          vx: (Math.random() - 0.5) * 4,
-          vy: (Math.random() - 0.5) * 4,
+          vx: (Math.random() - 0.5) * 4.5,
+          vy: (Math.random() - 0.5) * 4.5,
           size: Math.random() * 3.5 + 2,
           alpha: 1,
           color: flameColors[Math.floor(Math.random() * flameColors.length)],
@@ -132,10 +135,10 @@ export default function FlameCursor() {
         const p = embersRef.current[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.alpha -= 0.025;
+        p.alpha -= 0.024;
         p.size *= 0.96;
 
-        if (p.alpha <= 0 || p.size <= 0.5) {
+        if (p.alpha <= 0 || p.size <= 0.4) {
           embersRef.current.splice(i, 1);
           continue;
         }
@@ -146,7 +149,7 @@ export default function FlameCursor() {
         ctx.fillStyle = p.color;
         ctx.globalAlpha = p.alpha;
         ctx.shadowColor = p.color;
-        ctx.shadowBlur = 6;
+        ctx.shadowBlur = 8;
         ctx.fill();
         ctx.restore();
       }
@@ -171,75 +174,76 @@ export default function FlameCursor() {
 
   return (
     <>
-      {/* Embers Canvas */}
+      {/* Floating Embers Canvas */}
       <canvas
         ref={canvasRef}
-        className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden md:block"
+        className="pointer-events-none fixed inset-0 z-[9998] overflow-hidden hidden md:block"
       />
 
       {/* Stylized Sukuna Flame-Arrow Pointer */}
-      <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden md:block">
+      <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden hidden md:block">
         <motion.div
           className="fixed top-0 left-0"
           animate={{
             x: mousePos.x,
             y: mousePos.y,
-            scale: isClicking ? 0.85 : cursorState === "hover" ? 1.25 : 1,
+            scale: isClicking ? 0.8 : cursorState === "hover" ? 1.3 : 1,
           }}
           transition={{
             type: "spring",
-            stiffness: 900,
-            damping: 38,
-            mass: 0.25,
+            stiffness: 950,
+            damping: 36,
+            mass: 0.2,
           }}
           style={{ originX: 0, originY: 0 }}
         >
-          {/* Flame Arrow SVG (Inspired by Sukuna's Flame Arrow) */}
+          {/* Flame Arrowhead SVG */}
           <div className="relative -top-1 -left-1">
             <svg
-              width="28"
-              height="28"
-              viewBox="0 0 28 28"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="filter drop-shadow-[0_0_10px_rgba(0,240,255,0.85)]"
+              className="filter drop-shadow-[0_0_12px_rgba(0,240,255,0.9)]"
             >
               {/* Outer Cursed Flame Aura */}
               <path
-                d="M3 2L13 25L16 16L25 13L3 2Z"
+                d="M3 2L15 29L18 18L29 15L3 2Z"
                 fill="url(#sukunaFlameGrad)"
                 stroke="#00F0FF"
-                strokeWidth="1.2"
+                strokeWidth="1.5"
                 strokeLinejoin="round"
               />
-              {/* Core Flame Arrowhead Blade */}
+              {/* Core White Blade */}
               <path
-                d="M5 5L12 21L14 14L21 12L5 5Z"
+                d="M5 5L14 24L16 16L24 14L5 5Z"
                 fill="#FFFFFF"
-                fillOpacity="0.9"
+                fillOpacity="0.95"
               />
-              {/* Inner Flame Spark */}
-              <circle cx="11" cy="11" r="2" fill="#00F0FF" />
+              {/* Inner Flame Spark (Coral / Cyan) */}
+              <circle cx="12" cy="12" r="2.5" fill="#FF553E" className="animate-pulse" />
 
               <defs>
-                <linearGradient id="sukunaFlameGrad" x1="3" y1="2" x2="25" y2="25" gradientUnits="userSpaceOnUse">
+                <linearGradient id="sukunaFlameGrad" x1="3" y1="2" x2="29" y2="29" gradientUnits="userSpaceOnUse">
                   <stop stopColor="#00F0FF" />
-                  <stop offset="0.5" stopColor="#3B82F6" />
-                  <stop offset="1" stopColor="#818CF8" />
+                  <stop offset="0.45" stopColor="#38BDF8" />
+                  <stop offset="0.8" stopColor="#FF553E" />
+                  <stop offset="1" stopColor="#FFAA00" />
                 </linearGradient>
               </defs>
             </svg>
           </div>
 
-          {/* Context-aware "VIEW" Flaming Halo */}
+          {/* Context "VIEW" Halo */}
           {cursorState === "view" && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.6 }}
+              initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.6 }}
-              className="absolute -top-6 -left-6 flex h-14 w-14 items-center justify-center rounded-full border border-cyan-400 bg-cyan-950/70 shadow-[0_0_20px_rgba(0,240,255,0.6)] backdrop-blur-sm"
+              exit={{ opacity: 0, scale: 0.5 }}
+              className="absolute -top-7 -left-7 flex h-16 w-16 items-center justify-center rounded-full border border-cyan-400 bg-cyan-950/85 shadow-[0_0_25px_rgba(0,240,255,0.7)] backdrop-blur-md"
             >
-              <span className="font-mono text-[9px] font-extrabold tracking-widest text-cyan-300">
+              <span className="font-mono text-[9px] font-black tracking-widest text-cyan-300">
                 VIEW
               </span>
             </motion.div>

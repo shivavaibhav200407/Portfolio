@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Palette, Eye, X, Sparkles, Layers } from "lucide-react";
+import { Palette, Eye, X } from "lucide-react";
 import { POSTERS, type Poster } from "@/data/posters";
 
 export default function PostersGallery() {
@@ -17,7 +17,7 @@ export default function PostersGallery() {
       : POSTERS.filter((p) => p.category === filter);
 
   return (
-    <section id="posters" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-cyber-bg/60">
+    <section id="posters" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-[#0B0812] transition-colors duration-500">
       <div className="mx-auto max-w-5xl">
         {/* Section Header */}
         <div className="flex flex-col items-start gap-2">
@@ -58,7 +58,8 @@ export default function PostersGallery() {
               whileHover={{ y: -4, scale: 1.01 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               onClick={() => setSelectedPoster(poster)}
-              className="group cursor-pointer rounded-2xl border border-white/10 bg-cyber-surface/90 overflow-hidden shadow-lg transition-all hover:border-pink-500/40 hover:shadow-[0_0_25px_rgba(236,72,153,0.15)] flex flex-col"
+              data-cursor="view"
+              className="group cursor-pointer rounded-2xl border border-white/10 bg-cyber-surface/90 overflow-hidden shadow-lg transition-all hover:border-[#FF553E]/50 hover:shadow-[0_0_30px_rgba(255,85,62,0.15)] flex flex-col"
             >
               {/* Poster Canvas Visual */}
               <div
@@ -88,7 +89,7 @@ export default function PostersGallery() {
 
                 <div className="relative z-10 flex justify-between items-end border-t border-white/10 pt-2 font-mono text-[9px] text-slate-400">
                   <span className="truncate max-w-[120px]">{poster.club}</span>
-                  <span className="flex items-center gap-1 text-pink-400 font-medium">
+                  <span className="flex items-center gap-1 text-[#FF553E] font-medium group-hover:translate-x-0.5 transition-transform">
                     <Eye className="h-3 w-3" /> View Details
                   </span>
                 </div>
@@ -122,7 +123,7 @@ export default function PostersGallery() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="relative w-full max-w-2xl rounded-2xl border border-pink-500/40 bg-cyber-surface p-6 sm:p-7 shadow-2xl max-h-[90vh] overflow-y-auto"
+                className="relative w-full max-w-2xl rounded-2xl border border-[#FF553E]/40 bg-cyber-surface p-6 sm:p-7 shadow-2xl max-h-[90vh] overflow-y-auto"
               >
                 <button
                   onClick={() => setSelectedPoster(null)}
@@ -156,14 +157,14 @@ export default function PostersGallery() {
                     </div>
 
                     <div className="font-mono text-[10px] text-slate-400 border-t border-white/10 pt-2">
-                      <div>Club / Org: {selectedPoster.club}</div>
-                      <div>Designer: A. Shiva Vaibhav (Chief Designer)</div>
+                      <div>Club: {selectedPoster.club}</div>
+                      <div>Designer: A. Shiva Vaibhav</div>
                     </div>
                   </div>
 
                   <div className="space-y-3.5">
                     <div>
-                      <span className="font-mono text-xs text-pink-400 font-semibold uppercase">
+                      <span className="font-mono text-xs text-[#FF553E] font-semibold uppercase">
                         Poster Information
                       </span>
                       <h3 className="font-display text-xl font-bold text-slate-100 mt-0.5">
@@ -184,11 +185,11 @@ export default function PostersGallery() {
                         <span className="text-white">{selectedPoster.specs.type}</span>
                       </div>
                       <div className="flex justify-between text-slate-400">
-                        <span>Tools Used:</span>
+                        <span>Tools:</span>
                         <span className="text-white">{selectedPoster.specs.tool}</span>
                       </div>
                       <div className="flex justify-between text-slate-400">
-                        <span>Target Audience:</span>
+                        <span>Audience:</span>
                         <span className="text-cyan-300">{selectedPoster.specs.audience}</span>
                       </div>
                     </div>
@@ -197,16 +198,12 @@ export default function PostersGallery() {
                       {selectedPoster.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-0.5 rounded text-xs font-mono bg-pink-500/10 text-pink-300 border border-pink-500/30"
+                          className="px-2 py-0.5 rounded text-xs font-mono bg-[#FF553E]/10 text-[#FFAA00] border border-[#FF553E]/30"
                         >
                           #{tag}
                         </span>
                       ))}
                     </div>
-
-                    <p className="pt-2 text-[11px] text-slate-400 font-mono">
-                      * Tip: Whenever you have your real poster image files, you can simply drop them into <code className="text-cyan-300">public/posters/</code> to show your actual graphics!
-                    </p>
                   </div>
                 </div>
               </motion.div>
