@@ -2,54 +2,53 @@ export interface SkillCategory {
   title: string;
   badge: string;
   description: string;
-  skills: { name: string; level: string; note: string; tag: string }[];
+  skills: { name: string; level: string; note: string }[];
 }
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: "AI & Agentic Systems",
-    badge: "Intelligence Layer",
-    description: "Building autonomous multi-agent workflows, vector retrieval pipelines, and low-latency inference.",
+    title: "Programming & AI (Learning & Building)",
+    badge: "Core Focus",
+    description: "What I use and practice for my college and personal AI projects.",
     skills: [
-      { name: "Python", level: "Core Language", note: "Scripting, agent loops, data pipelines", tag: "Language" },
-      { name: "Multi-Agent Systems", level: "Applied", note: "Task decomposition & agent coordination", tag: "Architecture" },
-      { name: "RAG & ChromaDB", level: "Applied", note: "Vector embeddings & document grounding", tag: "Data" },
-      { name: "Groq LPU Acceleration", level: "Applied", note: "Sub-second Llama 3 API inference", tag: "Inference" },
-      { name: "AI Coding Tools", level: "Advanced", note: "High-velocity AI-assisted software dev", tag: "Workflow" },
+      { name: "Python", level: "Currently Learning", note: "Writing scripts, building logic, working with data" },
+      { name: "AI-Assisted Development", level: "Active User", note: "Using modern AI coding tools to build projects faster" },
+      { name: "Multi-Agent Concepts", level: "Applied in SAGE", note: "Splitting tasks among different AI helpers" },
+      { name: "RAG & ChromaDB", level: "Hands-on Project", note: "Connecting notes so AI answers from real textbooks" },
+      { name: "Groq API", level: "Hands-on", note: "Using fast Llama 3 models for our tutor app" },
     ],
   },
   {
-    title: "Software & Web Prototyping",
-    badge: "Engineering Layer",
-    description: "Packaging machine intelligence into usable, responsive web applications.",
+    title: "Web & Development Tools",
+    badge: "Building Apps",
+    description: "Tools I use to turn code into working apps that anyone can use.",
     skills: [
-      { name: "Django & Python Web", level: "Applied", note: "Backend services, routing, and local Wi-Fi hosting", tag: "Backend" },
-      { name: "Next.js & React", level: "Learning & Building", note: "Modern interactive frontends and UI systems", tag: "Frontend" },
-      { name: "TypeScript", level: "Foundational", note: "Type safety, clean component structures", tag: "Frontend" },
-      { name: "Tailwind CSS", level: "Applied", note: "Rapid responsive styling and design tokens", tag: "Styling" },
-      { name: "Git & GitHub", level: "Collaborative", note: "Version control and team repo management", tag: "Tooling" },
+      { name: "Django (Python)", level: "Project Experience", note: "Used as the backend web server for SAGE" },
+      { name: "HTML, CSS & Tailwind", level: "Comfortable", note: "Structuring and styling clean web pages" },
+      { name: "Git & GitHub", level: "Collaborative", note: "Managing code and working with project teammates" },
+      { name: "Local Network Hosting", level: "Tested", note: "Setting up apps to work over campus Wi-Fi" },
     ],
   },
   {
-    title: "Creative Direction & Design",
-    badge: "Aesthetics Layer",
-    description: "Transforming complex information into striking visual communications and event identities.",
+    title: "Graphic Design & Posters",
+    badge: "Creative Side",
+    description: "Designing visuals for our college council and campus clubs.",
     skills: [
-      { name: "Poster & Graphic Design", level: "Leadership", note: "Chief Designer for college council events", tag: "Design" },
-      { name: "Typography & Layout", level: "Advanced", note: "Swiss grid systems, hierarchy, contrast", tag: "Design" },
-      { name: "Event Brand Identity", level: "Applied", note: "Full promotional collateral suites", tag: "Branding" },
-      { name: "Figma & Prototyping", level: "Applied", note: "UI wireframing and graphic asset staging", tag: "Design" },
+      { name: "Poster & Banner Design", level: "Chief Designer", note: "Designed promotional material for 10+ college events" },
+      { name: "Typography & Layouts", level: "Hands-on", note: "Making headlines and dates easy to read at a glance" },
+      { name: "Event Promotion Graphics", level: "Active", note: "Social media and WhatsApp posters for clubs" },
+      { name: "Design Tools (Canva, Figma)", level: "Regular User", note: "Creating and editing visuals for print and digital" },
     ],
   },
   {
-    title: "Leadership & Strategy",
-    badge: "Operations Layer",
-    description: "Coordinating collegiate initiatives and maintaining disciplined execution.",
+    title: "Leadership & College Roles",
+    badge: "Personal",
+    description: "Balancing team responsibilities, council discipline, and academics.",
     skills: [
-      { name: "Team Leadership", level: "Proven", note: "Led 4-engineer team building SAGE", tag: "Leadership" },
-      { name: "Disciplinary Head", level: "Appointed", note: "Maintaining council discipline across events", tag: "Operations" },
-      { name: "Rapid Self-Learning", level: "Core Trait", note: "Quickly mastering emerging AI frameworks", tag: "Mindset" },
-      { name: "Technical Communication", level: "Fluent", note: "English, Telugu, Hindi proficiency", tag: "Communication" },
+      { name: "Team Leadership", level: "Team Lead", note: "Led a 4-member student team to build SAGE" },
+      { name: "Disciplinary Head", level: "Appointed Role", note: "Helping maintain discipline at S.A.C.C council events" },
+      { name: "Eager & Fast Learner", level: "Mindset", note: "Constantly curious to pick up new tools and skills" },
+      { name: "Communication", level: "Trilingual", note: "Comfortable speaking English, Telugu, and Hindi" },
     ],
   },
 ];

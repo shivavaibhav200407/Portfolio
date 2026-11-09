@@ -21,36 +21,19 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "A. Shiva Vaibhav | AI & ML Student & Creative Technologist",
+  title: "A. Shiva Vaibhav | B.Tech CSE (AI & ML) Student Portfolio",
   description:
-    "Portfolio of A. Shiva Vaibhav — B.Tech CSE (AI & ML) student at SITS Hyderabad. Team Lead for SAGE (multi-agent RAG engine) & Chief Designer at S.A.C.C. Seeking AI & Software Development internships.",
+    "Portfolio of A. Shiva Vaibhav — B.Tech student at SITS Hyderabad learning Python and AI. Team Lead for SAGE (AI educational tutor) & Chief Designer at S.A.C.C. Seeking an internship or entry-level role in AI and software development.",
   keywords: [
     "A. Shiva Vaibhav",
     "Shiva Vaibhav",
-    "AI Engineer Portfolio",
-    "Machine Learning Student",
-    "SAGE Multi-Agent",
-    "Hyderabad AI Developer",
-    "Graphic Designer Hyderabad",
-    "S.A.C.C Chief Designer",
+    "B.Tech AI ML student",
+    "SITS Hyderabad",
+    "SAGE AI Tutor",
+    "Student Portfolio",
+    "Graphic Designer S.A.C.C",
   ],
   authors: [{ name: "A. Shiva Vaibhav" }],
-  creator: "A. Shiva Vaibhav",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://vaibhav-portfolio.vercel.app",
-    title: "A. Shiva Vaibhav | AI & ML Student & Creative Technologist",
-    description:
-      "B.Tech AI & ML student architecting multi-agent systems and crafting high-impact visual design. Creator of SAGE.",
-    siteName: "A. Shiva Vaibhav Portfolio",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "A. Shiva Vaibhav | AI & ML Student & Creative Technologist",
-    description:
-      "B.Tech AI & ML student architecting multi-agent systems and crafting high-impact visual design.",
-  },
 };
 
 export default function RootLayout({

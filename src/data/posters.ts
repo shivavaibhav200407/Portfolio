@@ -1,8 +1,8 @@
 export interface Poster {
   id: string;
   title: string;
-  category: "Tech Symposium" | "Hackathon" | "Cultural Summit" | "Workshop";
-  client: string;
+  category: "Technical Workshop" | "College Fest" | "Hackathon" | "Club Event";
+  club: string;
   year: string;
   aspectRatio: string;
   themeColor: string;
@@ -10,84 +10,84 @@ export interface Poster {
   subtitle: string;
   description: string;
   tags: string[];
-  specs: { dimensions: string; format: string; typography: string };
+  specs: { type: string; tool: string; audience: string };
 }
 
 export const POSTERS: Poster[] = [
   {
-    id: "poster-neural-frontier",
-    title: "NEURAL FRONTIER",
-    subtitle: "Annual AI & Autonomous Intelligence Summit",
-    category: "Tech Symposium",
-    client: "Dept. of CSE (AI&ML) // SITS",
+    id: "poster-ai-symposium",
+    title: "AI & ML WORKSHOP",
+    subtitle: "Department of CSE (AI & ML) — SITS Hyderabad",
+    category: "Technical Workshop",
+    club: "Dept. of CSE (AI&ML)",
     year: "2025",
     aspectRatio: "3/4",
     themeColor: "#00F0FF",
-    accentColor: "#08090C",
+    accentColor: "#0A1120",
     description:
-      "A high-contrast typographic poster exploring cyber-minimalism, wireframe geometries, and bold Swiss grid structure for the college's flagship artificial intelligence conference.",
-    tags: ["Swiss Grid", "Cyberpunk", "Typography", "Keynote Branding"],
+      "Designed for our department's 3-day AI & ML workshop. Focused on bold text, clear dates, and speaker highlights so students could read key details quickly on college noticeboards and WhatsApp.",
+    tags: ["College Workshop", "CSE Department", "Poster Design"],
     specs: {
-      dimensions: "A2 / 420 x 594 mm",
-      format: "Digital & High-Gloss Print",
-      typography: "Space Grotesk + JetBrains Mono",
+      type: "Noticeboard Poster & WhatsApp Banner",
+      tool: "Graphic Design / Layouts",
+      audience: "B.Tech Students & Faculty",
     },
   },
   {
-    id: "poster-hack-sacc",
-    title: "HACK_SACC: 36H",
-    subtitle: "Collegiate Multi-Agent & Algorithmic Hackathon",
+    id: "poster-hackathon",
+    title: "CAMPUS HACKATHON",
+    subtitle: "24-Hour Student Coding & Innovation Challenge",
     category: "Hackathon",
-    client: "Siddhartha Allied Clubs Council (S.A.C.C)",
+    club: "Siddhartha Allied Clubs Council (S.A.C.C)",
     year: "2025",
     aspectRatio: "3/4",
     themeColor: "#3B82F6",
-    accentColor: "#050B14",
+    accentColor: "#050E1F",
     description:
-      "Engineered promotional visual system featuring mechanical terminal overlays, glowing neon data streams, and hyper-structured schedule grids to maximize hacker signups.",
-    tags: ["Terminal Aesthetic", "Event Promotion", "Color Blocking"],
+      "Promotional poster for our college council hackathon. Created a futuristic dark theme with cyber blue accents, clear prize pool callouts, and a registration QR placeholder.",
+    tags: ["Hackathon", "Student Council", "Event Promotion"],
     specs: {
-      dimensions: "A3 & Social Media Suite",
-      format: "Vector & Web Assets",
-      typography: "Inter Tight + Monospace",
+      type: "Social Media Flyer & Print Poster",
+      tool: "Poster Design / Canva / Figma",
+      audience: "College Coders & Tech Clubs",
     },
   },
   {
-    id: "poster-kinetic-pulse",
-    title: "KINETIC PULSE",
-    subtitle: "Inter-College Cultural & Creative Conclave",
-    category: "Cultural Summit",
-    client: "Council Cultural Committee",
+    id: "poster-cultural-fest",
+    title: "CAMPUS CULTURAL FEST",
+    subtitle: "Annual Student Fest & Stage Performances",
+    category: "College Fest",
+    club: "S.A.C.C Cultural Committee",
     year: "2024",
     aspectRatio: "3/4",
     themeColor: "#EC4899",
-    accentColor: "#120718",
+    accentColor: "#17061B",
     description:
-      "Vibrant editorial composition merging distorted fluid typography, warm chromatic gradients, and dynamic angled text layouts celebrating creative expression.",
-    tags: ["Fluid Distortion", "Chromatic Gradient", "Editorial Design"],
+      "A vibrant, colorful poster for our college cultural evening. Used energetic gradient colors and bold typography to get students excited about dance, music, and stage events.",
+    tags: ["Cultural Fest", "Celebration", "Creative Layout"],
     specs: {
-      dimensions: "A1 Billboard & Stage Backdrop",
-      format: "Large-Format Print",
-      typography: "Syne Display + Syne Bold",
+      type: "Stage Backdrop & Instagram Post",
+      tool: "Creative Design",
+      audience: "All College Students",
     },
   },
   {
-    id: "poster-agentic-workshop",
-    title: "AGENTIC WORKFLOWS",
-    subtitle: "3-Day Masterclass on Python, ChromaDB & Groq RAG",
-    category: "Workshop",
-    client: "Technical Development Cell",
+    id: "poster-python-bootcamp",
+    title: "PYTHON FOR BEGINNERS",
+    subtitle: "Hands-on Coding Sessions by Student Leads",
+    category: "Club Event",
+    club: "Coding & Tech Club // SITS",
     year: "2025",
     aspectRatio: "3/4",
     themeColor: "#10B981",
-    accentColor: "#06130E",
+    accentColor: "#061810",
     description:
-      "Clean informational architecture designed for rapid reading on college noticeboards and WhatsApp groups, featuring structured technical tracks and speaker badges.",
-    tags: ["Infographic Layout", "Educational", "Clear Hierarchy"],
+      "Simple, friendly announcement poster for junior students joining the Python coding club. Structured layout with schedule timings and topics covered.",
+    tags: ["Python Club", "Student Initiative", "Clear Design"],
     specs: {
-      dimensions: "A3 Digital Poster",
-      format: "PDF & Mobile Banners",
-      typography: "Space Grotesk + System Sans",
+      type: "Digital WhatsApp Story & Flyer",
+      tool: "Typography & Visuals",
+      audience: "1st & 2nd Year Students",
     },
   },
 ];

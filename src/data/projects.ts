@@ -5,161 +5,161 @@ export interface Project {
   role: string;
   team: string;
   period: string;
-  category: "Multi-Agent AI" | "Machine Learning" | "Design & Systems";
+  category: "AI & Projects" | "Machine Learning" | "Design & Posters";
   featured: boolean;
   stack: string[];
   metrics: { label: string; value: string }[];
   summary: string;
   problem: string;
   solution: string;
-  architectureSteps: { title: string; desc: string; agent: string }[];
+  steps: { title: string; desc: string; agent: string }[];
   learnings: string[];
-  links?: { demo?: string; github?: string; cert?: string };
+  links?: { github?: string; cert?: string };
 }
 
 export const PROJECTS: Project[] = [
   {
-    id: "sage-agentic-engine",
+    id: "sage-ai-tutor",
     title: "SAGE: Self-Adaptive Agentic Educational Engine",
-    tagline: "A multi-agent autonomous tutoring architecture covering 25+ engineering disciplines with RAG verification.",
-    role: "Team Lead & Architecture Co-Designer",
-    team: "4-Engineer Collegiate Team",
+    tagline: "An AI tutor we built for our college that knows our 25+ B.Tech courses and runs over local Wi-Fi.",
+    role: "Team Lead (Team of 4)",
+    team: "College Project Team",
     period: "2025 – Present",
-    category: "Multi-Agent AI",
+    category: "AI & Projects",
     featured: true,
-    stack: ["Python", "Django", "ChromaDB", "Groq Llama 3", "RAG", "Vector Search"],
+    stack: ["Python", "Django", "ChromaDB", "Groq (Llama 3)", "RAG", "AI Coding Tools"],
     metrics: [
-      { label: "Disciplines Covered", value: "25+ Courses" },
-      { label: "Cooperating Agents", value: "4 Agents" },
-      { label: "Inference Latency", value: "< 450ms (Groq)" },
-      { label: "Access Model", value: "Local Wi-Fi Network" },
+      { label: "My Role", value: "Team Lead" },
+      { label: "Team Size", value: "4 Students" },
+      { label: "Courses Covered", value: "25+ B.Tech" },
+      { label: "Hosting", value: "Local Campus Wi-Fi" },
     ],
     summary:
-      "Engineered an autonomous tutoring platform where multiple specialized AI agents collaborate to evaluate a student's technical comprehension, identify knowledge gaps, plan personalized remedial paths, and fact-check explanations against verified syllabus documents.",
+      "As engineering students, we noticed general AI tools often gave answers that didn't match our college syllabus. I led a team of 4 classmates to build an AI tutor that searches our actual textbook notes using RAG (ChromaDB) and breaks down study topics into friendly steps.",
     problem:
-      "Traditional single-prompt AI tutors suffer from severe hallucinations, lack context about academic syllabi, and fail to track a student's evolving misunderstandings across multi-step engineering subjects.",
+      "Most online AI tools are generic, hallucinate non-syllabus formulas, and need expensive cloud subscriptions that students can't afford.",
     solution:
-      "Decoupled the tutoring process into four cooperative agents: (1) Orchestrator Agent for conversation triage, (2) Diagnostic Agent for gap identification, (3) Curriculum Planner for dynamic study schedules, and (4) RAG Evaluator querying ChromaDB embeddings to guarantee factual textbook accuracy.",
-    architectureSteps: [
+      "We built a multi-agent system where different AI helpers work together: one tests the student, one finds what they are stuck on, one suggests a study plan, and one checks textbook notes in ChromaDB using fast Groq inference over local Wi-Fi.",
+    steps: [
       {
-        title: "Ingestion & Vectorization",
-        desc: "Syllabi and course reference PDFs are chunked and embedded into ChromaDB vector collections.",
-        agent: "Vector Storage (ChromaDB)",
+        title: "1. Storing College Notes",
+        desc: "We split course PDFs and reference notes into chunks and saved them in ChromaDB so the AI searches real syllabus content.",
+        agent: "Textbook Notes Search (ChromaDB)",
       },
       {
-        title: "Diagnostic Gap Detection",
-        desc: "Analyzes student quiz responses to identify conceptual weak spots rather than surface syntax errors.",
-        agent: "Diagnostic Agent",
+        title: "2. Finding Learning Gaps",
+        desc: "When a student answers a question, this helper checks if they missed a core concept or just made a small formula mistake.",
+        agent: "Gap Finder Helper",
       },
       {
-        title: "Dynamic Curriculum Synthesis",
-        desc: "Assembles an individualized, step-by-step remedial roadmap tailored to the student's mastery level.",
-        agent: "Planner Agent",
+        title: "3. Creating a Study Path",
+        desc: "Suggests what topic to review next so the student doesn't feel overwhelmed.",
+        agent: "Study Planner Helper",
       },
       {
-        title: "Sub-Second Inference & Verification",
-        desc: "Groq hardware acceleration streams accurate, hallucination-checked explanations across local Wi-Fi.",
-        agent: "Groq LPU Engine",
+        title: "4. Fast & Free Local Wi-Fi Access",
+        desc: "Runs as a web app on college Wi-Fi so any student can open it on their phone or laptop without paid hosting.",
+        agent: "Django Web App + Groq",
       },
     ],
     learnings: [
-      "How to split complex tasks among specialized LLM agents rather than overloading a single model.",
-      "How Retrieval-Augmented Generation (RAG) grounds AI in verified facts using ChromaDB.",
-      "How to deliver low-latency AI applications over a localized network without heavy cloud hosting costs.",
+      "How to lead a 4-person team, divide tasks, and solve bugs together.",
+      "How to use AI coding tools to build real working web apps faster.",
+      "How RAG works in simple terms: giving the AI real documents so it doesn't make things up.",
     ],
     links: {
       github: "https://github.com",
     },
   },
   {
-    id: "iris-ml-classifier",
-    title: "Neural & Statistical Classifier (Iris ML)",
-    tagline: "Certified machine learning classification study benchmarking statistical and decision boundary algorithms.",
-    role: "ML Researcher & Developer",
-    team: "Solo Research Project",
+    id: "iris-ml-project",
+    title: "Iris Flower Species Classification",
+    tagline: "My machine learning classification project completed at Smartuter Research Center.",
+    role: "Student ML Learner",
+    team: "Individual Project",
     period: "Jan 2026",
     category: "Machine Learning",
     featured: true,
     stack: ["Python", "Scikit-Learn", "NumPy", "Pandas", "Matplotlib"],
     metrics: [
-      { label: "Accuracy Score", value: "98.7%" },
-      { label: "Validation", value: "5-Fold K-Fold" },
-      { label: "Awarded By", value: "Smartuter (SRC)" },
-      { label: "Status", value: "Certified" },
+      { label: "Dataset", value: "Iris Dataset" },
+      { label: "Accuracy", value: "98.7%" },
+      { label: "Certificate", value: "SRC Awarded" },
+      { label: "Focus", value: "ML Basics" },
     ],
     summary:
-      "Conducted an in-depth machine learning exploration evaluating multiclass classification algorithms, feature correlation weights (sepal vs. petal dimensions), and decision boundary separation.",
+      "Completed a hands-on machine learning classification project on the Iris dataset. Learned how ML algorithms use features like petal and sepal measurements to predict flower species accurately.",
     problem:
-      "Understanding foundational ML behavior, overfitting risks, and hyperparameter sensitivity before orchestrating high-level deep learning and agentic workflows.",
+      "I wanted to understand how machine learning works from scratch before jumping into advanced neural networks.",
     solution:
-      "Built an end-to-end Python pipeline covering feature normalization, exploratory correlation analysis, cross-validation, and performance benchmarking across Logistic Regression, KNN, and Decision Trees.",
-    architectureSteps: [
+      "Built a Python workflow using Scikit-Learn to clean data, plot correlation graphs, train classifiers (Logistic Regression & Decision Trees), and measure accuracy.",
+    steps: [
       {
-        title: "Feature Preprocessing",
-        desc: "Normalized 4-dimensional geometric features and examined multi-collinearity.",
-        agent: "Data Pipeline",
+        title: "1. Exploring Data",
+        desc: "Plotting petal and sepal lengths to see which features help separate the flower types best.",
+        agent: "Data Analysis (Pandas & Seaborn)",
       },
       {
-        title: "Boundary Optimization",
-        desc: "Compared linear vs non-linear separating hyperplanes across species distributions.",
-        agent: "Estimator Grid",
+        title: "2. Training Classifiers",
+        desc: "Trained standard algorithms like KNN and Decision Trees to classify the 3 flower classes.",
+        agent: "Model Training",
       },
       {
-        title: "Certification Validation",
-        desc: "Rigorously evaluated and awarded completion credential by Smartuter Research Center.",
+        title: "3. Certificate of Completion",
+        desc: "Successfully submitted and evaluated by Smartuter Research Center (SRC) with an official certificate.",
         agent: "SRC Evaluation",
       },
     ],
     learnings: [
-      "Mathematical intuition behind feature vectors and multi-class classification boundaries.",
-      "Rigor in validating models using cross-validation to prevent dataset leakage.",
+      "Hands-on experience with Python data science libraries (Pandas, Scikit-Learn).",
+      "Understanding accuracy, training vs testing splits, and classification.",
     ],
     links: {
       cert: "#",
     },
   },
   {
-    id: "sacc-design-systems",
-    title: "S.A.C.C Visual Identity & Design Direction",
-    tagline: "Strategic brand design, typography systems, and promotional collateral for campus-wide summits.",
+    id: "sacc-college-posters",
+    title: "College Event Posters & Branding (S.A.C.C)",
+    tagline: "Designing posters and promotional graphics for college fests, workshops, and student clubs.",
     role: "Chief Designer & Disciplinary Head",
-    team: "Council Leadership",
-    period: "2024 – Present",
-    category: "Design & Systems",
+    team: "Siddhartha Allied Clubs Council (S.A.C.C)",
+    period: "Present",
+    category: "Design & Posters",
     featured: true,
-    stack: ["Figma", "Visual Hierarchy", "Typography Systems", "Poster Architecture", "Print & Digital Media"],
+    stack: ["Graphic Design", "Poster Design", "Event Branding", "Typography", "Canva / Figma"],
     metrics: [
-      { label: "Design Direction", value: "Chief Designer" },
-      { label: "Council Events", value: "10+ Summits" },
-      { label: "Student Reach", value: "1,500+ Attendees" },
-      { label: "Dual Role", value: "Disciplinary Head" },
+      { label: "Design Role", value: "Chief Designer" },
+      { label: "Leadership Role", value: "Disciplinary Head" },
+      { label: "Council Events", value: "10+ College Events" },
+      { label: "Reach", value: "Campus Students" },
     ],
     summary:
-      "Spearheaded the visual identity and promotional design strategy for Siddhartha Allied Clubs Council (S.A.C.C). Designed high-impact posters, digital banners, and event collateral while maintaining council organizational rigor.",
+      "As Chief Designer for our college council (S.A.C.C), I design posters, Instagram banners, and announcements for technical workshops, fests, and hackathons. I also help maintain discipline at council events.",
     problem:
-      "Campus club branding was fragmented, with inconsistent typography, low visual contrast, and weak event attendance due to cluttered, uninspiring promotional material.",
+      "College events need clear, eye-catching posters so students know the dates, topics, and how to register without getting confused.",
     solution:
-      "Introduced a unified modern visual system: clean Swiss typography, bold color blocking, strong visual focal points, and deliberate negative space that skyrocketed event engagement and readability.",
-    architectureSteps: [
+      "Created clean, bold posters with strong headlines, organized schedules, and modern colors that got shared across WhatsApp groups and campus noticeboards.",
+    steps: [
       {
-        title: "Design System Standardization",
-        desc: "Established reusable typography scales, color hierarchies, and poster templates for council clubs.",
-        agent: "Design System",
+        title: "1. Understanding the Event",
+        desc: "Talking to club heads to understand what the workshop or fest is about.",
+        agent: "Planning & Content",
       },
       {
-        title: "Cross-Club Campaign Execution",
-        desc: "Produced promotional media for technical symposiums, hackathons, and cultural festivals.",
-        agent: "Creative Direction",
+        title: "2. Designing Visuals",
+        desc: "Choosing clear fonts, high-contrast colors, and eye-catching layouts.",
+        agent: "Graphic Design",
       },
       {
-        title: "Organizational Leadership",
-        desc: "Combined creative oversight with council disciplinary management to execute seamless events.",
-        agent: "Leadership Ops",
+        title: "3. Campus Promotion",
+        desc: "Exporting formats for WhatsApp stories, Instagram posts, and print banners.",
+        agent: "Publishing",
       },
     ],
     learnings: [
-      "How to communicate complex event information in 3 seconds through visual hierarchy.",
-      "Balancing creative freedom with the organizational discipline required for large-scale student bodies.",
+      "How to balance creativity with readability so key details are easy to spot.",
+      "How to manage event discipline and handle responsibilities in a student council.",
     ],
   },
 ];
