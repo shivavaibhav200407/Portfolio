@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Mail, Phone, Copy, Check, Send, Download, Linkedin, Github, Sparkles } from "lucide-react";
+import MagneticButton from "@/components/effects/MagneticButton";
 
 export default function ContactDock() {
   const [copied, setCopied] = useState(false);
@@ -35,21 +36,22 @@ export default function ContactDock() {
             <div className="lg:col-span-6 space-y-4">
               <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-950/40 px-3 py-1 font-mono text-xs text-cyan-300">
                 <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
-                <span>SEEKING INTERNSHIP OPPORTUNITIES</span>
+                <span>OPEN FOR ROLES</span>
               </div>
 
               <h2 className="font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-100">
-                Let&apos;s Connect!
+                Let&apos;s build together.
               </h2>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                I am looking for an internship or entry-level role where I can learn, get hands-on development experience, and contribute to your team. Feel free to reach out via email or phone!
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md">
+                Have an internship opening, a student project, or want to connect? Reach out anytime!
               </p>
 
               {/* 1-Click Copy Email */}
               <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-3">
                 <button
                   onClick={copyEmail}
+                  data-cursor="copy"
                   className="group flex items-center gap-2 rounded-xl border border-cyan-500/40 bg-cyan-950/40 px-3.5 py-2.5 font-mono text-xs sm:text-sm text-cyan-300 transition-all hover:border-cyan-400 hover:bg-cyan-900/40"
                 >
                   <Mail className="h-4 w-4 text-cyan-400" />
@@ -72,35 +74,29 @@ export default function ContactDock() {
                 </a>
               </div>
 
-              {/* Links */}
+              {/* Socials & Resume */}
               <div className="flex items-center gap-3 pt-2">
-                <a
+                <MagneticButton
                   href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="p-2.5 rounded-xl border border-white/10 bg-white/5 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/40 transition-all"
-                  aria-label="LinkedIn Profile"
                 >
                   <Linkedin className="h-4 w-4" />
-                </a>
-                <a
+                </MagneticButton>
+
+                <MagneticButton
                   href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="p-2.5 rounded-xl border border-white/10 bg-white/5 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/40 transition-all"
-                  aria-label="GitHub Profile"
                 >
                   <Github className="h-4 w-4" />
-                </a>
-                <a
+                </MagneticButton>
+
+                <MagneticButton
                   href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-white/10 bg-white/5 text-xs font-mono text-slate-300 hover:border-cyan-400/40 hover:text-cyan-300 transition-all"
                 >
                   <Download className="h-3.5 w-3.5" />
-                  <span>Download Résumé PDF</span>
-                </a>
+                  <span>Résumé PDF</span>
+                </MagneticButton>
               </div>
             </div>
 
@@ -112,9 +108,9 @@ export default function ContactDock() {
                     <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
                       <Check className="h-5 w-5" />
                     </div>
-                    <h3 className="font-display text-lg font-bold text-white">Message Received!</h3>
+                    <h3 className="font-display text-lg font-bold text-white">Message Sent!</h3>
                     <p className="text-xs text-slate-400 max-w-sm mx-auto">
-                      Thank you! I will reply as soon as possible. You can also write directly to <span className="text-cyan-300">{email}</span>.
+                      Thanks for reaching out! I will reply shortly. You can also email directly to <span className="text-cyan-300">{email}</span>.
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}
@@ -127,9 +123,9 @@ export default function ContactDock() {
                   <form onSubmit={handleSubmit} className="space-y-3.5">
                     <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
                       <span className="font-mono text-xs font-semibold text-slate-300 uppercase">
-                        Send Me a Message
+                        Quick Message
                       </span>
-                      <span className="font-mono text-[10px] text-cyan-400">Quick Contact</span>
+                      <span className="font-mono text-[10px] text-cyan-400">Direct transmission</span>
                     </div>
 
                     <div>
@@ -139,7 +135,7 @@ export default function ContactDock() {
                         required
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                        placeholder="e.g. John Doe"
+                        placeholder="Alex Doe"
                         className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400"
                       />
                     </div>
@@ -151,7 +147,7 @@ export default function ContactDock() {
                         required
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        placeholder="john@company.com"
+                        placeholder="alex@example.com"
                         className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400"
                       />
                     </div>
@@ -163,14 +159,14 @@ export default function ContactDock() {
                         required
                         value={formState.message}
                         onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                        placeholder="Hi Shiva, we saw your portfolio and would like to talk about an internship..."
+                        placeholder="Hi Shiva, we would love to connect about an internship..."
                         className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-slate-950 hover:from-cyan-400 hover:to-blue-500 transition-all"
+                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-slate-950 hover:from-cyan-400 hover:to-blue-500 transition-all shadow-md shadow-cyan-500/20"
                     >
                       <Send className="h-3.5 w-3.5" />
                       <span>Send Message</span>

@@ -16,13 +16,15 @@ import AboutTimeline from "@/components/sections/AboutTimeline";
 import ContactDock from "@/components/sections/ContactDock";
 import Footer from "@/components/sections/Footer";
 
+import SkillsMarquee from "@/components/effects/SkillsMarquee";
+import ScrollReveal from "@/components/effects/ScrollReveal";
+
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [terminalOpen, setTerminalOpen] = useState(false);
 
   // Initialize Lenis Smooth Inertia Scrolling
   useEffect(() => {
-    // Check if user prefers reduced motion
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
@@ -51,7 +53,7 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-cyber-bg text-cyber-heading selection:bg-cyan-500/25 selection:text-cyan-300">
-      {/* Custom Context-Aware Follower Cursor */}
+      {/* Enhanced Adaptive Physics Cursor */}
       <CustomCursor />
 
       {/* Interactive Neural Canvas (Background) */}
@@ -63,31 +65,46 @@ export default function Home() {
         onOpenTerminal={() => setTerminalOpen(true)}
       />
 
-      {/* Interactive Hero Command Center */}
+      {/* Kinetic Hero */}
       <Hero onOpenTerminal={() => setTerminalOpen(true)} />
 
-      {/* Flagship Project: SAGE (Multi-Agent RAG Architecture) */}
-      <SageCaseStudy />
+      {/* Infinite Skills Marquee */}
+      <SkillsMarquee />
 
-      {/* Machine Learning Sandbox: Iris Classifier */}
-      <IrisMlSandbox />
+      {/* Flagship SAGE Multi-Agent Case Study */}
+      <ScrollReveal delay={0.05}>
+        <SageCaseStudy />
+      </ScrollReveal>
 
-      {/* S.A.C.C Chief Designer: Posters & Visual Systems Gallery */}
-      <PostersGallery />
+      {/* Interactive ML Sandbox */}
+      <ScrollReveal delay={0.05}>
+        <IrisMlSandbox />
+      </ScrollReveal>
 
-      {/* Verified Capabilities & Skills Bento */}
-      <SkillsBento />
+      {/* S.A.C.C Posters & Creative Direction */}
+      <ScrollReveal delay={0.05}>
+        <PostersGallery />
+      </ScrollReveal>
 
-      {/* Academic Rigor & Leadership Timeline */}
-      <AboutTimeline />
+      {/* Skills Matrix */}
+      <ScrollReveal delay={0.05}>
+        <SkillsBento />
+      </ScrollReveal>
 
-      {/* Conversion-Focused Contact Dock */}
-      <ContactDock />
+      {/* About & Education Timeline */}
+      <ScrollReveal delay={0.05}>
+        <AboutTimeline />
+      </ScrollReveal>
 
-      {/* Technical Telemetry Footer */}
+      {/* Contact Dock */}
+      <ScrollReveal delay={0.05}>
+        <ContactDock />
+      </ScrollReveal>
+
+      {/* Footer */}
       <Footer />
 
-      {/* Interactive Command Terminal (Easter Egg) */}
+      {/* Interactive Terminal CLI */}
       <Terminal isOpen={terminalOpen} onClose={() => setTerminalOpen(false)} />
     </main>
   );
