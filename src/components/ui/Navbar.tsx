@@ -36,7 +36,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
       <div
         className={`mx-auto flex max-w-5xl items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-300 ${
           scrolled
-            ? "border border-white/10 bg-cyber-surface/90 shadow-xl backdrop-blur-xl"
+            ? "border border-[#FF1E27]/30 bg-black/90 shadow-[0_4px_30px_rgba(255,30,39,0.12)] backdrop-blur-xl"
             : "border border-transparent bg-transparent"
         }`}
       >
@@ -44,9 +44,9 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
         <div className="flex items-center gap-2.5">
           <Link
             href="/"
-            className="flex items-center gap-2 font-display text-sm font-bold tracking-wide text-slate-100"
+            className="flex items-center gap-2 font-display text-sm font-bold tracking-wide text-white"
           >
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-cyan-500/40 bg-cyan-500/10 font-mono text-xs text-cyan-400">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#FF1E27]/50 bg-[#FF1E27]/10 font-mono text-xs text-[#FF3843] shadow-[0_0_10px_rgba(255,30,39,0.3)]">
               SV
             </span>
             <span className="font-mono text-xs uppercase text-slate-200">
@@ -55,8 +55,8 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
           </Link>
 
           {/* Student Status Pill */}
-          <div className="hidden items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-mono text-emerald-400 md:flex">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="hidden items-center gap-1.5 rounded-full border border-[#FF1E27]/30 bg-[#FF1E27]/10 px-2.5 py-0.5 text-[11px] font-mono text-[#FF3843] md:flex">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#FF1E27] animate-pulse" />
             <span>Open for Internships</span>
           </div>
         </div>
@@ -67,7 +67,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
             <a
               key={link.name}
               href={link.href}
-              className="text-xs font-mono text-slate-400 transition-colors hover:text-cyan-400"
+              className="text-xs font-mono text-slate-400 transition-colors hover:text-[#FF3843]"
             >
               {link.name}
             </a>
@@ -80,7 +80,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
             <button
               onClick={onOpenTerminal}
               title="Open Terminal"
-              className="hidden items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 font-mono text-xs text-slate-300 hover:text-cyan-400 md:flex"
+              className="hidden items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 font-mono text-xs text-slate-300 hover:text-[#FF3843] hover:border-[#FF1E27]/30 md:flex transition-all"
             >
               <TerminalIcon className="h-3.5 w-3.5" />
               <span>CLI</span>
@@ -93,7 +93,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-1.5 rounded-xl border border-cyan-400/30 bg-cyan-500/10 px-3 py-1.5 font-mono text-xs text-cyan-300 hover:bg-cyan-500/20 sm:flex"
+            className="hidden items-center gap-1.5 rounded-xl border border-[#FF1E27]/40 bg-[#FF1E27]/10 px-3 py-1.5 font-mono text-xs text-[#FF3843] hover:bg-[#FF1E27]/20 hover:border-[#FF1E27] sm:flex transition-all"
           >
             <Download className="h-3.5 w-3.5" />
             <span>Résumé</span>
@@ -101,7 +101,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-cyber-surface text-slate-300 lg:hidden"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-black text-slate-300 lg:hidden"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -111,11 +111,11 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="mt-2 flex flex-col gap-1.5 rounded-2xl border border-white/10 bg-cyber-surface/95 p-4 shadow-xl backdrop-blur-2xl lg:hidden">
+        <div className="mt-2 flex flex-col gap-1.5 rounded-2xl border border-[#FF1E27]/30 bg-black/95 p-4 shadow-2xl backdrop-blur-2xl lg:hidden">
           <div className="mb-1 flex items-center justify-between border-b border-white/5 pb-2">
             <span className="font-mono text-xs text-slate-400">Menu</span>
-            <div className="flex items-center gap-1 text-[11px] font-mono text-emerald-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <div className="flex items-center gap-1 text-[11px] font-mono text-[#FF3843]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#FF1E27]" />
               <span>Available for Roles</span>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-300 hover:bg-white/5 hover:text-cyan-400"
+              className="rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-300 hover:bg-white/5 hover:text-[#FF3843]"
             >
               {link.name}
             </a>
@@ -134,7 +134,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 rounded-xl border border-cyan-400/40 bg-cyan-500/10 py-2 font-mono text-xs text-cyan-300"
+              className="flex items-center justify-center gap-1.5 rounded-xl border border-[#FF1E27]/40 bg-[#FF1E27]/10 py-2 font-mono text-xs text-[#FF3843]"
             >
               <Download className="h-3.5 w-3.5" />
               <span>Download Résumé PDF</span>

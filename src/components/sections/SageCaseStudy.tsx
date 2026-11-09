@@ -23,9 +23,9 @@ const AGENTS: AgentNode[] = [
     name: "1. Question Coordinator",
     role: "Understands the Student's Question",
     icon: Brain,
-    color: "text-cyan-400",
-    borderColor: "border-cyan-500/50",
-    bgColor: "bg-cyan-500/10",
+    color: "text-[#FF3843]",
+    borderColor: "border-[#FF1E27]/50",
+    bgColor: "bg-[#FF1E27]/10",
     input: "Student's question or quiz reply",
     output: "Hands off to the right helper agent",
     description: "Figures out which subject (CSE, ECE, Mech, Civil) and topic the student is working on.",
@@ -47,9 +47,9 @@ const AGENTS: AgentNode[] = [
     name: "3. Study Planner",
     role: "Makes a Friendly Step-by-Step Path",
     icon: BookOpen,
-    color: "text-[#FF553E]",
-    borderColor: "border-[#FF553E]/50",
-    bgColor: "bg-[#FF553E]/10",
+    color: "text-amber-400",
+    borderColor: "border-amber-500/50",
+    bgColor: "bg-amber-500/10",
     input: "Identified gaps + course syllabus",
     output: "Short 3-step study roadmap",
     description: "Breaks big difficult topics into easy bite-sized practice steps so students don't feel stressed.",
@@ -94,15 +94,15 @@ export default function SageCaseStudy() {
   ];
 
   return (
-    <section id="sage" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-[#070B14] transition-colors duration-500">
+    <section id="sage" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-[#050204] transition-colors duration-500">
       <div className="mx-auto max-w-5xl">
         {/* Section Header */}
         <div className="flex flex-col items-start gap-2">
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 font-mono text-xs font-medium text-cyan-300">
-            <Users className="h-3.5 w-3.5 text-cyan-400" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#FF1E27]/30 bg-[#FF1E27]/10 px-3 py-1 font-mono text-xs font-medium text-[#FF3843]">
+            <Users className="h-3.5 w-3.5 text-[#FF1E27]" />
             <span>COLLEGE PROJECT // TEAM LEAD (TEAM OF 4)</span>
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-100">
+          <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
             SAGE — Self-Adaptive Agentic Educational Engine
           </h2>
           <p className="max-w-2xl text-sm sm:text-base text-slate-300 mt-1">
@@ -112,35 +112,35 @@ export default function SageCaseStudy() {
 
         {/* Real Highlights Grid */}
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 font-mono">
-          <div className="rounded-xl border border-white/10 bg-cyber-surface/70 p-4 transition-all hover:border-cyan-500/40">
+          <div className="rounded-xl border border-white/10 bg-black/60 p-4 transition-all hover:border-[#FF1E27]/40">
             <span className="text-[11px] text-slate-400">My Leadership</span>
-            <div className="text-lg font-bold font-display text-cyan-400 mt-1">Team Lead</div>
+            <div className="text-lg font-bold font-display text-[#FF3843] mt-1">Team Lead</div>
             <p className="text-[11px] text-slate-400 mt-0.5">Team of 4 students</p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-cyber-surface/70 p-4 transition-all hover:border-blue-500/40">
+          <div className="rounded-xl border border-white/10 bg-black/60 p-4 transition-all hover:border-white/20">
             <span className="text-[11px] text-slate-400">Scope</span>
-            <div className="text-lg font-bold font-display text-blue-400 mt-1">25+ Courses</div>
+            <div className="text-lg font-bold font-display text-white mt-1">25+ Courses</div>
             <p className="text-[11px] text-slate-400 mt-0.5">CSE, AI, ECE, Mech, Civil</p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-cyber-surface/70 p-4 transition-all hover:border-[#FF553E]/40">
+          <div className="rounded-xl border border-white/10 bg-black/60 p-4 transition-all hover:border-[#FF1E27]/40">
             <span className="text-[11px] text-slate-400">Tech Stack</span>
-            <div className="text-lg font-bold font-display text-[#FF553E] mt-1">Python + Groq</div>
+            <div className="text-lg font-bold font-display text-[#FF3843] mt-1">Python + Groq</div>
             <p className="text-[11px] text-slate-400 mt-0.5">ChromaDB RAG + Django</p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-cyber-surface/70 p-4 transition-all hover:border-emerald-500/40">
+          <div className="rounded-xl border border-white/10 bg-black/60 p-4 transition-all hover:border-white/20">
             <span className="text-[11px] text-slate-400">Delivery</span>
-            <div className="text-lg font-bold font-display text-emerald-400 mt-1">Local Wi-Fi</div>
+            <div className="text-lg font-bold font-display text-slate-200 mt-1">Local Wi-Fi</div>
             <p className="text-[11px] text-slate-400 mt-0.5">Free for all students</p>
           </div>
         </div>
 
         {/* Interactive Helper Inspection */}
-        <div className="mt-10 rounded-2xl border border-white/10 bg-cyber-surface/80 p-5 sm:p-7 backdrop-blur-xl">
+        <div className="mt-10 rounded-2xl border border-white/10 bg-black/80 p-5 sm:p-7 backdrop-blur-xl">
           <div className="border-b border-white/10 pb-4">
-            <span className="font-mono text-xs text-cyan-400 font-semibold uppercase">
+            <span className="font-mono text-xs text-[#FF3843] font-semibold uppercase">
               How SAGE Works
             </span>
-            <h3 className="font-display text-base sm:text-lg font-bold text-slate-100 mt-0.5">
+            <h3 className="font-display text-base sm:text-lg font-bold text-white mt-0.5">
               4 AI helpers collaborate so answers match our syllabus
             </h3>
             <p className="text-xs text-slate-400 mt-1">
@@ -159,8 +159,8 @@ export default function SageCaseStudy() {
                   onClick={() => setActiveAgent(agent)}
                   className={`flex flex-col text-left p-3.5 rounded-xl border transition-all ${
                     isSelected
-                      ? `${agent.borderColor} ${agent.bgColor} shadow-md`
-                      : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/[0.07]"
+                      ? `${agent.borderColor} ${agent.bgColor} shadow-[0_0_15px_rgba(255,30,39,0.2)]`
+                      : "border-white/10 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.05]"
                   }`}
                 >
                   <div className="flex items-center gap-2">
@@ -180,39 +180,39 @@ export default function SageCaseStudy() {
           </div>
 
           {/* Active Helper Detail */}
-          <div className="mt-5 rounded-xl border border-white/10 bg-[#070B14] p-4 sm:p-5">
-            <div className="flex items-center gap-2 text-sm font-display font-bold text-slate-100">
-              <span className={`h-2.5 w-2.5 rounded-full ${activeAgent.bgColor} ${activeAgent.color} ring-2 ring-cyan-500/20`} />
+          <div className="mt-5 rounded-xl border border-white/10 bg-black p-4 sm:p-5">
+            <div className="flex items-center gap-2 text-sm font-display font-bold text-white">
+              <span className={`h-2.5 w-2.5 rounded-full ${activeAgent.bgColor} ${activeAgent.color} ring-2 ring-[#FF1E27]/30`} />
               <span>{activeAgent.name}: {activeAgent.role}</span>
             </div>
             <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
               {activeAgent.description}
             </p>
             <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
-              <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
+              <div className="p-2.5 rounded-lg bg-white/[0.03] border border-white/5">
                 <span className="text-slate-400 block text-[10px]">What goes in:</span>
-                <span className="text-cyan-300">{activeAgent.input}</span>
+                <span className="text-[#FF3843]">{activeAgent.input}</span>
               </div>
-              <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
+              <div className="p-2.5 rounded-lg bg-white/[0.03] border border-white/5">
                 <span className="text-slate-400 block text-[10px]">What comes out:</span>
-                <span className="text-emerald-300">{activeAgent.output}</span>
+                <span className="text-slate-200">{activeAgent.output}</span>
               </div>
             </div>
           </div>
 
           {/* Interactive Simulation / Test */}
           <div className="mt-6 pt-5 border-t border-white/10">
-            <span className="font-mono text-xs text-cyan-400 font-semibold uppercase flex items-center gap-1.5">
-              <Zap className="h-3.5 w-3.5 text-[#FF553E]" /> Try A Sample College Question
+            <span className="font-mono text-xs text-[#FF3843] font-semibold uppercase flex items-center gap-1.5">
+              <Zap className="h-3.5 w-3.5 text-[#FF1E27]" /> Try A Sample College Question
             </span>
             <div className="mt-2.5 flex flex-wrap gap-2">
               {sampleQuestions.map((q, idx) => (
                 <button
                   key={idx}
                   onClick={() => setSimulatedPrompt(q.q)}
-                  className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-mono text-slate-300 hover:border-cyan-400/40 hover:bg-cyan-950/20 text-left transition-all"
+                  className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-mono text-slate-300 hover:border-[#FF1E27]/40 hover:bg-[#FF1E27]/10 text-left transition-all"
                 >
-                  <span className="text-cyan-400 font-bold mr-1">&gt;</span>
+                  <span className="text-[#FF1E27] font-bold mr-1">&gt;</span>
                   {q.q}
                 </button>
               ))}
@@ -222,21 +222,21 @@ export default function SageCaseStudy() {
               <motion.div
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-3 rounded-xl border border-cyan-500/30 bg-cyber-surface/90 p-3.5 font-mono text-xs text-slate-300"
+                className="mt-3 rounded-xl border border-[#FF1E27]/40 bg-black/90 p-3.5 font-mono text-xs text-slate-300 shadow-[0_0_20px_rgba(255,30,39,0.15)]"
               >
-                <div className="flex items-center gap-1.5 text-cyan-400 font-bold mb-2">
+                <div className="flex items-center gap-1.5 text-[#FF3843] font-bold mb-2">
                   <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
                   <span>SAGE Helpers Answered Successfully:</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[11px]">
-                  <div className="p-2 rounded bg-black/40 border border-white/5">
+                  <div className="p-2 rounded bg-white/[0.02] border border-white/5">
                     <span className="text-emerald-400 font-bold block mb-0.5">Gap Spotted:</span>
                     <p className="text-slate-400">
                       {sampleQuestions.find((s) => s.q === simulatedPrompt)?.gap}
                     </p>
                   </div>
-                  <div className="p-2 rounded bg-black/40 border border-white/5">
-                    <span className="text-[#FF553E] font-bold block mb-0.5">Study Plan Suggested:</span>
+                  <div className="p-2 rounded bg-white/[0.02] border border-white/5">
+                    <span className="text-[#FF3843] font-bold block mb-0.5">Study Plan Suggested:</span>
                     <p className="text-slate-400">
                       {sampleQuestions.find((s) => s.q === simulatedPrompt)?.plan}
                     </p>

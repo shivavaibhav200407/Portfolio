@@ -13,35 +13,38 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #000000;
+    color: #F8FAFC;
   }
 
-  /* Custom Selection Color */
+  /* Custom Red Selection */
   ::selection {
-    background: rgba(0, 240, 255, 0.3);
-    color: #00f0ff;
+    background: rgba(255, 30, 39, 0.35);
+    color: #FF1E27;
   }
 
-  /* Hide default cursor on desktop when flame cursor is active */
+  /* Desktop cursor management: use custom neon red arrow pointer */
   @media (min-width: 768px) and (hover: hover) {
     body, a, button, input, [role="button"] {
       cursor: none !important;
     }
   }
 
-  /* Custom Cyber Scrollbar */
+  /* Custom Cyber Red Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: #000000;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.2);
+    background: rgba(255, 30, 39, 0.25);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 240, 255, 0.5);
+    background: rgba(255, 30, 39, 0.65);
+    box-shadow: 0 0 10px rgba(255, 30, 39, 0.5);
   }
 }
 
@@ -53,12 +56,8 @@
 }
 
 /* Glowing text utilities */
-.text-glow-cyan {
-  text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
-}
-
-.text-glow-coral {
-  text-shadow: 0 0 20px rgba(255, 85, 62, 0.6);
+.text-glow-red {
+  text-shadow: 0 0 20px rgba(255, 30, 39, 0.65);
 }
 
 /* Graceful Fallback for Reduced Motion */

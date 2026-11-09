@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Lenis from "lenis";
 
 import NeuralCanvas from "@/components/canvas/NeuralCanvas";
-import FlameCursor from "@/components/effects/FlameCursor";
+import NeonRedCursor from "@/components/effects/NeonRedCursor";
 import Navbar from "@/components/ui/Navbar";
 import Hero from "@/components/sections/Hero";
 import Terminal from "@/components/sections/Terminal";
@@ -52,11 +52,11 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative min-h-screen bg-cyber-bg text-cyber-heading selection:bg-cyan-500/25 selection:text-cyan-300">
-      {/* Sukuna Flame Arrow & Ember Cursor */}
-      <FlameCursor />
+    <main className="relative min-h-screen bg-black text-white selection:bg-[#FF1E27]/30 selection:text-[#FF1E27]">
+      {/* Red Neon Outline Arrow Cursor */}
+      <NeonRedCursor />
 
-      {/* Interactive Neural Canvas (Background) */}
+      {/* Interactive Crimson Neural Canvas (Background) */}
       <NeuralCanvas isDarkMode={isDarkMode} />
 
       {/* Floating Island Navigation */}

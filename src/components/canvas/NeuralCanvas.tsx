@@ -28,17 +28,17 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Responsive particle count (fewer on mobile for performance)
-    const particleCount = width < 768 ? 32 : 64;
-    const maxDistance = width < 768 ? 100 : 140;
+    // Responsive particle count
+    const particleCount = width < 768 ? 28 : 56;
+    const maxDistance = width < 768 ? 100 : 135;
 
     const particles: Particle[] = [];
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.7,
-        vy: (Math.random() - 0.5) * 0.7,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
         size: Math.random() * 2 + 1.2,
         baseAlpha: Math.random() * 0.5 + 0.3,
       });
@@ -64,23 +64,19 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Theme-dependent colors
-      const particleColor = isDarkMode ? "0, 240, 255" : "2, 132, 199"; // Cyan vs Deep Blue
-      const lineColor = isDarkMode ? "59, 130, 246" : "37, 99, 235"; // Blue vs Royal Blue
+      // Black & Red Theme Colors
+      const particleColor = isDarkMode ? "255, 30, 39" : "220, 38, 38";
+      const lineColor = isDarkMode ? "185, 28, 28" : "153, 27, 27";
 
-      // Update and draw particles
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        // Move
         p.x += p.vx;
         p.y += p.vy;
 
-        // Bounce on boundary
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
-        // Mouse interaction (gentle attraction)
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
         const dist = Math.hypot(dx, dy);
@@ -90,7 +86,6 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
           p.y += (dy / dist) * force * 1.5;
         }
 
-        // Draw particle dot
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${particleColor}, ${p.baseAlpha})`;
@@ -98,7 +93,6 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
         ctx.shadowBlur = 6;
         ctx.fill();
 
-        // Connect nearby particles (Synaptic linkages)
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const distNodes = Math.hypot(p.x - p2.x, p.y - p2.y);

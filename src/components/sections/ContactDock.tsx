@@ -25,21 +25,21 @@ export default function ContactDock() {
   };
 
   return (
-    <section id="contact" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-cyber-bg">
+    <section id="contact" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-[#000000]">
       <div className="mx-auto max-w-5xl">
-        <div className="relative overflow-hidden rounded-3xl border border-cyan-500/30 bg-gradient-to-b from-cyber-surface via-cyber-surface/90 to-cyber-bg p-6 sm:p-10 shadow-2xl">
-          <div className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full bg-cyan-500/15 blur-[100px]" />
-          <div className="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-blue-600/15 blur-[100px]" />
+        <div className="relative overflow-hidden rounded-3xl border border-[#FF1E27]/40 bg-gradient-to-b from-black via-[#080204] to-black p-6 sm:p-10 shadow-[0_0_80px_rgba(255,30,39,0.15)]">
+          <div className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full bg-[#FF1E27]/12 blur-[120px]" />
+          <div className="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#B91C1C]/10 blur-[120px]" />
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Column */}
             <div className="lg:col-span-6 space-y-4">
-              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-950/40 px-3 py-1 font-mono text-xs text-cyan-300">
-                <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#FF1E27]/30 bg-[#FF1E27]/10 px-3 py-1 font-mono text-xs text-[#FF3843]">
+                <Sparkles className="h-3.5 w-3.5 text-[#FF1E27]" />
                 <span>OPEN FOR ROLES</span>
               </div>
 
-              <h2 className="font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-100">
+              <h2 className="font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
                 Let&apos;s build together.
               </h2>
 
@@ -52,9 +52,9 @@ export default function ContactDock() {
                 <button
                   onClick={copyEmail}
                   data-cursor="copy"
-                  className="group flex items-center gap-2 rounded-xl border border-cyan-500/40 bg-cyan-950/40 px-3.5 py-2.5 font-mono text-xs sm:text-sm text-cyan-300 transition-all hover:border-cyan-400 hover:bg-cyan-900/40"
+                  className="group flex items-center gap-2 rounded-xl border border-[#FF1E27]/40 bg-black px-3.5 py-2.5 font-mono text-xs sm:text-sm text-[#FF3843] transition-all hover:border-[#FF1E27] hover:bg-[#FF1E27]/10 hover:shadow-[0_0_15px_rgba(255,30,39,0.3)]"
                 >
-                  <Mail className="h-4 w-4 text-cyan-400" />
+                  <Mail className="h-4 w-4 text-[#FF1E27]" />
                   <span>{email}</span>
                   {copied ? (
                     <span className="flex items-center gap-1 text-[11px] text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded ml-1.5">
@@ -67,7 +67,7 @@ export default function ContactDock() {
 
                 <a
                   href={`tel:${phone}`}
-                  className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 font-mono text-xs sm:text-sm text-slate-300 hover:border-white/20 hover:bg-white/10"
+                  className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-2.5 font-mono text-xs sm:text-sm text-slate-300 hover:border-white/20 hover:bg-white/[0.06]"
                 >
                   <Phone className="h-4 w-4 text-slate-400" />
                   <span>{phone}</span>
@@ -78,21 +78,21 @@ export default function ContactDock() {
               <div className="flex items-center gap-3 pt-2">
                 <MagneticButton
                   href="https://linkedin.com"
-                  className="p-2.5 rounded-xl border border-white/10 bg-white/5 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/40 transition-all"
+                  className="p-2.5 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-[#FF1E27] hover:border-[#FF1E27]/50 transition-all"
                 >
                   <Linkedin className="h-4 w-4" />
                 </MagneticButton>
 
                 <MagneticButton
                   href="https://github.com"
-                  className="p-2.5 rounded-xl border border-white/10 bg-white/5 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/40 transition-all"
+                  className="p-2.5 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-[#FF1E27] hover:border-[#FF1E27]/50 transition-all"
                 >
                   <Github className="h-4 w-4" />
                 </MagneticButton>
 
                 <MagneticButton
                   href="/resume.pdf"
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-white/10 bg-white/5 text-xs font-mono text-slate-300 hover:border-cyan-400/40 hover:text-cyan-300 transition-all"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-white/10 bg-white/[0.03] text-xs font-mono text-slate-300 hover:border-[#FF1E27]/50 hover:text-[#FF3843] transition-all"
                 >
                   <Download className="h-3.5 w-3.5" />
                   <span>Résumé PDF</span>
@@ -102,19 +102,19 @@ export default function ContactDock() {
 
             {/* Right Column: Contact Form */}
             <div className="lg:col-span-6">
-              <div className="rounded-2xl border border-white/10 bg-cyber-bg/90 p-5 sm:p-6 shadow-xl">
+              <div className="rounded-2xl border border-white/10 bg-black/95 p-5 sm:p-6 shadow-xl">
                 {submitted ? (
                   <div className="py-8 text-center space-y-2.5 font-mono">
-                    <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
+                    <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#FF1E27]/20 text-[#FF1E27]">
                       <Check className="h-5 w-5" />
                     </div>
                     <h3 className="font-display text-lg font-bold text-white">Message Sent!</h3>
                     <p className="text-xs text-slate-400 max-w-sm mx-auto">
-                      Thanks for reaching out! I will reply shortly. You can also email directly to <span className="text-cyan-300">{email}</span>.
+                      Thanks for reaching out! I will reply shortly. You can also email directly to <span className="text-[#FF3843]">{email}</span>.
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="mt-2 text-xs text-cyan-400 underline"
+                      className="mt-2 text-xs text-[#FF1E27] underline"
                     >
                       Send another message
                     </button>
@@ -125,7 +125,7 @@ export default function ContactDock() {
                       <span className="font-mono text-xs font-semibold text-slate-300 uppercase">
                         Quick Message
                       </span>
-                      <span className="font-mono text-[10px] text-cyan-400">Direct transmission</span>
+                      <span className="font-mono text-[10px] text-[#FF3843]">Direct transmission</span>
                     </div>
 
                     <div>
@@ -136,7 +136,7 @@ export default function ContactDock() {
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                         placeholder="Alex Doe"
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400"
+                        className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white placeholder-slate-600 focus:border-[#FF1E27] focus:outline-none focus:ring-1 focus:ring-[#FF1E27]"
                       />
                     </div>
 
@@ -148,7 +148,7 @@ export default function ContactDock() {
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                         placeholder="alex@example.com"
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400"
+                        className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white placeholder-slate-600 focus:border-[#FF1E27] focus:outline-none focus:ring-1 focus:ring-[#FF1E27]"
                       />
                     </div>
 
@@ -160,13 +160,13 @@ export default function ContactDock() {
                         value={formState.message}
                         onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                         placeholder="Hi Shiva, we would love to connect about an internship..."
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 resize-none"
+                        className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white placeholder-slate-600 focus:border-[#FF1E27] focus:outline-none focus:ring-1 focus:ring-[#FF1E27] resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-slate-950 hover:from-cyan-400 hover:to-blue-500 transition-all shadow-md shadow-cyan-500/20"
+                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF1E27] to-[#B91C1C] py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-white hover:from-[#FF3843] hover:to-[#FF1E27] transition-all shadow-md shadow-[#FF1E27]/30"
                     >
                       <Send className="h-3.5 w-3.5" />
                       <span>Send Message</span>
