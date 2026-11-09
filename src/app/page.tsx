@@ -53,11 +53,13 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-black text-white selection:bg-[#FF1E27]/30 selection:text-[#FF1E27]">
-      {/* Red Neon Outline Arrow Cursor */}
+      {/* Precision Red Neon Outline Arrow Cursor */}
       <NeonRedCursor />
 
-      {/* Interactive Crimson Neural Canvas (Background) */}
-      <NeuralCanvas isDarkMode={isDarkMode} />
+      {/* Atmospheric Crimson Neural Mesh - Confined to Hero with Graceful Fade */}
+      <div className="pointer-events-none absolute top-0 left-0 right-0 h-[100vh] overflow-hidden [mask-image:radial-gradient(ellipse_80%_65%_at_50%_25%,black_40%,transparent_100%)]">
+        <NeuralCanvas isDarkMode={isDarkMode} />
+      </div>
 
       {/* Floating Island Navigation */}
       <Navbar

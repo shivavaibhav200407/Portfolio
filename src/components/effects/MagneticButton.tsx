@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 interface MagneticButtonProps {
@@ -17,14 +17,14 @@ export default function MagneticButton({
   className = "",
   onClick,
   href,
-  strength = 0.3,
+  strength = 0.18,
   dataCursor,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current || window.matchMedia("(pointer: coarse)").matches) return;
+    if (!ref.current || window.matchMedia("(pointer: coarse) and (hover: none)").matches) return;
     const { left, top, width, height } = ref.current.getBoundingClientRect();
     const centerX = left + width / 2;
     const centerY = top + height / 2;
@@ -44,7 +44,7 @@ export default function MagneticButton({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 350, damping: 20, mass: 0.4 }}
+      transition={{ type: "spring", stiffness: 280, damping: 22, mass: 0.25 }}
       className={`inline-block ${className}`}
       data-cursor={dataCursor}
     >

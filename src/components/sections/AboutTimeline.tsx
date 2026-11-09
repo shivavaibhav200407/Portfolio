@@ -5,7 +5,7 @@ import { GraduationCap, Award, Shield, Globe, MapPin, CheckCircle2 } from "lucid
 
 export default function AboutTimeline() {
   return (
-    <section id="about" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-[#050204] transition-colors duration-500">
+    <section id="about" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-[#020202] transition-colors duration-500">
       <div className="mx-auto max-w-5xl">
         {/* Section Header */}
         <div className="flex flex-col items-start gap-2">

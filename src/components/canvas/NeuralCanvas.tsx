@@ -25,26 +25,26 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
+    let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
 
-    // Responsive particle count
-    const particleCount = width < 768 ? 28 : 56;
-    const maxDistance = width < 768 ? 100 : 135;
+    // Subtle, whisper-quiet particle count for museum-grade polish
+    const particleCount = width < 768 ? 14 : 24;
+    const maxDistance = width < 768 ? 80 : 110;
 
     const particles: Particle[] = [];
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        size: Math.random() * 2 + 1.2,
-        baseAlpha: Math.random() * 0.5 + 0.3,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 1.4 + 0.6,
+        baseAlpha: Math.random() * 0.25 + 0.12,
       });
     }
 
-    let mouse = { x: -1000, y: -1000, radius: 150 };
+    let mouse = { x: -1000, y: -1000, radius: 110 };
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -54,8 +54,8 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
 
     const handleResize = () => {
       if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      width = canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;
+      height = canvas.height = canvas.parentElement?.clientHeight || window.innerHeight;
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
@@ -64,7 +64,7 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Black & Red Theme Colors
+      // Delicate crimson nodes and hairlines
       const particleColor = isDarkMode ? "255, 30, 39" : "220, 38, 38";
       const lineColor = isDarkMode ? "185, 28, 28" : "153, 27, 27";
 
@@ -82,15 +82,13 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
         const dist = Math.hypot(dx, dy);
         if (dist < mouse.radius) {
           const force = (mouse.radius - dist) / mouse.radius;
-          p.x += (dx / dist) * force * 1.5;
-          p.y += (dy / dist) * force * 1.5;
+          p.x += (dx / dist) * force * 0.6;
+          p.y += (dy / dist) * force * 0.6;
         }
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${particleColor}, ${p.baseAlpha})`;
-        ctx.shadowColor = `rgba(${particleColor}, 0.8)`;
-        ctx.shadowBlur = 6;
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -98,13 +96,12 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
           const distNodes = Math.hypot(p.x - p2.x, p.y - p2.y);
 
           if (distNodes < maxDistance) {
-            const alpha = (1 - distNodes / maxDistance) * (isDarkMode ? 0.25 : 0.15);
+            const alpha = (1 - distNodes / maxDistance) * 0.1;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = `rgba(${lineColor}, ${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.shadowBlur = 0;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
@@ -125,7 +122,7 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-60 transition-opacity duration-700"
+      className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-35 transition-opacity duration-700"
       aria-hidden="true"
     />
   );

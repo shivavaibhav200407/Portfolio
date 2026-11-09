@@ -17,7 +17,7 @@ export default function PostersGallery() {
       : POSTERS.filter((p) => p.category === filter);
 
   return (
-    <section id="posters" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-[#070204] transition-colors duration-500">
+    <section id="posters" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-[#020202] transition-colors duration-500">
       <div className="mx-auto max-w-5xl">
         {/* Section Header */}
         <div className="flex flex-col items-start gap-2">
@@ -41,8 +41,8 @@ export default function PostersGallery() {
               onClick={() => setFilter(cat)}
               className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-all ${
                 filter === cat
-                  ? "bg-[#FF1E27]/20 text-[#FF3843] border border-[#FF1E27]/60 shadow-[0_0_15px_rgba(255,30,39,0.25)]"
-                  : "bg-white/[0.03] text-slate-400 border border-white/10 hover:border-white/20 hover:text-white"
+                  ? "bg-[#FF1E27]/15 text-[#FF3843] border border-[#FF1E27]/50 shadow-[0_0_12px_rgba(255,30,39,0.15)]"
+                  : "bg-white/[0.02] text-slate-400 border border-white/10 hover:border-white/20 hover:text-white"
               }`}
             >
               {cat}

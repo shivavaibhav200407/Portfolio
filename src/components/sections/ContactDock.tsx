@@ -27,9 +27,9 @@ export default function ContactDock() {
   return (
     <section id="contact" className="relative py-20 px-4 sm:px-8 border-t border-white/5 bg-[#000000]">
       <div className="mx-auto max-w-5xl">
-        <div className="relative overflow-hidden rounded-3xl border border-[#FF1E27]/40 bg-gradient-to-b from-black via-[#080204] to-black p-6 sm:p-10 shadow-[0_0_80px_rgba(255,30,39,0.15)]">
-          <div className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full bg-[#FF1E27]/12 blur-[120px]" />
-          <div className="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#B91C1C]/10 blur-[120px]" />
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#070707] p-6 sm:p-10 shadow-2xl">
+          <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[#FF1E27]/[0.05] blur-[100px]" />
+          <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-[#FF1E27]/[0.03] blur-[100px]" />
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Column */}

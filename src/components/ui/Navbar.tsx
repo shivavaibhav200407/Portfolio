@@ -36,7 +36,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
       <div
         className={`mx-auto flex max-w-5xl items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-300 ${
           scrolled
-            ? "border border-[#FF1E27]/30 bg-black/90 shadow-[0_4px_30px_rgba(255,30,39,0.12)] backdrop-blur-xl"
+            ? "border border-white/10 bg-black/85 shadow-[0_4px_30px_rgba(0,0,0,0.8)] backdrop-blur-xl"
             : "border border-transparent bg-transparent"
         }`}
       >
