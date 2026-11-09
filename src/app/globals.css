@@ -23,10 +23,10 @@
     color: #FF1E27;
   }
 
-  /* Desktop cursor management: use custom neon red arrow pointer */
+  /* Desktop cursor management */
   @media (min-width: 768px) and (hover: hover) {
     body, a, button, input, [role="button"] {
-      cursor: none !important;
+      cursor: none;
     }
   }
 
