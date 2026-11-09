@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Lenis from "lenis";
 
 import NeuralCanvas from "@/components/canvas/NeuralCanvas";
-import CustomCursor from "@/components/ui/CustomCursor";
+import FlameCursor from "@/components/effects/FlameCursor";
 import Navbar from "@/components/ui/Navbar";
 import Hero from "@/components/sections/Hero";
 import Terminal from "@/components/sections/Terminal";
@@ -53,8 +53,8 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-cyber-bg text-cyber-heading selection:bg-cyan-500/25 selection:text-cyan-300">
-      {/* Enhanced Adaptive Physics Cursor */}
-      <CustomCursor />
+      {/* Sukuna Flame Arrow & Ember Cursor */}
+      <FlameCursor />
 
       {/* Interactive Neural Canvas (Background) */}
       <NeuralCanvas isDarkMode={isDarkMode} />
@@ -71,7 +71,7 @@ export default function Home() {
       {/* Infinite Skills Marquee */}
       <SkillsMarquee />
 
-      {/* Flagship SAGE Multi-Agent Case Study */}
+      {/* SAGE Multi-Agent Case Study */}
       <ScrollReveal delay={0.05}>
         <SageCaseStudy />
       </ScrollReveal>
