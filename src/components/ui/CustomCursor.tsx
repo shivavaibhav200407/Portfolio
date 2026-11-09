@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [cursorText, setCursorText] = useState("");
-  const [cursorVariant, setCursorVariant] = useState<
-    "default" | "hover" | "action" | "text" | "drag"
-  >("default");
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
+  const [isSlider, setIsSlider] = useState(false);
+  const [isText, setIsText] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -22,64 +23,65 @@ export default function CustomCursor() {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      // 1. Sliders -> Drag State
+      // Check for sliders
       if (target.tagName === "INPUT" && target.getAttribute("type") === "range") {
-        setCursorText("DRAG ↔");
-        setCursorVariant("drag");
+        setIsSlider(true);
+        setCursorText("↔");
+        setIsHovered(false);
+        setIsText(false);
         return;
       }
+      setIsSlider(false);
 
-      // 2. Custom data-cursor attributes
+      // Check for custom data-cursor="view"
       const interactive = target.closest("[data-cursor]") as HTMLElement | null;
       if (interactive) {
         const type = interactive.getAttribute("data-cursor");
-        if (type === "view") {
+        if (type === "view" || type === "explore") {
           setCursorText("VIEW");
-          setCursorVariant("action");
-        } else if (type === "explore") {
-          setCursorText("EXPLORE");
-          setCursorVariant("action");
-        } else if (type === "copy") {
-          setCursorText("COPY");
-          setCursorVariant("action");
-        } else if (type === "drag") {
-          setCursorText("DRAG ↔");
-          setCursorVariant("drag");
-        } else {
-          setCursorText("");
-          setCursorVariant("hover");
+          setIsHovered(true);
+          setIsText(false);
+          return;
         }
-        return;
       }
 
-      // 3. Clickable elements -> Grow Hover State
+      // Check for clickable elements
       if (target.closest("button, a, [role='button']")) {
         setCursorText("");
-        setCursorVariant("hover");
+        setIsHovered(true);
+        setIsText(false);
         return;
       }
 
-      // 4. Reading text -> Shrink State
+      // Check for reading text
       if (target.closest("p, li, blockquote")) {
         setCursorText("");
-        setCursorVariant("text");
+        setIsHovered(false);
+        setIsText(true);
         return;
       }
 
-      // Default State
+      // Default
       setCursorText("");
-      setCursorVariant("default");
+      setIsHovered(false);
+      setIsText(false);
     };
 
+    const onMouseDown = () => setIsClicking(true);
+    const onMouseUp = () => setIsClicking(false);
     const onMouseLeave = () => setIsVisible(false);
     const onMouseEnter = () => setIsVisible(true);
 
-    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
     document.addEventListener("mouseleave", onMouseLeave);
     document.addEventListener("mouseenter", onMouseEnter);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
       document.removeEventListener("mouseleave", onMouseLeave);
       document.removeEventListener("mouseenter", onMouseEnter);
     };
@@ -87,65 +89,75 @@ export default function CustomCursor() {
 
   if (!isVisible) return null;
 
-  // Sizing by variant
-  let width = 32;
-  let height = 32;
-  let borderColor = "rgba(0, 240, 255, 0.4)";
-  let bgColor = "rgba(0, 240, 255, 0.08)";
-
-  if (cursorVariant === "action") {
-    width = 68;
-    height = 68;
-    borderColor = "rgba(0, 240, 255, 0.85)";
-    bgColor = "rgba(0, 240, 255, 0.15)";
-  } else if (cursorVariant === "drag") {
-    width = 78;
-    height = 36;
-    borderColor = "rgba(59, 130, 246, 0.9)";
-    bgColor = "rgba(59, 130, 246, 0.25)";
-  } else if (cursorVariant === "hover") {
-    width = 46;
-    height = 46;
-    borderColor = "rgba(0, 240, 255, 0.6)";
-    bgColor = "rgba(0, 240, 255, 0.12)";
-  } else if (cursorVariant === "text") {
-    width = 16;
-    height = 16;
-    borderColor = "rgba(148, 163, 184, 0.5)";
-    bgColor = "transparent";
+  // Determine dimensions
+  let size = 26;
+  if (cursorText) {
+    size = 56;
+  } else if (isHovered) {
+    size = 44;
+  } else if (isSlider) {
+    size = 40;
+  } else if (isText) {
+    size = 14;
   }
 
   return (
     <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden md:block">
-      {/* Outer Follower Ring */}
+      {/* Outer Smooth Follower Ring (High-end Studio Feel) */}
       <motion.div
-        className="fixed top-0 left-0 flex items-center justify-center rounded-full border backdrop-blur-[1px]"
+        className="fixed top-0 left-0 flex items-center justify-center rounded-full pointer-events-none"
         animate={{
-          x: mousePosition.x - width / 2,
-          y: mousePosition.y - height / 2,
-          width,
-          height,
-          borderColor,
-          backgroundColor: bgColor,
+          x: mousePosition.x - size / 2,
+          y: mousePosition.y - size / 2,
+          width: size,
+          height: size,
+          scale: isClicking ? 0.8 : 1,
+          opacity: isText ? 0.25 : 1,
+          borderColor: cursorText
+            ? "rgba(0, 240, 255, 0.8)"
+            : isHovered
+            ? "rgba(0, 240, 255, 0.7)"
+            : "rgba(148, 163, 184, 0.4)",
+          backgroundColor: cursorText
+            ? "rgba(0, 240, 255, 0.12)"
+            : isHovered
+            ? "rgba(0, 240, 255, 0.08)"
+            : "transparent",
         }}
-        transition={{ type: "spring", stiffness: 450, damping: 28, mass: 0.45 }}
+        transition={{
+          type: "spring",
+          stiffness: 650,
+          damping: 32,
+          mass: 0.35,
+        }}
+        style={{
+          borderWidth: 1.5,
+          backdropFilter: isHovered ? "blur(1px)" : "none",
+        }}
       >
         {cursorText && (
-          <span className="text-[10px] font-mono font-bold tracking-wider text-cyan-300 select-none">
+          <span className="text-[10px] font-mono font-bold tracking-widest text-cyan-300">
             {cursorText}
           </span>
         )}
       </motion.div>
 
-      {/* Center Core Dot */}
+      {/* Center Laser Precision Point */}
       <motion.div
-        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_8px_#00f0ff]"
+        className="fixed top-0 left-0 rounded-full bg-cyan-400 pointer-events-none shadow-[0_0_8px_#00f0ff]"
         animate={{
           x: mousePosition.x - 3,
           y: mousePosition.y - 3,
-          opacity: cursorVariant === "text" ? 0.3 : 1,
+          width: 6,
+          height: 6,
+          scale: isClicking ? 0.5 : isHovered ? 1.4 : 1,
+          opacity: isText ? 0.4 : 1,
         }}
-        transition={{ type: "spring", stiffness: 1000, damping: 40 }}
+        transition={{
+          type: "spring",
+          stiffness: 1200,
+          damping: 50,
+        }}
       />
     </div>
   );
