@@ -4,7 +4,7 @@ export const PROFILE = {
   initials: "SV",
   location: "Hyderabad, India",
   tagline: "Building autonomous AI agents. Crafting bold visual experiences.",
-  shortBio: "B.Tech CSE (AI & ML) student at SITS Hyderabad. Team Lead for SAGE (college multi-agent AI tutor) and Chief Designer & Disciplinary Head for S.A.C.C. Actively seeking internships and junior roles.",
+  shortBio: "B.Tech CSE (AI & ML) 3rd year student at Siddhartha Institute of Technology & Sciences (SITS), Hyderabad. Team Lead for SAGE (college multi-agent AI tutor) and Chief Designer & Disciplinary Head for Siddhartha Allied Clubs Council (S.A.C.C). Actively seeking an engineering internship and first job.",
   
   education: {
     institution: "Siddhartha Institute of Technology & Sciences (SITS)",
@@ -25,7 +25,7 @@ export const PROFILE = {
   council: {
     body: "Siddhartha Allied Clubs Council (S.A.C.C)",
     roles: ["Chief Designer", "Disciplinary Head"],
-    responsibility: "Designs promotional posters and announcements for campus technical workshops, fests, and hackathons while maintaining event order and discipline.",
+    responsibility: "Led design of 20+ promotional posters, banners, and digital assets for college fests, technical workshops, hackathons (including Smart India Hackathon 2026), while maintaining crowd order and student discipline during campus gatherings.",
   },
 
   languages: [
@@ -39,6 +39,7 @@ export const PROFILE = {
     phone: "+91 9493721105",
     github: "https://github.com/shivavaibhav200407",
     linkedin: "https://www.linkedin.com/in/akula-shiva-vaibhav-49918333b/",
+    drivePostersFolder: "https://drive.google.com/drive/folders/1ayl70pKJ6OmhgxUTcCHntYWKKudaQ9WN?usp=sharing",
     resumePath: "/resume.pdf",
   },
 };

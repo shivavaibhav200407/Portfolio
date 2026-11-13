@@ -28,9 +28,9 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
     let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
     let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
 
-    // Subtle, whisper-quiet particle count for museum-grade polish
-    const particleCount = width < 768 ? 14 : 24;
-    const maxDistance = width < 768 ? 80 : 110;
+    // Subtle, whisper-quiet particle count
+    const particleCount = width < 768 ? 14 : 26;
+    const maxDistance = width < 768 ? 80 : 115;
 
     const particles: Particle[] = [];
     for (let i = 0; i < particleCount; i++) {
@@ -64,9 +64,9 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Delicate crimson nodes and hairlines
-      const particleColor = isDarkMode ? "255, 30, 39" : "220, 38, 38";
-      const lineColor = isDarkMode ? "185, 28, 28" : "153, 27, 27";
+      // Light: Ocean Blue (2, 132, 199) | Dark: Neon Red (255, 30, 39)
+      const particleColor = isDarkMode ? "255, 30, 39" : "2, 132, 199";
+      const lineColor = isDarkMode ? "185, 28, 28" : "3, 105, 161";
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
@@ -96,7 +96,7 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
           const distNodes = Math.hypot(p.x - p2.x, p.y - p2.y);
 
           if (distNodes < maxDistance) {
-            const alpha = (1 - distNodes / maxDistance) * 0.1;
+            const alpha = (1 - distNodes / maxDistance) * (isDarkMode ? 0.12 : 0.15);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
@@ -122,7 +122,7 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-35 transition-opacity duration-700"
+      className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-40 transition-opacity duration-700"
       aria-hidden="true"
     />
   );

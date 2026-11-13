@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Lenis from "lenis";
 
 import NeuralCanvas from "@/components/canvas/NeuralCanvas";
-import NeonRedCursor from "@/components/effects/NeonRedCursor";
+import DualModeCursor from "@/components/effects/DualModeCursor";
+import UniqueTechPreloader from "@/components/effects/UniqueTechPreloader";
 import Navbar from "@/components/ui/Navbar";
 import Hero from "@/components/sections/Hero";
 import Terminal from "@/components/sections/Terminal";
@@ -24,7 +25,29 @@ export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [terminalOpen, setTerminalOpen] = useState(false);
 
-  // Initialize Lenis Smooth Inertia Scrolling
+  // Initialize Theme on Mount from localStorage or device preference
+  useEffect(() => {
+    const saved = localStorage.getItem("portfolio_theme");
+    if (saved) {
+      const isDark = saved === "dark";
+      setIsDarkMode(isDark);
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    } else {
+      const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setIsDarkMode(systemDark);
+      if (systemDark) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  }, []);
+
+  // Initialize Lenis Smooth Kinetic Scrolling
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
@@ -36,7 +59,7 @@ export default function Home() {
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      touchMultiplier: 2,
+      touchMultiplier: 1.8,
     });
 
     function raf(time: number) {
@@ -53,58 +76,62 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative min-h-screen bg-black text-white selection:bg-[#FF1E27]/30 selection:text-[#FF1E27]">
-      {/* Precision Red Neon Outline Arrow Cursor */}
-      <NeonRedCursor />
+    <main className="relative min-h-screen transition-colors duration-500 bg-white text-slate-900 dark:bg-black dark:text-white">
+      {/* Unique Geometric Orbital Tech Preloader */}
+      <UniqueTechPreloader isDark={isDarkMode} />
 
-      {/* Atmospheric Crimson Neural Mesh - Confined to Hero with Graceful Fade */}
+      {/* Dual-Mode Adaptive Custom Cursor (Ocean Blue in Light ↔ Neon Red in Dark) */}
+      <DualModeCursor isDark={isDarkMode} />
+
+      {/* Ambient Neural Mesh - Confined to Hero with Graceful Fade */}
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-[100vh] overflow-hidden [mask-image:radial-gradient(ellipse_80%_65%_at_50%_25%,black_40%,transparent_100%)]">
         <NeuralCanvas isDarkMode={isDarkMode} />
       </div>
 
-      {/* Floating Island Navigation */}
+      {/* Floating Island Navigation with Standalone Celestial Theme Toggle */}
       <Navbar
         onToggleTheme={(dark) => setIsDarkMode(dark)}
         onOpenTerminal={() => setTerminalOpen(true)}
+        isDark={isDarkMode}
       />
 
-      {/* Kinetic Hero */}
-      <Hero onOpenTerminal={() => setTerminalOpen(true)} />
+      {/* 01 // Kinetic Tech Hero */}
+      <Hero onOpenTerminal={() => setTerminalOpen(true)} isDark={isDarkMode} />
 
       {/* Infinite Skills Marquee */}
       <SkillsMarquee />
 
-      {/* SAGE Multi-Agent Case Study */}
+      {/* 03 // SAGE Multi-Agent Case Study (Referral Page Editorial Style) */}
       <ScrollReveal delay={0.05}>
         <SageCaseStudy />
       </ScrollReveal>
 
-      {/* Interactive ML Sandbox */}
+      {/* 04 // Interactive ML Dimension Sandbox */}
       <ScrollReveal delay={0.05}>
         <IrisMlSandbox />
       </ScrollReveal>
 
-      {/* S.A.C.C Posters & Creative Direction */}
+      {/* 05 // S.A.C.C Posters & Creative Direction (Google Drive Integrated) */}
       <ScrollReveal delay={0.05}>
         <PostersGallery />
       </ScrollReveal>
 
-      {/* Verified Certificates & Workshops */}
+      {/* 06 // Verified Certificates & College Workshops */}
       <ScrollReveal delay={0.05}>
         <CertificatesSection />
       </ScrollReveal>
 
-      {/* Skills Matrix */}
+      {/* 07 // Toolbox & Skills Bento Grid */}
       <ScrollReveal delay={0.05}>
         <SkillsBento />
       </ScrollReveal>
 
-      {/* About & Education Timeline */}
+      {/* 08 // Academic Journey & Leadership */}
       <ScrollReveal delay={0.05}>
         <AboutTimeline />
       </ScrollReveal>
 
-      {/* Contact Dock */}
+      {/* 09 // High-Conversion Contact Dock */}
       <ScrollReveal delay={0.05}>
         <ContactDock />
       </ScrollReveal>
@@ -112,8 +139,8 @@ export default function Home() {
       {/* Footer */}
       <Footer />
 
-      {/* Interactive Terminal CLI */}
-      <Terminal isOpen={terminalOpen} onClose={() => setTerminalOpen(false)} />
+      {/* Interactive Developer CLI Terminal Modal */}
+      <Terminal isOpen={terminalOpen} onClose={() => setTerminalOpen(false)} isDark={isDarkMode} />
     </main>
   );
 }
