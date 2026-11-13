@@ -15,10 +15,10 @@ export default function DoodlePlayground({ isDark = true }: DoodlePlaygroundProp
 
   const colors = isDark
     ? ["#FF1E27", "#38BDF8", "#FBBF24", "#FFFFFF", "#4ADE80"]
-    : ["#0284C7", "#DC2626", "#F59E0B", "#0F172A", "#10B981"];
+    : ["#2563EB", "#0B1B3A", "#F59E0B", "#10B981", "#8B5CF6"];
 
   useEffect(() => {
-    setCurrentColor(isDark ? "#FF1E27" : "#0284C7");
+    setCurrentColor(isDark ? "#FF1E27" : "#2563EB");
   }, [isDark]);
 
   useEffect(() => {
@@ -101,28 +101,28 @@ export default function DoodlePlayground({ isDark = true }: DoodlePlaygroundProp
   };
 
   return (
-    <section id="playground" className="py-20 px-4 sm:px-8 border-t border-slate-200/60 dark:border-white/5">
+    <section id="playground" className="py-20 px-4 sm:px-8 border-t transition-colors duration-500 border-[#DCE6F7] bg-[#F7FAFF] text-[#0B1B3A] dark:border-white/5 dark:bg-[#060608] dark:text-white">
       <div className="mx-auto max-w-5xl">
         {/* Section Header */}
         <div className="mb-8">
-          <span className="font-mono text-[11px] tracking-widest uppercase text-slate-500 dark:text-slate-400">
+          <span className="font-mono text-[11px] tracking-widest uppercase text-[#5B6B8C] dark:text-slate-400">
             06 / PLAYGROUND
           </span>
-          <h2 className="mt-2 font-serif text-3xl sm:text-4xl text-slate-900 dark:text-white">
+          <h2 className="mt-2 font-serif text-3xl sm:text-4xl font-normal text-[#0B1B3A] dark:text-white">
             Leave a sketch or sign the board
           </h2>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 font-sans max-w-xl">
+          <p className="mt-2 text-sm text-[#5B6B8C] dark:text-slate-400 font-sans max-w-xl">
             Draw something or drop a greeting on the canvas. Interactive creative space inspired by Haute Dev aesthetics.
           </p>
         </div>
 
         {/* Doodle Board Wrapper */}
-        <div className="rounded-2xl border p-4 sm:p-6 backdrop-blur-md transition-all border-slate-200 bg-white/70 shadow-sm dark:border-white/10 dark:bg-black/60">
+        <div className="rounded-2xl border p-4 sm:p-6 backdrop-blur-md transition-all border-[#DCE6F7] bg-white shadow-[0_4px_20px_-2px_rgba(37,99,235,0.06)] dark:border-white/10 dark:bg-black/60 dark:shadow-none">
           {/* Controls Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200/60 dark:border-white/5">
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#DCE6F7] dark:border-white/5">
             <div className="flex items-center gap-3">
-              <span className="font-mono text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                <Edit3 className="h-3.5 w-3.5" />
+              <span className="font-mono text-xs text-[#5B6B8C] dark:text-slate-400 flex items-center gap-1.5">
+                <Edit3 className="h-3.5 w-3.5 text-[#2563EB] dark:text-[#FF1E27]" />
                 <span>Ink:</span>
               </span>
               <div className="flex items-center gap-2">
@@ -133,7 +133,7 @@ export default function DoodlePlayground({ isDark = true }: DoodlePlaygroundProp
                     onClick={() => setCurrentColor(c)}
                     aria-label={`Select color ${c}`}
                     className={`h-6 w-6 rounded-full border-2 transition-transform ${
-                      currentColor === c ? "scale-125 border-slate-900 dark:border-white" : "border-transparent hover:scale-110"
+                      currentColor === c ? "scale-125 border-[#0B1B3A] dark:border-white" : "border-transparent hover:scale-110"
                     }`}
                     style={{ backgroundColor: c }}
                   />
@@ -143,12 +143,12 @@ export default function DoodlePlayground({ isDark = true }: DoodlePlaygroundProp
 
             <div className="flex items-center gap-3">
               {/* Stroke Width Selector */}
-              <div className="flex items-center gap-1.5 font-mono text-xs text-slate-500 dark:text-slate-400">
+              <div className="flex items-center gap-1.5 font-mono text-xs text-[#5B6B8C] dark:text-slate-400">
                 <button
                   type="button"
                   onClick={() => setStrokeWidth(2)}
-                  className={`px-2 py-0.5 rounded border ${
-                    strokeWidth === 2 ? "border-sky-500 bg-sky-50 text-sky-600 dark:border-[#FF1E27] dark:bg-[#FF1E27]/20 dark:text-[#FF4D55]" : "border-transparent"
+                  className={`px-2 py-0.5 rounded border transition-colors ${
+                    strokeWidth === 2 ? "border-[#2563EB] bg-[#EAF2FF] text-[#2563EB] font-semibold dark:border-[#FF1E27] dark:bg-[#FF1E27]/20 dark:text-[#FF4D55]" : "border-transparent"
                   }`}
                 >
                   Thin
@@ -156,8 +156,8 @@ export default function DoodlePlayground({ isDark = true }: DoodlePlaygroundProp
                 <button
                   type="button"
                   onClick={() => setStrokeWidth(4)}
-                  className={`px-2 py-0.5 rounded border ${
-                    strokeWidth === 4 ? "border-sky-500 bg-sky-50 text-sky-600 dark:border-[#FF1E27] dark:bg-[#FF1E27]/20 dark:text-[#FF4D55]" : "border-transparent"
+                  className={`px-2 py-0.5 rounded border transition-colors ${
+                    strokeWidth === 4 ? "border-[#2563EB] bg-[#EAF2FF] text-[#2563EB] font-semibold dark:border-[#FF1E27] dark:bg-[#FF1E27]/20 dark:text-[#FF4D55]" : "border-transparent"
                   }`}
                 >
                   Medium
@@ -165,8 +165,8 @@ export default function DoodlePlayground({ isDark = true }: DoodlePlaygroundProp
                 <button
                   type="button"
                   onClick={() => setStrokeWidth(7)}
-                  className={`px-2 py-0.5 rounded border ${
-                    strokeWidth === 7 ? "border-sky-500 bg-sky-50 text-sky-600 dark:border-[#FF1E27] dark:bg-[#FF1E27]/20 dark:text-[#FF4D55]" : "border-transparent"
+                  className={`px-2 py-0.5 rounded border transition-colors ${
+                    strokeWidth === 7 ? "border-[#2563EB] bg-[#EAF2FF] text-[#2563EB] font-semibold dark:border-[#FF1E27] dark:bg-[#FF1E27]/20 dark:text-[#FF4D55]" : "border-transparent"
                   }`}
                 >
                   Bold
@@ -177,7 +177,7 @@ export default function DoodlePlayground({ isDark = true }: DoodlePlaygroundProp
               <button
                 type="button"
                 onClick={clearCanvas}
-                className="flex items-center gap-1.5 rounded-full border px-3.5 py-1 font-mono text-xs transition-colors border-slate-200 text-slate-600 hover:border-red-500 hover:text-red-500 dark:border-white/10 dark:text-slate-400 dark:hover:border-red-500 dark:hover:text-red-400"
+                className="flex items-center gap-1.5 rounded-full border px-3.5 py-1 font-mono text-xs transition-colors border-[#DCE6F7] bg-white text-[#5B6B8C] hover:border-red-500 hover:text-red-500 dark:border-white/10 dark:bg-black/40 dark:text-slate-400 dark:hover:border-red-500 dark:hover:text-red-400"
               >
                 <Trash2 className="h-3 w-3" />
                 <span>Clear</span>
@@ -186,7 +186,7 @@ export default function DoodlePlayground({ isDark = true }: DoodlePlaygroundProp
           </div>
 
           {/* Interactive Drawing Canvas */}
-          <div className="mt-4 relative w-full h-[280px] sm:h-[360px] rounded-xl overflow-hidden border border-slate-200/80 bg-slate-50/50 dark:border-white/5 dark:bg-[#070709] cursor-crosshair">
+          <div className="mt-4 relative w-full h-[280px] sm:h-[360px] rounded-xl overflow-hidden border border-[#DCE6F7] bg-[#F7FAFF] dark:border-white/5 dark:bg-[#070709] cursor-crosshair">
             <canvas
               ref={canvasRef}
               onMouseDown={startDrawing}
@@ -199,7 +199,7 @@ export default function DoodlePlayground({ isDark = true }: DoodlePlaygroundProp
               className="w-full h-full touch-none"
             />
             {!isDrawing && (
-              <div className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-slate-400 dark:text-slate-600 tracking-wider">
+              <div className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-[#5B6B8C] dark:text-slate-600 tracking-wider">
                 TOUCH OR DRAG TO DOODLE
               </div>
             )}

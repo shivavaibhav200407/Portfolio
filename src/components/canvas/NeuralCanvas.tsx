@@ -64,9 +64,9 @@ export default function NeuralCanvas({ isDarkMode = true }: NeuralCanvasProps) {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Light: Ocean Blue (2, 132, 199) | Dark: Neon Red (255, 30, 39)
-      const particleColor = isDarkMode ? "255, 30, 39" : "2, 132, 199";
-      const lineColor = isDarkMode ? "185, 28, 28" : "3, 105, 161";
+      // Light: Vivid Blue (37, 99, 235) | Dark: Neon Red (255, 30, 39)
+      const particleColor = isDarkMode ? "255, 30, 39" : "37, 99, 235";
+      const lineColor = isDarkMode ? "185, 28, 28" : "37, 99, 235";
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];

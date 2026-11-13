@@ -40,9 +40,9 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
   useEffect(() => {
     themeRef.current = {
       isDark,
-      primaryColor: isDark ? "#FF1E27" : "#0284C7",
-      glowColor: isDark ? "rgba(255, 30, 39, 0.85)" : "rgba(2, 132, 199, 0.85)",
-      sparkColor: isDark ? "rgba(255, 80, 80, 0.9)" : "rgba(56, 189, 248, 0.9)",
+      primaryColor: isDark ? "#FF1E27" : "#2563EB",
+      glowColor: isDark ? "rgba(255, 30, 39, 0.85)" : "rgba(37, 99, 235, 0.85)",
+      sparkColor: isDark ? "rgba(255, 80, 80, 0.9)" : "rgba(96, 165, 250, 0.9)",
     };
   }, [isDark]);
 
@@ -266,11 +266,11 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
     };
   }, []);
 
-  const primaryColor = isDark ? "#FF1E27" : "#0284C7";
+  const primaryColor = isDark ? "#FF1E27" : "#2563EB";
   const arrowFill = isDark ? "#050505" : "#FFFFFF";
   const glowDropShadow = isDark
     ? "drop-shadow(0 0 7px rgba(255,30,39,0.85))"
-    : "drop-shadow(0 0 7px rgba(2,132,199,0.85))";
+    : "drop-shadow(0 0 7px rgba(37,99,235,0.85))";
 
   return (
     <>
@@ -330,7 +330,7 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
             className={`flex items-center gap-1.5 rounded-full px-2.5 py-0.5 backdrop-blur-md shadow-lg ${
               isDark
                 ? "border border-[#FF1E27]/80 bg-black/90 shadow-[0_0_15px_rgba(255,30,39,0.4)]"
-                : "border border-sky-600/80 bg-white/95 shadow-[0_0_15px_rgba(2,132,199,0.3)]"
+                : "border border-[#2563EB]/80 bg-white shadow-[0_4px_15px_rgba(37,99,235,0.25)]"
             }`}
           >
             <span
@@ -339,7 +339,7 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
             />
             <span
               className="font-mono text-[9px] font-black tracking-widest uppercase select-none"
-              style={{ color: isDark ? "#FFFFFF" : "#0F172A" }}
+              style={{ color: isDark ? "#FFFFFF" : "#0B1B3A" }}
             >
               {cursorLabel}
             </span>

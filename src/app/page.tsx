@@ -77,7 +77,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative min-h-screen transition-colors duration-500 bg-[#FAF8F5] text-slate-900 dark:bg-[#060608] dark:text-white">
+    <main className="relative min-h-screen transition-colors duration-500 bg-[#F7FAFF] text-[#0B1B3A] dark:bg-[#060608] dark:text-white">
       {/* Tactile Film Grain Texture (Award-winning editorial surface) */}
       <div className="grain" aria-hidden="true" />
 

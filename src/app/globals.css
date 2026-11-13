@@ -8,25 +8,28 @@
   --font-jetbrains-mono: "JetBrains Mono", monospace;
   --font-serif: "Cormorant Garamond", Georgia, serif;
 
-  /* Light Mode Tokens: Warm Architectural Studio & Ocean Blue */
-  --bg-base: #FAF8F5;
-  --bg-secondary: #F3EFEA;
-  --bg-card: rgba(255, 255, 255, 0.85);
+  /* Clean White & Soft Blue Light Mode Palette */
+  --bg-base: #F7FAFF;
+  --bg-secondary: #EAF2FF;
+  --bg-card: #FFFFFF;
   --bg-card-hover: #FFFFFF;
-  --text-primary: #14100D;
-  --text-secondary: #5C5248;
-  --text-muted: #8C7E72;
-  --border-card: rgba(20, 16, 13, 0.12);
-  --border-card-hover: rgba(2, 132, 199, 0.6);
-  --accent: #0284C7;
-  --accent-glow: rgba(2, 132, 199, 0.25);
-  --selection-bg: rgba(2, 132, 199, 0.2);
-  --selection-text: #0284C7;
-  --grid-dot: rgba(2, 132, 199, 0.08);
+  --text-primary: #0B1B3A;
+  --text-secondary: #5B6B8C;
+  --text-muted: #5B6B8C;
+  --border-card: #DCE6F7;
+  --border-card-hover: #2563EB;
+  --accent: #2563EB;
+  --accent-hover: #1D4ED8;
+  --accent-glow: rgba(37, 99, 235, 0.25);
+  --chip-bg: #EAF2FF;
+  --chip-border: #DBEAFE;
+  --selection-bg: rgba(37, 99, 235, 0.2);
+  --selection-text: #2563EB;
+  --grid-dot: rgba(37, 99, 235, 0.08);
 }
 
 html.dark {
-  /* Dark Mode Tokens: True Obsidian Black & Neon Red */
+  /* Dark Mode Tokens: True Obsidian Black & Neon Red (UNTOUCHED) */
   --bg-base: #060608;
   --bg-secondary: #0B0B0E;
   --bg-card: rgba(16, 16, 20, 0.7);
@@ -86,7 +89,7 @@ html.dark {
   }
 }
 
-/* Film Grain Overlay (Matches award-winning editorial reference site) */
+/* Film Grain Overlay */
 .grain {
   position: fixed;
   inset: 0;
@@ -98,10 +101,10 @@ html.dark {
 }
 html:not(.dark) .grain {
   mix-blend-mode: multiply;
-  opacity: 0.22;
+  opacity: 0.10;
 }
 
-/* Subtle Architecture & Matrix Background Dot Grids */
+/* Soft Ambient Dot Grid */
 .bg-grid-ambient {
   background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
   background-size: 26px 26px;

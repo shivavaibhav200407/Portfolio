@@ -59,9 +59,9 @@ export default function UniqueTechPreloader({ onComplete, isDark = true }: Prelo
 
   if (isDone) return null;
 
-  const accentColor = isDark ? "#FF1E27" : "#0284C7";
-  const bgColor = isDark ? "#000000" : "#FFFFFF";
-  const textColor = isDark ? "#FFFFFF" : "#0F172A";
+  const accentColor = isDark ? "#FF1E27" : "#2563EB";
+  const bgColor = isDark ? "#000000" : "#F7FAFF";
+  const textColor = isDark ? "#FFFFFF" : "#0B1B3A";
 
   return (
     <AnimatePresence>

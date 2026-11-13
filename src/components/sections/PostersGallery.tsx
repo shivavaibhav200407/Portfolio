@@ -18,20 +18,19 @@ export default function PostersGallery() {
       : POSTERS.filter((p) => p.category === filter);
 
   return (
-    <section id="posters" className="relative py-24 px-4 sm:px-8 border-t transition-colors duration-500 border-slate-200 bg-slate-50/60 text-slate-900 dark:border-white/5 dark:bg-[#020202] dark:text-white">
+    <section id="posters" className="relative py-24 px-4 sm:px-8 border-t transition-colors duration-500 border-[#DCE6F7] bg-[#F7FAFF] text-[#0B1B3A] dark:border-white/5 dark:bg-[#020202] dark:text-white">
       <div className="mx-auto max-w-5xl">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="flex flex-col items-start gap-2">
-            <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs font-semibold border-sky-500/20 bg-sky-50 text-sky-700 dark:border-[#FF1E27]/30 dark:bg-[#FF1E27]/10 dark:text-[#FF3843]">
-              <Palette className="h-3.5 w-3.5 text-sky-600 dark:text-[#FF1E27]" />
-              <span>05 // DESIGN WORK &middot; S.A.C.C CHIEF DESIGNER</span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight">
-              College Posters & Creative Direction
+            <span className="font-mono text-[11px] tracking-widest uppercase text-[#5B6B8C] dark:text-slate-400">
+              04 // COLLEGE POSTERS &middot; S.A.C.C CHIEF DESIGNER
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-[#0B1B3A] dark:text-white">
+              College Posters &amp; Creative Direction
             </h2>
-            <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300 mt-1 font-sans">
-              As Chief Designer & Disciplinary Head for our student council (S.A.C.C), I design promotional posters, social media banners, and motion reels for campus hackathons (SIH 2026), workshops, and cultural festivals.
+            <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-[#5B6B8C] dark:text-slate-300 mt-1 font-sans">
+              As Chief Designer &amp; Disciplinary Head for our student council (S.A.C.C), I design promotional posters, social media banners, and motion reels for campus hackathons (SIH 2026), workshops, and cultural festivals.
             </p>
           </div>
 
@@ -40,10 +39,10 @@ export default function PostersGallery() {
             href={PROFILE.contact.drivePostersFolder}
             target="_blank"
             rel="noopener noreferrer"
-            className="group shrink-0 inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 font-mono text-xs font-semibold shadow-sm transition-all border-sky-500/40 bg-sky-50 text-sky-700 hover:bg-sky-100 hover:border-sky-600 dark:border-[#FF1E27]/40 dark:bg-[#FF1E27]/10 dark:text-[#FF3843] dark:hover:bg-[#FF1E27]/20"
+            className="group shrink-0 inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 font-mono text-xs font-semibold shadow-sm transition-all border-[#DBEAFE] bg-[#EAF2FF] text-[#2563EB] hover:bg-[#DBEAFE] hover:border-[#2563EB] dark:border-[#FF1E27]/40 dark:bg-[#FF1E27]/10 dark:text-[#FF3843] dark:hover:bg-[#FF1E27]/20"
           >
             <FolderOpen className="h-4 w-4" />
-            <span>Open Full Google Drive Vault</span>
+            <span>Open Google Drive Vault</span>
             <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
@@ -56,8 +55,8 @@ export default function PostersGallery() {
               onClick={() => setFilter(cat)}
               className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-all ${
                 filter === cat
-                  ? "border-sky-600 bg-sky-600 text-white shadow-sm dark:border-[#FF1E27]/60 dark:bg-[#FF1E27]/20 dark:text-[#FF3843] dark:shadow-[0_0_15px_rgba(255,30,39,0.2)]"
-                  : "border-slate-200 bg-white text-slate-600 hover:border-sky-400 hover:text-sky-600 dark:border-white/10 dark:bg-white/[0.02] dark:text-slate-400 dark:hover:border-white/20 dark:hover:text-white"
+                  ? "border-[#2563EB] bg-[#2563EB] text-white shadow-sm dark:border-[#FF1E27]/60 dark:bg-[#FF1E27]/20 dark:text-[#FF3843] dark:shadow-[0_0_15px_rgba(255,30,39,0.2)]"
+                  : "border-[#DCE6F7] bg-white text-[#5B6B8C] hover:border-[#2563EB] hover:text-[#2563EB] dark:border-white/10 dark:bg-white/[0.02] dark:text-slate-400 dark:hover:border-white/20 dark:hover:text-white"
               }`}
             >
               {cat}

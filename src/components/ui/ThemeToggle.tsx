@@ -59,14 +59,14 @@ export default function ThemeToggle({ onToggle }: ThemeToggleProps) {
     <button
       onClick={toggleTheme}
       type="button"
-      aria-label={isDark ? "Switch to Ocean Blue light theme" : "Switch to Neon Red dark theme"}
-      className="group relative flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 border-slate-200 bg-white/80 hover:border-sky-500 hover:shadow-[0_0_15px_rgba(2,132,199,0.25)] dark:border-white/10 dark:bg-[#0A0A0A] dark:hover:border-[#FF1E27]/60 dark:hover:shadow-[0_0_15px_rgba(255,30,39,0.25)]"
-      title={isDark ? "Switch to Ocean Blue light theme" : "Switch to Neon Red dark theme"}
+      aria-label={isDark ? "Switch to Blue light theme" : "Switch to Neon Red dark theme"}
+      className="group relative flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 border-[#DCE6F7] bg-white hover:border-[#2563EB] hover:shadow-[0_4px_15px_rgba(37,99,235,0.2)] dark:border-white/10 dark:bg-[#0A0A0A] dark:hover:border-[#FF1E27]/60 dark:hover:shadow-[0_0_15px_rgba(255,30,39,0.25)]"
+      title={isDark ? "Switch to Blue light theme" : "Switch to Neon Red dark theme"}
     >
       <div className="relative h-4 w-4">
         {/* Sun Icon for Light Mode */}
         <Sun
-          className={`absolute inset-0 h-4 w-4 text-sky-600 transition-all duration-500 ${
+          className={`absolute inset-0 h-4 w-4 text-[#2563EB] transition-all duration-500 ${
             isDark
               ? "-rotate-90 scale-0 opacity-0"
               : "rotate-0 scale-100 opacity-100"
