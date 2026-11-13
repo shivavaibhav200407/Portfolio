@@ -11,6 +11,7 @@ import Terminal from "@/components/sections/Terminal";
 import SageCaseStudy from "@/components/sections/SageCaseStudy";
 import IrisMlSandbox from "@/components/sections/IrisMlSandbox";
 import PostersGallery from "@/components/sections/PostersGallery";
+import CertificatesSection from "@/components/sections/CertificatesSection";
 import SkillsBento from "@/components/sections/SkillsBento";
 import AboutTimeline from "@/components/sections/AboutTimeline";
 import ContactDock from "@/components/sections/ContactDock";
@@ -86,6 +87,11 @@ export default function Home() {
       {/* S.A.C.C Posters & Creative Direction */}
       <ScrollReveal delay={0.05}>
         <PostersGallery />
+      </ScrollReveal>
+
+      {/* Verified Certificates & Workshops */}
+      <ScrollReveal delay={0.05}>
+        <CertificatesSection />
       </ScrollReveal>
 
       {/* Skills Matrix */}

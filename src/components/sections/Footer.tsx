@@ -1,6 +1,7 @@
 "use client";
 
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
+import { PROFILE } from "@/data/profile";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -13,24 +14,45 @@ export default function Footer() {
         {/* Left */}
         <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#FF1E27]/50 bg-[#FF1E27]/10 font-bold text-[#FF3843]">
-            SV
+            {PROFILE.initials}
           </div>
           <div>
-            <div className="text-white font-semibold">A. SHIVA VAIBHAV</div>
+            <div className="text-white font-semibold uppercase">{PROFILE.name}</div>
             <div className="text-[11px] text-slate-400">
-              B.Tech CSE (AI & ML) • SITS Hyderabad
+              {PROFILE.education.degree} • {PROFILE.location}
             </div>
           </div>
         </div>
 
-        {/* Center */}
-        <div className="flex flex-wrap items-center justify-center gap-4 text-[11px]">
-          <span className="flex items-center gap-1.5 text-slate-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#FF1E27] shadow-[0_0_6px_#FF1E27]" />
-            <span>Hyderabad, India</span>
-          </span>
-          <span className="hidden sm:inline text-slate-800">•</span>
-          <span className="text-slate-400">Next.js • Tailwind • Framer Motion</span>
+        {/* Center: Social Links */}
+        <div className="flex items-center gap-4 text-xs">
+          <a
+            href={PROFILE.contact.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors"
+          >
+            <Github className="h-3.5 w-3.5" />
+            <span>GitHub</span>
+          </a>
+          <span className="text-slate-800">•</span>
+          <a
+            href={PROFILE.contact.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-slate-400 hover:text-[#FF3843] transition-colors"
+          >
+            <Linkedin className="h-3.5 w-3.5" />
+            <span>LinkedIn</span>
+          </a>
+          <span className="text-slate-800">•</span>
+          <a
+            href={`mailto:${PROFILE.contact.email}`}
+            className="flex items-center gap-1.5 text-slate-400 hover:text-[#FF3843] transition-colors"
+          >
+            <Mail className="h-3.5 w-3.5" />
+            <span>Email</span>
+          </a>
         </div>
 
         {/* Right */}

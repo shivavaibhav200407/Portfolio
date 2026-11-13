@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Download, Menu, X, Terminal as TerminalIcon } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import { PROFILE } from "@/data/profile";
 
 interface NavbarProps {
   onToggleTheme?: (isDark: boolean) => void;
@@ -23,11 +24,12 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
   }, []);
 
   const navLinks = [
-    { name: "SAGE Project", href: "#sage" },
-    { name: "ML Project", href: "#ml-sandbox" },
-    { name: "College Posters", href: "#posters" },
+    { name: "SAGE", href: "#sage" },
+    { name: "ML Sandbox", href: "#ml-sandbox" },
+    { name: "Posters", href: "#posters" },
+    { name: "Certificates", href: "#certificates" },
     { name: "Skills", href: "#skills" },
-    { name: "About Me", href: "#about" },
+    { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -47,10 +49,10 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
             className="flex items-center gap-2 font-display text-sm font-bold tracking-wide text-white"
           >
             <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#FF1E27]/50 bg-[#FF1E27]/10 font-mono text-xs text-[#FF3843] shadow-[0_0_10px_rgba(255,30,39,0.3)]">
-              SV
+              {PROFILE.initials}
             </span>
             <span className="font-mono text-xs uppercase text-slate-200">
-              Shiva Vaibhav
+              {PROFILE.shortName} Vaibhav
             </span>
           </Link>
 
@@ -62,7 +64,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
         </div>
 
         {/* Desktop Links */}
-        <nav className="hidden items-center gap-5 lg:flex">
+        <nav className="hidden items-center gap-4 lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -90,7 +92,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
           <ThemeToggle onToggle={onToggleTheme} />
 
           <a
-            href="/resume.pdf"
+            href={PROFILE.contact.resumePath}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden items-center gap-1.5 rounded-xl border border-[#FF1E27]/40 bg-[#FF1E27]/10 px-3 py-1.5 font-mono text-xs text-[#FF3843] hover:bg-[#FF1E27]/20 hover:border-[#FF1E27] sm:flex transition-all"
@@ -99,9 +101,10 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
             <span>Résumé</span>
           </a>
 
+          {/* Mobile Hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-black text-slate-300 lg:hidden"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-slate-300 lg:hidden"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -111,34 +114,40 @@ export default function Navbar({ onToggleTheme, onOpenTerminal }: NavbarProps) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="mt-2 flex flex-col gap-1.5 rounded-2xl border border-[#FF1E27]/30 bg-black/95 p-4 shadow-2xl backdrop-blur-2xl lg:hidden">
-          <div className="mb-1 flex items-center justify-between border-b border-white/5 pb-2">
-            <span className="font-mono text-xs text-slate-400">Menu</span>
-            <div className="flex items-center gap-1 text-[11px] font-mono text-[#FF3843]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#FF1E27]" />
-              <span>Available for Roles</span>
+        <div className="mt-2 rounded-2xl border border-white/10 bg-black/95 p-4 shadow-2xl backdrop-blur-2xl lg:hidden">
+          <div className="flex flex-col space-y-3 font-mono text-xs">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 text-slate-300 hover:text-[#FF3843]"
+              >
+                {link.name}
+              </a>
+            ))}
+            <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+              <a
+                href={PROFILE.contact.resumePath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-[#FF3843]"
+              >
+                <Download className="h-3.5 w-3.5" />
+                <span>Download Résumé</span>
+              </a>
+              {onOpenTerminal && (
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenTerminal();
+                  }}
+                  className="text-slate-400 hover:text-white"
+                >
+                  CLI Terminal
+                </button>
+              )}
             </div>
-          </div>
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-300 hover:bg-white/5 hover:text-[#FF3843]"
-            >
-              {link.name}
-            </a>
-          ))}
-          <div className="mt-2 pt-2 border-t border-white/5">
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 rounded-xl border border-[#FF1E27]/40 bg-[#FF1E27]/10 py-2 font-mono text-xs text-[#FF3843]"
-            >
-              <Download className="h-3.5 w-3.5" />
-              <span>Download Résumé PDF</span>
-            </a>
           </div>
         </div>
       )}

@@ -3,17 +3,15 @@
 import { useState } from "react";
 import { Mail, Phone, Copy, Check, Send, Download, Linkedin, Github, Sparkles } from "lucide-react";
 import MagneticButton from "@/components/effects/MagneticButton";
+import { PROFILE } from "@/data/profile";
 
 export default function ContactDock() {
   const [copied, setCopied] = useState(false);
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const email = "vaibhava344@gmail.com";
-  const phone = "+91 9493721105";
-
   const copyEmail = () => {
-    navigator.clipboard.writeText(email);
+    navigator.clipboard.writeText(PROFILE.contact.email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -36,15 +34,15 @@ export default function ContactDock() {
             <div className="lg:col-span-6 space-y-4">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#FF1E27]/30 bg-[#FF1E27]/10 px-3 py-1 font-mono text-xs text-[#FF3843]">
                 <Sparkles className="h-3.5 w-3.5 text-[#FF1E27]" />
-                <span>OPEN FOR ROLES</span>
+                <span>OPEN FOR INTERNSHIPS & ROLES</span>
               </div>
 
               <h2 className="font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
                 Let&apos;s build together.
               </h2>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md">
-                Have an internship opening, a student project, or want to connect? Reach out anytime!
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md font-sans">
+                Looking for an internship or entry-level role where I can learn and contribute. Have an opportunity or want to connect? Reach out anytime!
               </p>
 
               {/* 1-Click Copy Email */}
@@ -55,7 +53,7 @@ export default function ContactDock() {
                   className="group flex items-center gap-2 rounded-xl border border-[#FF1E27]/40 bg-black px-3.5 py-2.5 font-mono text-xs sm:text-sm text-[#FF3843] transition-all hover:border-[#FF1E27] hover:bg-[#FF1E27]/10 hover:shadow-[0_0_15px_rgba(255,30,39,0.3)]"
                 >
                   <Mail className="h-4 w-4 text-[#FF1E27]" />
-                  <span>{email}</span>
+                  <span>{PROFILE.contact.email}</span>
                   {copied ? (
                     <span className="flex items-center gap-1 text-[11px] text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded ml-1.5">
                       <Check className="h-3 w-3" /> Copied!
@@ -66,32 +64,32 @@ export default function ContactDock() {
                 </button>
 
                 <a
-                  href={`tel:${phone}`}
-                  className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-2.5 font-mono text-xs sm:text-sm text-slate-300 hover:border-white/20 hover:bg-white/[0.06]"
+                  href={`tel:${PROFILE.contact.phone}`}
+                  className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-2.5 font-mono text-xs sm:text-sm text-slate-300 hover:border-white/20 hover:bg-white/[0.06] transition-colors"
                 >
                   <Phone className="h-4 w-4 text-slate-400" />
-                  <span>{phone}</span>
+                  <span>{PROFILE.contact.phone}</span>
                 </a>
               </div>
 
               {/* Socials & Resume */}
               <div className="flex items-center gap-3 pt-2">
                 <MagneticButton
-                  href="https://linkedin.com"
+                  href={PROFILE.contact.linkedin}
                   className="p-2.5 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-[#FF1E27] hover:border-[#FF1E27]/50 transition-all"
                 >
                   <Linkedin className="h-4 w-4" />
                 </MagneticButton>
 
                 <MagneticButton
-                  href="https://github.com"
+                  href={PROFILE.contact.github}
                   className="p-2.5 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-[#FF1E27] hover:border-[#FF1E27]/50 transition-all"
                 >
                   <Github className="h-4 w-4" />
                 </MagneticButton>
 
                 <MagneticButton
-                  href="/resume.pdf"
+                  href={PROFILE.contact.resumePath}
                   className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-white/10 bg-white/[0.03] text-xs font-mono text-slate-300 hover:border-[#FF1E27]/50 hover:text-[#FF3843] transition-all"
                 >
                   <Download className="h-3.5 w-3.5" />
@@ -110,7 +108,7 @@ export default function ContactDock() {
                     </div>
                     <h3 className="font-display text-lg font-bold text-white">Message Sent!</h3>
                     <p className="text-xs text-slate-400 max-w-sm mx-auto">
-                      Thanks for reaching out! I will reply shortly. You can also email directly to <span className="text-[#FF3843]">{email}</span>.
+                      Thanks for reaching out! I will reply shortly. You can also email directly to <span className="text-[#FF3843]">{PROFILE.contact.email}</span>.
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}
@@ -147,7 +145,7 @@ export default function ContactDock() {
                         required
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        placeholder="alex@example.com"
+                        placeholder="alex@company.com"
                         className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white placeholder-slate-600 focus:border-[#FF1E27] focus:outline-none focus:ring-1 focus:ring-[#FF1E27]"
                       />
                     </div>
@@ -159,17 +157,17 @@ export default function ContactDock() {
                         required
                         value={formState.message}
                         onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                        placeholder="Hi Shiva, we would love to connect about an internship..."
+                        placeholder="Hi Shiva, we have an opening for an engineering internship..."
                         className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white placeholder-slate-600 focus:border-[#FF1E27] focus:outline-none focus:ring-1 focus:ring-[#FF1E27] resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF1E27] to-[#B91C1C] py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-white hover:from-[#FF3843] hover:to-[#FF1E27] transition-all shadow-md shadow-[#FF1E27]/30"
+                      className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF1E27] to-[#DC2626] py-2.5 font-mono text-xs font-semibold text-white shadow-lg transition-all hover:brightness-110 active:scale-[0.99]"
                     >
                       <Send className="h-3.5 w-3.5" />
-                      <span>Send Message</span>
+                      <span>Transmit Message</span>
                     </button>
                   </form>
                 )}

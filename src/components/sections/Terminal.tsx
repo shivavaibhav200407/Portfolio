@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Terminal as TerminalIcon, X, Maximize2, Minimize2, Sparkles } from "lucide-react";
+import { PROFILE } from "@/data/profile";
+import { CERTIFICATES } from "@/data/certificates";
 
 interface TerminalProps {
   isOpen: boolean;
@@ -24,12 +26,12 @@ export default function Terminal({ isOpen, onClose }: TerminalProps) {
       command: "welcome",
       time: "12:00",
       output: (
-        <div className="space-y-1 text-xs">
+        <div className="space-y-1 text-xs font-mono">
           <p className="text-[#FF3843] font-bold">
-            Hi! Welcome to Shiva Vaibhav&apos;s personal terminal.
+            Hi! Welcome to {PROFILE.name}&apos;s interactive developer shell.
           </p>
           <p className="text-slate-400">
-            Type <span className="text-[#FF1E27] font-mono">help</span> or click the buttons below to learn more about me.
+            Type <span className="text-[#FF1E27] font-semibold">help</span> or tap the quick pills below to explore my credentials and projects.
           </p>
         </div>
       ),
@@ -56,15 +58,16 @@ export default function Terminal({ isOpen, onClose }: TerminalProps) {
     switch (cmd) {
       case "help":
         output = (
-          <div className="space-y-1.5 text-xs text-slate-300">
-            <p className="text-[#FF3843] font-semibold">Try these commands:</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-[11px] font-mono">
-              <div><span className="text-[#FF1E27]">about</span> — Who I am, college & CGPA</div>
-              <div><span className="text-[#FF1E27]">sage</span> — About our AI tutoring team project</div>
-              <div><span className="text-[#FF1E27]">posters</span> — College posters I designed (S.A.C.C)</div>
-              <div><span className="text-[#FF1E27]">skills</span> — Python, AI tools, and web stack</div>
-              <div><span className="text-[#FF1E27]">contact</span> — My email and phone number</div>
-              <div><span className="text-[#FF1E27]">clear</span> — Clear the screen</div>
+          <div className="space-y-1.5 text-xs text-slate-300 font-mono">
+            <p className="text-[#FF3843] font-semibold uppercase text-[10px] tracking-wider">Available Commands:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-[11px]">
+              <div><span className="text-[#FF1E27]">about</span> — Bio, college & academic CGPA</div>
+              <div><span className="text-[#FF1E27]">sage</span> — SAGE multi-agent tutor architecture</div>
+              <div><span className="text-[#FF1E27]">certs</span> — Verified ML certification & workshops</div>
+              <div><span className="text-[#FF1E27]">posters</span> — S.A.C.C Chief Designer work</div>
+              <div><span className="text-[#FF1E27]">skills</span> — Technical toolbox & languages</div>
+              <div><span className="text-[#FF1E27]">contact</span> — Direct email, phone, and links</div>
+              <div><span className="text-[#FF1E27]">clear</span> — Clear console output</div>
             </div>
           </div>
         );
@@ -73,25 +76,41 @@ export default function Terminal({ isOpen, onClose }: TerminalProps) {
       case "about":
       case "whoami":
         output = (
-          <div className="space-y-1 text-xs text-slate-300">
-            <p><span className="text-[#FF3843] font-semibold">Name:</span> A. Shiva Vaibhav</p>
-            <p><span className="text-[#FF3843] font-semibold">Status:</span> B.Tech CSE (AI & ML) Student (Expected 2028)</p>
-            <p><span className="text-[#FF3843] font-semibold">College:</span> Siddhartha Institute of Technology & Sciences (SITS), Hyderabad</p>
-            <p><span className="text-[#FF3843] font-semibold">CGPA:</span> <span className="text-emerald-400 font-bold">8.02</span> (Current)</p>
-            <p><span className="text-[#FF3843] font-semibold">Goal:</span> Looking for an internship to learn and grow in AI & software development</p>
+          <div className="space-y-1 text-xs text-slate-300 font-mono">
+            <p><span className="text-[#FF3843] font-semibold">Name:</span> {PROFILE.name}</p>
+            <p><span className="text-[#FF3843] font-semibold">Degree:</span> {PROFILE.education.degree} ({PROFILE.education.year})</p>
+            <p><span className="text-[#FF3843] font-semibold">Campus:</span> {PROFILE.education.institution}</p>
+            <p><span className="text-[#FF3843] font-semibold">Academics:</span> <span className="text-white font-bold">{PROFILE.education.cgpa} CGPA</span> (B.Tech) • {PROFILE.education.intermediate.score} (Inter) • {PROFILE.education.secondary.score} (10th)</p>
+            <p><span className="text-[#FF3843] font-semibold">Roles:</span> Team Lead (SAGE) • {PROFILE.council.roles.join(" & ")} ({PROFILE.council.body})</p>
+          </div>
+        );
+        break;
+
+      case "certs":
+      case "certificates":
+        output = (
+          <div className="space-y-1.5 text-xs text-slate-300 font-mono">
+            <p className="text-[#FF3843] font-semibold uppercase text-[10px] tracking-wider">Verified Credentials:</p>
+            <ul className="space-y-1 text-[11px]">
+              {CERTIFICATES.map((c) => (
+                <li key={c.id} className="text-slate-300">
+                  <span className="text-white font-bold">&gt; {c.title}</span> — {c.issuer} ({c.date})
+                </li>
+              ))}
+            </ul>
           </div>
         );
         break;
 
       case "sage":
         output = (
-          <div className="space-y-1 text-xs text-slate-300">
+          <div className="space-y-1 text-xs text-slate-300 font-mono">
             <p className="text-[#FF3843] font-bold">SAGE (Self-Adaptive Agentic Educational Engine):</p>
-            <p className="text-slate-400">Role: Team Lead (Team of 4) | Stack: Python, Django, ChromaDB, Groq</p>
+            <p className="text-slate-400">Team Lead (Team of 4) | Stack: Python, Django, ChromaDB, Groq Llama 3</p>
             <ul className="list-disc pl-4 space-y-0.5 text-slate-300 text-[11px]">
-              <li>Built an AI tutor that knows 25+ B.Tech courses across CSE, AI, ECE, Mech, Civil.</li>
-              <li>Uses RAG with ChromaDB so it fact-checks answers against real syllabus textbooks.</li>
-              <li>Runs as a web app on campus Wi-Fi so students can use it for free on any phone or laptop.</li>
+              <li>Engineered syllabus-grounded multi-agent tutor across 25+ B.Tech courses.</li>
+              <li>Connected ChromaDB vector notes to eliminate hallucinations.</li>
+              <li>Deployed locally over campus Wi-Fi for free student access.</li>
             </ul>
           </div>
         );
@@ -99,29 +118,31 @@ export default function Terminal({ isOpen, onClose }: TerminalProps) {
 
       case "posters":
         output = (
-          <div className="space-y-1 text-xs text-slate-300">
-            <p className="text-[#FF3843] font-semibold">Chief Designer & Disciplinary Head — S.A.C.C:</p>
-            <p className="text-slate-300">I design posters and event banners for technical workshops, college fests, and hackathons at SITS Hyderabad, while helping manage discipline at council events.</p>
+          <div className="space-y-1 text-xs text-slate-300 font-mono">
+            <p className="text-[#FF3843] font-semibold">{PROFILE.council.roles.join(" & ")} — {PROFILE.council.body}:</p>
+            <p className="text-slate-300">Author of 10+ promotional posters, visual banners, and announcements for campus technical workshops, hackathons, and symposiums at SITS.</p>
           </div>
         );
         break;
 
       case "skills":
         output = (
-          <div className="space-y-1 text-xs text-slate-300">
-            <p><span className="text-[#FF3843] font-mono">[Programming]:</span> Python (learning & practicing), AI coding assistants</p>
-            <p><span className="text-slate-300 font-mono">[AI & RAG]:</span> ChromaDB, Groq Llama 3 API, multi-agent concepts</p>
-            <p><span className="text-slate-300 font-mono">[Web & Design]:</span> Django, HTML/CSS, Tailwind, Poster Design, Canva/Figma</p>
-            <p><span className="text-slate-300 font-mono">[Leadership]:</span> Team Lead (Team of 4), Disciplinary Head at S.A.C.C</p>
+          <div className="space-y-1 text-xs text-slate-300 font-mono">
+            <p><span className="text-[#FF3843]">[Core]:</span> Python (learning & active practice), AI-assisted development</p>
+            <p><span className="text-slate-300">[AI & ML]:</span> ChromaDB RAG, Groq API, Scikit-Learn classification</p>
+            <p><span className="text-slate-300">[Web & Design]:</span> Django, HTML/CSS, Tailwind, Graphic Design, Figma/Canva</p>
+            <p><span className="text-slate-300">[Languages]:</span> Telugu (Native), English (Professional), Hindi (Fluent)</p>
           </div>
         );
         break;
 
       case "contact":
         output = (
-          <div className="space-y-1 text-xs text-slate-300">
-            <p>Email: <a href="mailto:vaibhava344@gmail.com" className="text-[#FF3843] underline">vaibhava344@gmail.com</a></p>
-            <p>Phone: <span className="text-slate-200">+91 9493721105</span> (Hyderabad, India)</p>
+          <div className="space-y-1 text-xs text-slate-300 font-mono">
+            <p>Email: <a href={`mailto:${PROFILE.contact.email}`} className="text-[#FF3843] underline">{PROFILE.contact.email}</a></p>
+            <p>Phone: <span className="text-white font-mono">{PROFILE.contact.phone}</span> ({PROFILE.location})</p>
+            <p>GitHub: <a href={PROFILE.contact.github} target="_blank" rel="noopener noreferrer" className="text-slate-300 underline">{PROFILE.contact.github}</a></p>
+            <p>LinkedIn: <a href={PROFILE.contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-300 underline">{PROFILE.contact.linkedin}</a></p>
           </div>
         );
         break;
@@ -133,8 +154,8 @@ export default function Terminal({ isOpen, onClose }: TerminalProps) {
 
       default:
         output = (
-          <p className="text-xs text-red-400">
-            Command not recognized. Type <span className="text-[#FF3843] font-mono">help</span> for commands.
+          <p className="text-xs text-red-400 font-mono">
+            Command not recognized. Type <span className="text-[#FF3843] font-bold">help</span> for available commands.
           </p>
         );
         break;
@@ -152,7 +173,7 @@ export default function Terminal({ isOpen, onClose }: TerminalProps) {
     setInput("");
   };
 
-  const quickCommands = ["about", "sage", "posters", "skills", "contact", "clear"];
+  const quickCommands = ["about", "sage", "certs", "posters", "skills", "contact", "clear"];
 
   if (!isOpen) return null;
 
@@ -168,81 +189,81 @@ export default function Terminal({ isOpen, onClose }: TerminalProps) {
           <div className="flex items-center gap-2">
             <div className="flex gap-1.5">
               <span className="h-3 w-3 rounded-full bg-[#FF1E27] cursor-pointer shadow-[0_0_6px_#FF1E27]" onClick={onClose} />
-              <span className="h-3 w-3 rounded-full bg-amber-500/80 cursor-pointer" onClick={() => setIsMaximized(!isMaximized)} />
-              <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
+              <span className="h-3 w-3 rounded-full bg-white/20" />
+              <span className="h-3 w-3 rounded-full bg-white/20" />
             </div>
-            <div className="ml-2 flex items-center gap-1.5 font-mono text-xs text-slate-300">
+            <span className="font-mono text-xs text-slate-300 ml-2 flex items-center gap-1.5">
               <TerminalIcon className="h-3.5 w-3.5 text-[#FF1E27]" />
-              <span>shiva@college-laptop:~$</span>
-            </div>
+              shiva@sits-devbox: ~
+            </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <button
               onClick={() => setIsMaximized(!isMaximized)}
-              className="text-slate-400 hover:text-white"
+              className="p-1 rounded text-slate-400 hover:text-white"
             >
               {isMaximized ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
             </button>
-            <button onClick={onClose} className="text-slate-400 hover:text-white">
-              <X className="h-4 w-4" />
+            <button onClick={onClose} className="p-1 rounded text-slate-400 hover:text-white">
+              <X className="h-3.5 w-3.5" />
             </button>
           </div>
         </div>
 
-        {/* Logs */}
+        {/* Quick Click Badges */}
+        <div className="flex flex-wrap items-center gap-1.5 px-4 py-2 border-b border-white/5 bg-white/[0.01]">
+          <span className="font-mono text-[10px] text-slate-500 mr-1">Quick:</span>
+          {quickCommands.map((c) => (
+            <button
+              key={c}
+              onClick={() => handleCommand(c)}
+              className="rounded px-2 py-0.5 font-mono text-[10px] text-slate-300 bg-white/[0.04] border border-white/5 hover:border-[#FF1E27]/40 hover:text-[#FF3843] transition-colors"
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+
+        {/* Logs Output Area */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3 font-mono text-xs">
           {logs.map((log) => (
             <div key={log.id} className="space-y-1">
-              <div className="flex items-center gap-2 text-slate-400 text-[11px]">
-                <span className="text-[#FF1E27] font-bold">&gt;</span>
-                <span className="text-white">{log.command}</span>
-                <span className="ml-auto text-[10px] text-slate-600">{log.time}</span>
+              <div className="flex items-center gap-2 text-slate-500 text-[11px]">
+                <span className="text-[#FF1E27]">&gt;</span>
+                <span className="text-white font-bold">{log.command}</span>
+                <span className="text-slate-600 text-[10px] ml-auto">{log.time}</span>
               </div>
-              <div className="pl-3.5 border-l border-[#FF1E27]/30">{log.output}</div>
+              <div className="pl-4 border-l border-white/10 text-slate-300">
+                {log.output}
+              </div>
             </div>
           ))}
           <div ref={endOfLogsRef} />
         </div>
 
-        {/* Pills */}
-        <div className="border-t border-white/5 bg-white/[0.02] px-3.5 py-2 flex flex-wrap items-center gap-1.5">
-          <span className="text-[10px] font-mono text-slate-400 mr-1 flex items-center gap-1">
-            <Sparkles className="h-2.5 w-2.5 text-[#FF1E27]" /> Run:
-          </span>
-          {quickCommands.map((cmd) => (
-            <button
-              key={cmd}
-              onClick={() => handleCommand(cmd)}
-              className="rounded-md border border-[#FF1E27]/30 bg-[#FF1E27]/10 px-2 py-0.5 text-[11px] font-mono text-[#FF3843] hover:border-[#FF1E27] hover:bg-[#FF1E27]/20"
-            >
-              {cmd}
-            </button>
-          ))}
-        </div>
-
-        {/* Form */}
+        {/* CLI Input */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleCommand(input);
           }}
-          className="flex items-center gap-2 border-t border-white/10 bg-black px-4 py-2.5 rounded-b-2xl"
+          className="flex items-center gap-2 border-t border-white/10 px-4 py-3 bg-black rounded-b-2xl"
         >
-          <span className="font-mono text-sm font-bold text-[#FF1E27]">&gt;</span>
+          <span className="font-mono text-xs text-[#FF1E27] font-bold">$</span>
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Type 'about' or 'sage'..."
+            placeholder="Type 'help' or command..."
             className="flex-1 bg-transparent font-mono text-xs text-white placeholder-slate-600 focus:outline-none"
           />
           <button
             type="submit"
-            className="rounded-lg bg-[#FF1E27]/20 px-2.5 py-1 text-xs font-mono font-medium text-[#FF3843] hover:bg-[#FF1E27]/30"
+            className="font-mono text-[10px] uppercase tracking-wider text-slate-400 hover:text-[#FF3843]"
           >
-            Run
+            Execute
           </button>
         </form>
       </div>

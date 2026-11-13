@@ -11,6 +11,7 @@ export interface Poster {
   description: string;
   tags: string[];
   specs: { type: string; tool: string; audience: string };
+  imageUrl?: string; // Optional: Drop image in public/posters/ and set "/posters/your-file.png"
 }
 
 export const POSTERS: Poster[] = [
@@ -22,14 +23,14 @@ export const POSTERS: Poster[] = [
     club: "Dept. of CSE (AI&ML)",
     year: "2025",
     aspectRatio: "3/4",
-    themeColor: "#00F0FF",
-    accentColor: "#0A1120",
+    themeColor: "#FF1E27",
+    accentColor: "#1A0507",
     description:
-      "Designed for our department's 3-day AI & ML workshop. Focused on bold text, clear dates, and speaker highlights so students could read key details quickly on college noticeboards and WhatsApp.",
-    tags: ["College Workshop", "CSE Department", "Poster Design"],
+      "Designed for our department's 3-day AI & ML workshop. Focused on bold Swiss typography, high-contrast dates, and speaker highlights so students could read key details at a glance on college noticeboards and WhatsApp.",
+    tags: ["Technical Workshop", "CSE Department", "Poster Design"],
     specs: {
       type: "Noticeboard Poster & WhatsApp Banner",
-      tool: "Graphic Design / Layouts",
+      tool: "Graphic Design / Canva / Figma",
       audience: "B.Tech Students & Faculty",
     },
   },
@@ -41,10 +42,10 @@ export const POSTERS: Poster[] = [
     club: "Siddhartha Allied Clubs Council (S.A.C.C)",
     year: "2025",
     aspectRatio: "3/4",
-    themeColor: "#3B82F6",
-    accentColor: "#050E1F",
+    themeColor: "#FF3843",
+    accentColor: "#140406",
     description:
-      "Promotional poster for our college council hackathon. Created a futuristic dark theme with cyber blue accents, clear prize pool callouts, and a registration QR placeholder.",
+      "Promotional poster for our college council hackathon. Created a futuristic dark theme with neon red accents, clear prize pool callouts, and schedule milestones.",
     tags: ["Hackathon", "Student Council", "Event Promotion"],
     specs: {
       type: "Social Media Flyer & Print Poster",
@@ -60,10 +61,10 @@ export const POSTERS: Poster[] = [
     club: "S.A.C.C Cultural Committee",
     year: "2024",
     aspectRatio: "3/4",
-    themeColor: "#EC4899",
-    accentColor: "#17061B",
+    themeColor: "#DC2626",
+    accentColor: "#190204",
     description:
-      "A vibrant, colorful poster for our college cultural evening. Used energetic gradient colors and bold typography to get students excited about dance, music, and stage events.",
+      "A vibrant, expressive poster for our college cultural evening. Used energetic typographic contrasts and bold headers to engage students across all engineering branches.",
     tags: ["Cultural Fest", "Celebration", "Creative Layout"],
     specs: {
       type: "Stage Backdrop & Instagram Post",
@@ -79,14 +80,14 @@ export const POSTERS: Poster[] = [
     club: "Coding & Tech Club // SITS",
     year: "2025",
     aspectRatio: "3/4",
-    themeColor: "#10B981",
-    accentColor: "#061810",
+    themeColor: "#EF4444",
+    accentColor: "#100305",
     description:
-      "Simple, friendly announcement poster for junior students joining the Python coding club. Structured layout with schedule timings and topics covered.",
+      "Clean, approachable announcement poster for junior students joining the Python coding club. Structured layout with schedule timings and prerequisite-free messaging.",
     tags: ["Python Club", "Student Initiative", "Clear Design"],
     specs: {
       type: "Digital WhatsApp Story & Flyer",
-      tool: "Typography & Visuals",
+      tool: "Typography & Layouts",
       audience: "1st & 2nd Year Students",
     },
   },

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, BookOpen, Palette, Mail, Terminal as TerminalIcon } from "lucide-react";
 import KineticText from "@/components/effects/KineticText";
 import MagneticButton from "@/components/effects/MagneticButton";
+import { PROFILE } from "@/data/profile";
 
 interface HeroProps {
   onOpenTerminal?: () => void;
@@ -12,8 +13,8 @@ interface HeroProps {
 export default function Hero({ onOpenTerminal }: HeroProps) {
   return (
     <section className="relative min-h-[86vh] flex flex-col justify-center px-4 pt-28 pb-14 sm:px-8 overflow-hidden bg-black">
-      {/* Soft, Refined Ambient Crimson Glow (Subtle & High-End) */}
-      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[450px] w-[450px] rounded-full bg-[#FF1E27]/[0.07] blur-[180px]" />
+      {/* Soft, Refined Ambient Crimson Glow (Confined & High-End) */}
+      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[450px] w-[450px] rounded-full bg-[#FF1E27]/[0.06] blur-[180px]" />
 
       <div className="mx-auto w-full max-w-5xl relative z-10">
         {/* Status Pill */}
@@ -25,14 +26,14 @@ export default function Hero({ onOpenTerminal }: HeroProps) {
         >
           <span className="flex h-1.5 w-1.5 rounded-full bg-[#FF1E27] shadow-[0_0_6px_#FF1E27]" />
           <span className="font-mono text-xs font-medium text-slate-300">
-            A. Shiva Vaibhav • B.Tech CSE (AI & ML) • SITS Hyderabad
+            {PROFILE.name} • {PROFILE.education.degree} • {PROFILE.education.institution}
           </span>
         </motion.div>
 
         {/* Big Kinetic Headline: Option 1 */}
         <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl leading-[1.08] text-white max-w-4xl">
           <KineticText
-            text="Building autonomous AI agents. Crafting bold visual experiences."
+            text={PROFILE.tagline}
             highlightWords={["autonomous", "AI", "bold", "experiences."]}
             highlightClass="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-[#FF3843]"
             delay={0.04}
@@ -44,9 +45,9 @@ export default function Hero({ onOpenTerminal }: HeroProps) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-5 max-w-xl text-base sm:text-lg text-slate-300 font-normal leading-relaxed"
+          className="mt-5 max-w-xl text-base sm:text-lg text-slate-300 font-normal leading-relaxed font-sans"
         >
-          Team Lead for <span className="text-white font-medium">SAGE</span> (college AI tutor) and <span className="text-[#FF3843] font-medium">Chief Designer at S.A.C.C</span>. Open for internships!
+          Team Lead for <span className="text-white font-medium">SAGE</span> (college multi-agent AI tutor) and <span className="text-[#FF3843] font-medium">Chief Designer & Disciplinary Head at S.A.C.C</span>. Open for internships!
         </motion.p>
 
         {/* Professional Magnetic Action Buttons */}
@@ -109,7 +110,7 @@ export default function Hero({ onOpenTerminal }: HeroProps) {
           className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs"
         >
           {[
-            { label: "Academic Record", val: "8.02 CGPA", sub: "SITS Hyderabad" },
+            { label: "Academic Record", val: `${PROFILE.education.cgpa} CGPA`, sub: "SITS Hyderabad" },
             { label: "Team Project", val: "4-Member Lead", sub: "SAGE AI Engine" },
             { label: "Design Role", val: "Chief Designer", sub: "S.A.C.C Council" },
             { label: "Status", val: "Available", sub: "Summer Internships" },
@@ -118,7 +119,7 @@ export default function Hero({ onOpenTerminal }: HeroProps) {
               key={idx}
               className="rounded-xl border border-white/5 bg-white/[0.02] p-3.5 backdrop-blur-md transition-all hover:border-white/10"
             >
-              <span className="text-[10px] text-slate-400 uppercase">{item.label}</span>
+              <span className="text-[10px] text-slate-400 uppercase tracking-wider">{item.label}</span>
               <div className="text-base font-bold text-white font-display mt-0.5">
                 {item.val}
               </div>

@@ -59,7 +59,7 @@ export default function PostersGallery() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               onClick={() => setSelectedPoster(poster)}
               data-cursor="view"
-              className="group cursor-pointer rounded-2xl border border-white/10 bg-black overflow-hidden shadow-lg transition-all hover:border-[#FF1E27]/60 hover:shadow-[0_0_25px_rgba(255,30,39,0.3)] flex flex-col"
+              className="group cursor-pointer rounded-2xl border border-white/10 bg-black overflow-hidden shadow-lg transition-all hover:border-[#FF1E27]/50 hover:shadow-[0_0_20px_rgba(255,30,39,0.15)] flex flex-col"
             >
               {/* Poster Canvas Visual */}
               <div
@@ -68,6 +68,14 @@ export default function PostersGallery() {
                   background: `linear-gradient(135deg, ${poster.accentColor} 0%, #000000 100%)`,
                 }}
               >
+                {poster.imageUrl && (
+                  <img
+                    src={poster.imageUrl}
+                    alt={poster.title}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+
                 <div className="relative z-10 flex justify-between items-start font-mono text-[10px] text-slate-400">
                   <span className="px-2 py-0.5 rounded bg-black/80 border border-white/10">
                     {poster.category}
@@ -76,9 +84,7 @@ export default function PostersGallery() {
                 </div>
 
                 <div className="relative z-10 my-auto text-left">
-                  <div
-                    className="font-display text-xl font-extrabold tracking-tight leading-tight uppercase text-white"
-                  >
+                  <div className="font-display text-xl font-extrabold tracking-tight leading-tight uppercase text-white">
                     {poster.title}
                   </div>
                   <div className="font-mono text-[11px] text-slate-300 mt-1 line-clamp-2">
@@ -138,15 +144,21 @@ export default function PostersGallery() {
                       background: `linear-gradient(135deg, ${selectedPoster.accentColor} 0%, #000000 100%)`,
                     }}
                   >
-                    <div className="flex justify-between items-center font-mono text-[11px] text-slate-400">
+                    {selectedPoster.imageUrl && (
+                      <img
+                        src={selectedPoster.imageUrl}
+                        alt={selectedPoster.title}
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                    )}
+
+                    <div className="relative z-10 flex justify-between items-center font-mono text-[11px] text-slate-400">
                       <span>{selectedPoster.category}</span>
                       <span>{selectedPoster.year}</span>
                     </div>
 
-                    <div className="my-auto">
-                      <div
-                        className="font-display text-3xl font-extrabold uppercase tracking-tight text-white"
-                      >
+                    <div className="relative z-10 my-auto">
+                      <div className="font-display text-2xl font-extrabold uppercase tracking-tight text-white">
                         {selectedPoster.title}
                       </div>
                       <div className="font-mono text-xs text-slate-300 mt-2">
@@ -154,53 +166,51 @@ export default function PostersGallery() {
                       </div>
                     </div>
 
-                    <div className="font-mono text-[10px] text-slate-400 border-t border-white/10 pt-2">
+                    <div className="relative z-10 font-mono text-[10px] text-slate-400 border-t border-white/10 pt-2">
                       <div>Club: {selectedPoster.club}</div>
                       <div>Designer: A. Shiva Vaibhav</div>
                     </div>
                   </div>
 
-                  <div className="space-y-3.5">
+                  <div className="space-y-4">
                     <div>
-                      <span className="font-mono text-xs text-[#FF3843] font-semibold uppercase">
-                        Poster Information
+                      <span className="font-mono text-[10px] uppercase text-[#FF3843]">
+                        Design Specifications
                       </span>
-                      <h3 className="font-display text-xl font-bold text-white mt-0.5">
+                      <h3 className="font-display text-xl font-bold text-white mt-1">
                         {selectedPoster.title}
                       </h3>
-                      <p className="text-xs text-slate-400 font-mono">
-                        {selectedPoster.subtitle}
+                      <p className="font-mono text-xs text-slate-400">
+                        {selectedPoster.club} ({selectedPoster.year})
                       </p>
                     </div>
 
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    <p className="text-xs text-slate-300 leading-relaxed font-sans">
                       {selectedPoster.description}
                     </p>
 
-                    <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5 space-y-1.5 font-mono text-xs">
-                      <div className="flex justify-between text-slate-400">
-                        <span>Format:</span>
-                        <span className="text-white">{selectedPoster.specs.type}</span>
+                    <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 space-y-1.5 font-mono text-xs">
+                      <div className="flex justify-between">
+                        <span className="text-slate-400">Type:</span>
+                        <span className="text-slate-200">{selectedPoster.specs.type}</span>
                       </div>
-                      <div className="flex justify-between text-slate-400">
-                        <span>Tools:</span>
-                        <span className="text-white">{selectedPoster.specs.tool}</span>
+                      <div className="flex justify-between">
+                        <span className="text-slate-400">Tool:</span>
+                        <span className="text-[#FF3843]">{selectedPoster.specs.tool}</span>
                       </div>
-                      <div className="flex justify-between text-slate-400">
-                        <span>Audience:</span>
-                        <span className="text-[#FF3843]">{selectedPoster.specs.audience}</span>
+                      <div className="flex justify-between">
+                        <span className="text-slate-400">Audience:</span>
+                        <span className="text-slate-200">{selectedPoster.specs.audience}</span>
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-1">
-                      {selectedPoster.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-0.5 rounded text-xs font-mono bg-[#FF1E27]/10 text-[#FF3843] border border-[#FF1E27]/30"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
+                    <div className="pt-2">
+                      <span className="font-mono text-[11px] text-slate-400 block mb-1">
+                        How to replace with your real image:
+                      </span>
+                      <p className="font-mono text-[10px] text-slate-400">
+                        Drop your image in <code className="text-[#FF1E27]">public/posters/</code> and set <code className="text-[#FF1E27]">imageUrl: &quot;/posters/filename.png&quot;</code> in <code className="text-slate-300">src/data/posters.ts</code>.
+                      </p>
                     </div>
                   </div>
                 </div>

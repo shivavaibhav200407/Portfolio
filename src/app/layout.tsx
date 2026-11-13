@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { PROFILE } from "@/data/profile";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,20 +21,38 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-  title: "A. Shiva Vaibhav | B.Tech CSE (AI & ML) Student Portfolio",
-  description:
-    "Portfolio of A. Shiva Vaibhav — B.Tech student at SITS Hyderabad learning Python and AI. Team Lead for SAGE (AI educational tutor) & Chief Designer at S.A.C.C. Seeking an internship or entry-level role in AI and software development.",
+  title: `${PROFILE.name} | B.Tech CSE (AI & ML) • Student Portfolio`,
+  description: `${PROFILE.shortBio} Team Lead for SAGE multi-agent AI tutor & Chief Designer at S.A.C.C.`,
   keywords: [
     "A. Shiva Vaibhav",
     "Shiva Vaibhav",
-    "B.Tech AI ML student",
+    "B.Tech CSE AI ML",
     "SITS Hyderabad",
     "SAGE AI Tutor",
     "Student Portfolio",
-    "Graphic Designer S.A.C.C",
+    "Chief Designer S.A.C.C",
+    "AI Agent Systems",
   ],
-  authors: [{ name: "A. Shiva Vaibhav" }],
+  authors: [{ name: PROFILE.name, url: PROFILE.contact.github }],
+  openGraph: {
+    title: `${PROFILE.name} | B.Tech CSE (AI & ML) Portfolio`,
+    description: PROFILE.tagline,
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${PROFILE.name} | Portfolio`,
+    description: PROFILE.tagline,
+  },
 };
 
 export default function RootLayout({
@@ -44,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased bg-cyber-bg text-cyber-heading transition-colors duration-300 selection:bg-cyan-500/20 selection:text-cyan-400`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased bg-black text-white selection:bg-[#FF1E27]/30 selection:text-[#FF1E27]`}
       >
         {children}
       </body>
