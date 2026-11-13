@@ -6,38 +6,41 @@
   --font-inter: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-space-grotesk: "Space Grotesk", sans-serif;
   --font-jetbrains-mono: "JetBrains Mono", monospace;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
 
-  /* Light Mode Tokens: Ocean Blue & Clean White */
-  --bg-base: #FFFFFF;
-  --bg-secondary: #F8FAFC;
-  --bg-card: rgba(240, 247, 255, 0.7);
-  --bg-card-hover: rgba(224, 242, 254, 0.9);
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
-  --border-card: rgba(2, 132, 199, 0.18);
-  --border-card-hover: rgba(2, 132, 199, 0.5);
+  /* Light Mode Tokens: Warm Architectural Studio & Ocean Blue */
+  --bg-base: #FAF8F5;
+  --bg-secondary: #F3EFEA;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-card-hover: #FFFFFF;
+  --text-primary: #14100D;
+  --text-secondary: #5C5248;
+  --text-muted: #8C7E72;
+  --border-card: rgba(20, 16, 13, 0.12);
+  --border-card-hover: rgba(2, 132, 199, 0.6);
   --accent: #0284C7;
   --accent-glow: rgba(2, 132, 199, 0.25);
   --selection-bg: rgba(2, 132, 199, 0.2);
-  --selection-text: #0369A1;
+  --selection-text: #0284C7;
+  --grid-dot: rgba(2, 132, 199, 0.08);
 }
 
 html.dark {
-  /* Dark Mode Tokens: True Black & Neon Red */
-  --bg-base: #000000;
-  --bg-secondary: #050505;
-  --bg-card: #090909;
-  --bg-card-hover: #111111;
+  /* Dark Mode Tokens: True Obsidian Black & Neon Red */
+  --bg-base: #060608;
+  --bg-secondary: #0B0B0E;
+  --bg-card: rgba(16, 16, 20, 0.7);
+  --bg-card-hover: rgba(24, 24, 30, 0.95);
   --text-primary: #F8FAFC;
   --text-secondary: #94A3B8;
   --text-muted: #64748B;
-  --border-card: rgba(255, 255, 255, 0.09);
-  --border-card-hover: rgba(255, 30, 39, 0.5);
+  --border-card: rgba(255, 255, 255, 0.08);
+  --border-card-hover: rgba(255, 30, 39, 0.65);
   --accent: #FF1E27;
-  --accent-glow: rgba(255, 30, 39, 0.35);
+  --accent-glow: rgba(255, 30, 39, 0.4);
   --selection-bg: rgba(255, 30, 39, 0.3);
   --selection-text: #FF1E27;
+  --grid-dot: rgba(255, 30, 39, 0.12);
 }
 
 @layer base {
@@ -83,6 +86,47 @@ html.dark {
   }
 }
 
+/* Film Grain Overlay (Matches award-winning editorial reference site) */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+html:not(.dark) .grain {
+  mix-blend-mode: multiply;
+  opacity: 0.22;
+}
+
+/* Subtle Architecture & Matrix Background Dot Grids */
+.bg-grid-ambient {
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Rotating badge animation */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 18s linear infinite;
+}
+
+/* Sun ray pulse animation */
+@keyframes sunRayPulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+.animate-sun-rays {
+  animation: sunRayPulse 3s ease-in-out infinite;
+}
+
 /* Graceful Fallback for Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -90,5 +134,8 @@ html.dark {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .animate-spin-slow {
+    animation: none !important;
   }
 }

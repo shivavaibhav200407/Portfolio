@@ -1,11 +1,14 @@
 export const PROFILE = {
   name: "A. Shiva Vaibhav",
+  firstName: "Shiva",
+  lastName: "Vaibhav",
   shortName: "Shiva",
   initials: "SV",
   location: "Hyderabad, India",
-  tagline: "Building autonomous AI agents. Crafting bold visual experiences.",
-  shortBio: "B.Tech CSE (AI & ML) 3rd year student at Siddhartha Institute of Technology & Sciences (SITS), Hyderabad. Team Lead for SAGE (college multi-agent AI tutor) and Chief Designer & Disciplinary Head for Siddhartha Allied Clubs Council (S.A.C.C). Actively seeking an engineering internship and first job.",
-  
+  role: "CSE (AI & ML) Student · Chief Designer at S.A.C.C",
+  tagline: "3rd-year engineering student learning Python and building with AI. Designing posters and digital experiences.",
+  shortBio: "B.Tech 3rd year CSE (AI & ML) student at Siddhartha Institute of Technology & Sciences, Hyderabad (graduating 2028, CGPA 8.02). Team Lead for SAGE (AI tutor for B.Tech courses built with a team of 4 using AI tools) and Chief Designer & Disciplinary Head for Siddhartha Allied Clubs Council (S.A.C.C). Seeking an internship and first job.",
+
   education: {
     institution: "Siddhartha Institute of Technology & Sciences (SITS)",
     location: "Hyderabad, India",
@@ -25,13 +28,13 @@ export const PROFILE = {
   council: {
     body: "Siddhartha Allied Clubs Council (S.A.C.C)",
     roles: ["Chief Designer", "Disciplinary Head"],
-    responsibility: "Led design of 20+ promotional posters, banners, and digital assets for college fests, technical workshops, hackathons (including Smart India Hackathon 2026), while maintaining crowd order and student discipline during campus gatherings.",
+    responsibility: "Created official event posters, workshop creatives, and banners for college clubs, while maintaining student discipline and event coordination during campus programs.",
   },
 
   languages: [
-    { name: "English", level: "Professional working proficiency" },
     { name: "Telugu", level: "Native / Mother tongue" },
-    { name: "Hindi", level: "Conversational fluency" },
+    { name: "Hindi", level: "Conversational" },
+    { name: "English", level: "Professional working proficiency" },
   ],
 
   contact: {

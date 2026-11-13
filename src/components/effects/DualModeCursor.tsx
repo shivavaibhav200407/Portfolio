@@ -26,24 +26,23 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
   const [cursorLabel, setCursorLabel] = useState<string | null>(null);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const dotRef = useRef<HTMLDivElement | null>(null);
-  const ringRef = useRef<HTMLDivElement | null>(null);
+  const arrowRef = useRef<HTMLDivElement | null>(null);
   const labelRef = useRef<HTMLDivElement | null>(null);
 
   // Theme colors ref for animation loop access
   const themeRef = useRef({
     isDark: true,
     primaryColor: "#FF1E27",
-    glowColor: "rgba(255, 30, 39, 0.5)",
-    sparkColor: "rgba(255, 80, 80, 0.8)",
+    glowColor: "rgba(255, 30, 39, 0.8)",
+    sparkColor: "rgba(255, 80, 80, 0.85)",
   });
 
   useEffect(() => {
     themeRef.current = {
       isDark,
       primaryColor: isDark ? "#FF1E27" : "#0284C7",
-      glowColor: isDark ? "rgba(255, 30, 39, 0.45)" : "rgba(2, 132, 199, 0.35)",
-      sparkColor: isDark ? "rgba(255, 80, 80, 0.85)" : "rgba(56, 189, 248, 0.85)",
+      glowColor: isDark ? "rgba(255, 30, 39, 0.85)" : "rgba(2, 132, 199, 0.85)",
+      sparkColor: isDark ? "rgba(255, 80, 80, 0.9)" : "rgba(56, 189, 248, 0.9)",
     };
   }, [isDark]);
 
@@ -53,11 +52,10 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
     if (!hasHover) return;
 
     const canvas = canvasRef.current;
-    const dot = dotRef.current;
-    const ring = ringRef.current;
+    const arrow = arrowRef.current;
     const label = labelRef.current;
 
-    if (!canvas || !dot || !ring) return;
+    if (!canvas || !arrow) return;
 
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
@@ -70,21 +68,18 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Mouse positions
+    // Mouse coordinates
     let mx = -100;
     let my = -100;
-    let rx = -100;
-    let ry = -100;
-    let targetSize = 28;
-    let currentSize = 28;
+    let isHovering = false;
     let isClicking = false;
     let isVisible = false;
     let activeLabel: string | null = null;
 
-    // Trail and particle pools
+    // Trail and particle pools for tail lights
     const trailPoints: TrailPoint[] = [];
     const particles: Particle[] = [];
-    const MAX_TRAIL_LENGTH = 14;
+    const MAX_TRAIL_LENGTH = 16;
 
     const onMouseMove = (e: MouseEvent) => {
       mx = e.clientX;
@@ -93,33 +88,32 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
       if (!isVisible) {
         isVisible = true;
         document.body.classList.add("cursor-active");
-        dot.style.opacity = "1";
-        ring.style.opacity = "1";
+        arrow.style.opacity = "1";
         canvas.style.opacity = "1";
       }
 
-      // Add to trail
+      // Add to tail lights ribbon trail
       trailPoints.push({ x: mx, y: my, age: 0 });
       if (trailPoints.length > MAX_TRAIL_LENGTH) {
         trailPoints.shift();
       }
 
-      // Spawn 1-2 luminous trailing spark particles when moving
-      if (Math.random() < 0.65) {
+      // Spawn luminous trailing spark particles (tail lights)
+      if (Math.random() < 0.75) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = 0.5 + Math.random() * 1.5;
+        const speed = 0.4 + Math.random() * 1.6;
         particles.push({
           x: mx,
           y: my,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
           life: 0,
-          maxLife: 20 + Math.random() * 15,
-          size: 1.5 + Math.random() * 2,
+          maxLife: 22 + Math.random() * 16,
+          size: 1.6 + Math.random() * 2.2,
         });
       }
 
-      // Inspect target element for interaction states
+      // Check target element
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
@@ -127,7 +121,7 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
       if (cursorAttr) {
         const type = cursorAttr.getAttribute("data-cursor");
         if (type === "view" || type === "explore") {
-          targetSize = 56;
+          isHovering = true;
           if (activeLabel !== "VIEW") {
             activeLabel = "VIEW";
             setCursorLabel("VIEW");
@@ -135,7 +129,7 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
           return;
         }
         if (type === "copy") {
-          targetSize = 52;
+          isHovering = true;
           if (activeLabel !== "COPY") {
             activeLabel = "COPY";
             setCursorLabel("COPY");
@@ -144,8 +138,8 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
         }
       }
 
-      if (target.closest("button, a, input, textarea, [role='button'], .clickable, .theme-toggle, .swatch")) {
-        targetSize = 46;
+      if (target.closest("button, a, input, textarea, [role='button'], .clickable, .theme-toggle, .swatch, .o-toggle")) {
+        isHovering = true;
         if (activeLabel !== null) {
           activeLabel = null;
           setCursorLabel(null);
@@ -153,8 +147,7 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
         return;
       }
 
-      // Default state
-      targetSize = 28;
+      isHovering = false;
       if (activeLabel !== null) {
         activeLabel = null;
         setCursorLabel(null);
@@ -172,16 +165,14 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
     const onMouseLeave = () => {
       isVisible = false;
       document.body.classList.remove("cursor-active");
-      dot.style.opacity = "0";
-      ring.style.opacity = "0";
+      arrow.style.opacity = "0";
       canvas.style.opacity = "0";
     };
 
     const onMouseEnter = () => {
       isVisible = true;
       document.body.classList.add("cursor-active");
-      dot.style.opacity = "1";
-      ring.style.opacity = "1";
+      arrow.style.opacity = "1";
       canvas.style.opacity = "1";
     };
 
@@ -191,40 +182,24 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
     document.addEventListener("mouseleave", onMouseLeave);
     document.addEventListener("mouseenter", onMouseEnter);
 
-    // Initial position center offscreen until first move
-    rx = window.innerWidth / 2;
-    ry = window.innerHeight / 2;
-
     let animId: number;
 
     const render = () => {
-      // 1. Direct hardware tracking for Center Dot (Zero Latency)
-      dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%) scale(${
-        isClicking ? 0.7 : 1
-      })`;
+      // 1. Direct hardware tracking for the Sleek Arrow Cursor
+      const scale = isClicking ? 0.9 : isHovering ? 1.15 : 1.0;
+      arrow.style.transform = `translate3d(${mx}px, ${my}px, 0) scale(${scale})`;
 
-      // 2. Trailing physics elastic lerp for Outer Ring (0.18 ease factor, matching reference site)
-      rx += (mx - rx) * 0.18;
-      ry += (my - ry) * 0.18;
-      currentSize += (targetSize - currentSize) * 0.2;
-
-      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%) scale(${
-        isClicking ? 0.88 : 1
-      })`;
-      ring.style.width = `${currentSize}px`;
-      ring.style.height = `${currentSize}px`;
-
-      // 3. Label position tracking
+      // 2. Position label badge adjacent to arrow
       if (label) {
-        label.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
+        label.style.transform = `translate3d(${mx + 20}px, ${my + 16}px, 0)`;
       }
 
-      // 4. Kinetic Ribbon & Spark Particles Canvas Rendering
+      // 3. Render Tail Lights (Kinetic Ribbon & Spark Particles on Canvas)
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const { primaryColor, sparkColor } = themeRef.current;
 
-      // Draw Smooth Kinetic Trail Ribbon
+      // Draw Smooth Kinetic Tail Lights Ribbon
       if (trailPoints.length > 2) {
         ctx.beginPath();
         ctx.moveTo(trailPoints[0].x, trailPoints[0].y);
@@ -236,11 +211,11 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
         }
 
         ctx.strokeStyle = primaryColor;
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 2.2;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
         ctx.shadowColor = primaryColor;
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 10;
         ctx.stroke();
         ctx.shadowBlur = 0; // Reset
       }
@@ -253,7 +228,7 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
         }
       }
 
-      // Draw and update trailing spark particles
+      // Draw and update trailing tail light spark particles
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         p.x += p.vx;
@@ -262,11 +237,11 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
 
         const progress = p.life / p.maxLife;
         const alpha = Math.max(0, 1 - progress);
-        const radius = p.size * (1 - progress * 0.5);
+        const radius = p.size * (1 - progress * 0.45);
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = sparkColor.replace("0.85", `${alpha * 0.75}`);
+        ctx.fillStyle = sparkColor.replace("0.9", `${alpha * 0.8}`);
         ctx.fill();
 
         if (p.life >= p.maxLife) {
@@ -292,64 +267,83 @@ export default function DualModeCursor({ isDark = true }: DualModeCursorProps) {
   }, []);
 
   const primaryColor = isDark ? "#FF1E27" : "#0284C7";
-  const glowColor = isDark ? "rgba(255, 30, 39, 0.45)" : "rgba(2, 132, 199, 0.35)";
+  const arrowFill = isDark ? "#050505" : "#FFFFFF";
+  const glowDropShadow = isDark
+    ? "drop-shadow(0 0 7px rgba(255,30,39,0.85))"
+    : "drop-shadow(0 0 7px rgba(2,132,199,0.85))";
 
   return (
     <>
-      {/* 1. Kinetic Particle & Ribbon Trail Canvas */}
+      {/* 1. Kinetic Tail Lights Ribbon & Particle Canvas */}
       <canvas
         ref={canvasRef}
         className="pointer-events-none fixed inset-0 z-[999997] transition-opacity duration-300"
         style={{ opacity: 0 }}
       />
 
-      {/* 2. Pinpoint Center Target Dot (Instant Zero-Latency Tracking) */}
+      {/* 2. Sleek Studio Outline Arrow Cursor (from previous loved design) */}
       <div
-        ref={dotRef}
-        className="pointer-events-none fixed top-0 left-0 z-[999999] rounded-full transition-opacity duration-200"
+        ref={arrowRef}
+        className="pointer-events-none fixed top-0 left-0 z-[999999] transition-opacity duration-200"
         style={{
-          width: 8,
-          height: 8,
-          backgroundColor: primaryColor,
-          boxShadow: `0 0 10px ${primaryColor}, 0 0 20px ${glowColor}`,
           opacity: 0,
           willChange: "transform",
+          transformOrigin: "0 0",
         }}
-      />
+      >
+        <div className="relative -top-[2px] -left-[3px]">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 26 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{
+              filter: glowDropShadow,
+              transition: "filter 0.25s ease",
+            }}
+          >
+            {/* Sleek Outline Arrow Path */}
+            <path
+              d="M3 2L11 23L14 15L22 12L3 2Z"
+              fill={arrowFill}
+              stroke={primaryColor}
+              strokeWidth="1.8"
+              strokeLinejoin="round"
+            />
+            {/* Center Precision Target Dot */}
+            <circle cx="9.5" cy="9.5" r="1.3" fill={primaryColor} />
+          </svg>
+        </div>
+      </div>
 
-      {/* 3. Trailing Physics Lerp Ring (Decoupled Follower) */}
-      <div
-        ref={ringRef}
-        className="pointer-events-none fixed top-0 left-0 z-[999998] rounded-full transition-opacity duration-300 flex items-center justify-center"
-        style={{
-          border: `1.5px solid ${primaryColor}`,
-          backgroundColor: cursorLabel ? glowColor : "transparent",
-          boxShadow: cursorLabel
-            ? `0 0 24px ${glowColor}`
-            : `0 0 12px ${glowColor}`,
-          opacity: 0,
-          willChange: "transform, width, height",
-          transitionProperty: "border-color, background-color, box-shadow, opacity",
-          transitionDuration: "250ms",
-        }}
-      />
-
-      {/* 4. Contextual Floating Label (VIEW / COPY) */}
+      {/* 3. Floating Contextual Badge (VIEW / COPY) */}
       <div
         ref={labelRef}
-        className="pointer-events-none fixed top-0 left-0 z-[999999] flex items-center justify-center transition-all duration-200"
+        className="pointer-events-none fixed top-0 left-0 z-[999999] flex items-center transition-opacity duration-200"
         style={{
           opacity: cursorLabel ? 1 : 0,
-          transform: "translate(-50%, -50%)",
         }}
       >
         {cursorLabel && (
-          <span
-            className="font-mono text-[9px] font-black tracking-widest uppercase select-none drop-shadow"
-            style={{ color: isDark ? "#FFFFFF" : "#0F172A" }}
+          <div
+            className={`flex items-center gap-1.5 rounded-full px-2.5 py-0.5 backdrop-blur-md shadow-lg ${
+              isDark
+                ? "border border-[#FF1E27]/80 bg-black/90 shadow-[0_0_15px_rgba(255,30,39,0.4)]"
+                : "border border-sky-600/80 bg-white/95 shadow-[0_0_15px_rgba(2,132,199,0.3)]"
+            }`}
           >
-            {cursorLabel}
-          </span>
+            <span
+              className="h-1.5 w-1.5 rounded-full animate-pulse"
+              style={{ backgroundColor: primaryColor }}
+            />
+            <span
+              className="font-mono text-[9px] font-black tracking-widest uppercase select-none"
+              style={{ color: isDark ? "#FFFFFF" : "#0F172A" }}
+            >
+              {cursorLabel}
+            </span>
+          </div>
         )}
       </div>
     </>

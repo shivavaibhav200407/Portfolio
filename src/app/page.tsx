@@ -9,12 +9,13 @@ import UniqueTechPreloader from "@/components/effects/UniqueTechPreloader";
 import Navbar from "@/components/ui/Navbar";
 import Hero from "@/components/sections/Hero";
 import Terminal from "@/components/sections/Terminal";
+import AboutTimeline from "@/components/sections/AboutTimeline";
+import SkillsBento from "@/components/sections/SkillsBento";
 import SageCaseStudy from "@/components/sections/SageCaseStudy";
 import IrisMlSandbox from "@/components/sections/IrisMlSandbox";
 import PostersGallery from "@/components/sections/PostersGallery";
 import CertificatesSection from "@/components/sections/CertificatesSection";
-import SkillsBento from "@/components/sections/SkillsBento";
-import AboutTimeline from "@/components/sections/AboutTimeline";
+import DoodlePlayground from "@/components/sections/DoodlePlayground";
 import ContactDock from "@/components/sections/ContactDock";
 import Footer from "@/components/sections/Footer";
 
@@ -76,67 +77,79 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative min-h-screen transition-colors duration-500 bg-white text-slate-900 dark:bg-black dark:text-white">
+    <main className="relative min-h-screen transition-colors duration-500 bg-[#FAF8F5] text-slate-900 dark:bg-[#060608] dark:text-white">
+      {/* Tactile Film Grain Texture (Award-winning editorial surface) */}
+      <div className="grain" aria-hidden="true" />
+
       {/* Unique Geometric Orbital Tech Preloader */}
       <UniqueTechPreloader isDark={isDarkMode} />
 
-      {/* Dual-Mode Adaptive Custom Cursor (Ocean Blue in Light ↔ Neon Red in Dark) */}
+      {/* Sleek Studio Outline Arrow Cursor with Kinetic Tail Lights (Dual Mode) */}
       <DualModeCursor isDark={isDarkMode} />
 
-      {/* Ambient Neural Mesh - Confined to Hero with Graceful Fade */}
+      {/* Ambient Neural Synapse Mesh - In Hero with Graceful Fade */}
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-[100vh] overflow-hidden [mask-image:radial-gradient(ellipse_80%_65%_at_50%_25%,black_40%,transparent_100%)]">
         <NeuralCanvas isDarkMode={isDarkMode} />
       </div>
 
-      {/* Floating Island Navigation with Standalone Celestial Theme Toggle */}
+      {/* Floating Island Navigation */}
       <Navbar
         onToggleTheme={(dark) => setIsDarkMode(dark)}
         onOpenTerminal={() => setTerminalOpen(true)}
         isDark={isDarkMode}
       />
 
-      {/* 01 // Kinetic Tech Hero */}
-      <Hero onOpenTerminal={() => setTerminalOpen(true)} isDark={isDarkMode} />
+      {/* 00 // Haute Dev Hero with Celestial Sun/Moon Toggle in Name */}
+      <Hero
+        onToggleTheme={(dark) => setIsDarkMode(dark)}
+        onOpenTerminal={() => setTerminalOpen(true)}
+        isDark={isDarkMode}
+      />
 
       {/* Infinite Skills Marquee */}
       <SkillsMarquee />
 
-      {/* 03 // SAGE Multi-Agent Case Study (Referral Page Editorial Style) */}
-      <ScrollReveal delay={0.05}>
-        <SageCaseStudy />
-      </ScrollReveal>
-
-      {/* 04 // Interactive ML Dimension Sandbox */}
-      <ScrollReveal delay={0.05}>
-        <IrisMlSandbox />
-      </ScrollReveal>
-
-      {/* 05 // S.A.C.C Posters & Creative Direction (Google Drive Integrated) */}
-      <ScrollReveal delay={0.05}>
-        <PostersGallery />
-      </ScrollReveal>
-
-      {/* 06 // Verified Certificates & College Workshops */}
-      <ScrollReveal delay={0.05}>
-        <CertificatesSection />
-      </ScrollReveal>
-
-      {/* 07 // Toolbox & Skills Bento Grid */}
-      <ScrollReveal delay={0.05}>
-        <SkillsBento />
-      </ScrollReveal>
-
-      {/* 08 // Academic Journey & Leadership */}
+      {/* 01 // Introduction & Academic Journey */}
       <ScrollReveal delay={0.05}>
         <AboutTimeline />
       </ScrollReveal>
 
-      {/* 09 // High-Conversion Contact Dock */}
+      {/* 02 // Toolbox & Competencies Bento */}
+      <ScrollReveal delay={0.05}>
+        <SkillsBento />
+      </ScrollReveal>
+
+      {/* 03 // Selected Work: SAGE College AI Tutor */}
+      <ScrollReveal delay={0.05}>
+        <SageCaseStudy />
+      </ScrollReveal>
+
+      {/* 03.1 // ML Dimension Sandbox: Iris Classification */}
+      <ScrollReveal delay={0.05}>
+        <IrisMlSandbox />
+      </ScrollReveal>
+
+      {/* 04 // S.A.C.C College Posters Gallery (Google Drive Connected) */}
+      <ScrollReveal delay={0.05}>
+        <PostersGallery />
+      </ScrollReveal>
+
+      {/* 05 // Verified Certifications & College Workshops */}
+      <ScrollReveal delay={0.05}>
+        <CertificatesSection />
+      </ScrollReveal>
+
+      {/* 06 // Playground: Interactive Doodle Board */}
+      <ScrollReveal delay={0.05}>
+        <DoodlePlayground isDark={isDarkMode} />
+      </ScrollReveal>
+
+      {/* 07 // Contact Dock */}
       <ScrollReveal delay={0.05}>
         <ContactDock />
       </ScrollReveal>
 
-      {/* Footer */}
+      {/* Footer with Rotating Star / Back to Top Badge */}
       <Footer />
 
       {/* Interactive Developer CLI Terminal Modal */}

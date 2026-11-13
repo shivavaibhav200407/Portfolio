@@ -2,245 +2,217 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Users, CheckCircle2, Zap, Database, Brain, Sparkles, Cpu, ExternalLink, ArrowUpRight } from "lucide-react";
+import { Users, CheckCircle2, Zap, Brain, Sparkles, Cpu, BookOpen, ExternalLink } from "lucide-react";
 import { PROFILE } from "@/data/profile";
 
-interface AgentNode {
+interface AgentModule {
   id: string;
   name: string;
   role: string;
-  icon: typeof Brain;
-  input: string;
-  output: string;
   description: string;
+  icon: typeof Brain;
 }
 
-const AGENTS: AgentNode[] = [
+const MODULES: AgentModule[] = [
   {
     id: "coordinator",
-    name: "01. Question Coordinator",
-    role: "Intent Parsing & Branch Routing",
+    name: "Question Coordinator",
+    role: "Course & Topic Router",
+    description: "Accepts student questions across B.Tech engineering branches and routes them to the right subject notes.",
     icon: Brain,
-    input: "Student natural-language inquiry or quiz response",
-    output: "Dispatched curriculum branch & topic payload",
-    description: "Evaluates questions across 25+ B.Tech courses (CSE, AI, ECE, Mech, Civil) and orchestrates the request to the dedicated subject specialist.",
   },
   {
-    id: "diagnostic",
-    name: "02. Gap Finder Agent",
-    role: "Conceptual Misconception Analysis",
+    id: "checker",
+    name: "Concept Checker",
+    role: "Misconception Clarifier",
+    description: "Identifies whether an error is a simple math typo or a fundamental misunderstanding of the topic.",
     icon: Sparkles,
-    input: "Student answer history & failed quiz attempts",
-    output: "Pinpointed conceptual misunderstanding",
-    description: "Distinguishes between a simple formula calculation slip and a foundational concept gap (e.g. projection matrix vs variance in PCA).",
   },
   {
     id: "planner",
-    name: "03. Study Planner Agent",
-    role: "Curriculum Path Generation",
+    name: "Study Planner",
+    role: "Step-by-Step Breakdown",
+    description: "Breaks difficult engineering units into digestible 3-step revision milestones for semester exams.",
     icon: Cpu,
-    input: "Diagnosed knowledge gap + JNTUH syllabus units",
-    output: "Actionable 3-step mastery roadmap",
-    description: "Sequences complex engineering topics into structured micro-lessons formatted for semester examination patterns.",
   },
   {
-    id: "rag",
-    name: "04. Notes Searcher (ChromaDB + Groq)",
-    role: "Syllabus-Grounding Vector RAG",
-    icon: Database,
-    input: "Indexed professor lecture notes & textbook PDFs",
-    output: "Strictly verified, hallucination-free explanation",
-    description: "Retrieves top-k verified textbook chunks from local ChromaDB vectors, executing fast sub-second inference via Groq Llama 3 API.",
+    id: "notes",
+    name: "Notes Searcher",
+    role: "Textbook & PDF Retriever",
+    description: "Retrieves verified explanations directly from indexed college lecture notes and reference textbooks.",
+    icon: BookOpen,
+  },
+];
+
+const sampleQuestions = [
+  {
+    q: "Why do we calculate Eigenvalues in PCA?",
+    gap: "Student knows PCA reduces dimensions, but confuses variance maximization with simple data projection.",
+    plan: "1. Review variance on a 2D line · 2. Visualize covariance matrix stretching · 3. Compute principal eigenvectors.",
+  },
+  {
+    q: "Difference between Dijkstra and Bellman-Ford?",
+    gap: "Student understands shortest path greedy logic, but misses why negative edge weights cause Dijkstra loops.",
+    plan: "1. Re-check greedy relaxation assumptions · 2. Trace 3-node negative cycle · 3. Practice Bellman-Ford passes.",
   },
 ];
 
 export default function SageCaseStudy() {
-  const [activeAgent, setActiveAgent] = useState<AgentNode>(AGENTS[0]);
-  const [simulatedPrompt, setSimulatedPrompt] = useState<string | null>(null);
-
-  const sampleQuestions = [
-    {
-      q: "Explain Eigenvalues in PCA (Machine Learning)",
-      course: "B.Tech CSE / AI&ML",
-      gap: "Understands dimensionality reduction, but struggles with variance matrix projection.",
-      plan: "Display 2D variance projection diagram prior to the covariance formula derivation.",
-    },
-    {
-      q: "Difference between TCP and UDP (Computer Networks)",
-      course: "B.Tech CSE / IT",
-      gap: "Confuses 3-way handshake reliability with streaming throughput speeds.",
-      plan: "Side-by-side transport layer comparison table contrasting packet retransmission.",
-    },
-    {
-      q: "Otto vs Diesel Engine Cycles (Applied Thermodynamics)",
-      course: "B.Tech Mechanical Engineering",
-      gap: "Confuses constant-volume vs constant-pressure heat addition stages.",
-      plan: "Fetch verified PV & TS indicator diagrams from indexed mechanical course notes.",
-    },
-  ];
+  const [activeModule, setActiveModule] = useState<AgentModule>(MODULES[0]);
+  const [selectedDemo, setSelectedDemo] = useState<string | null>(sampleQuestions[0].q);
 
   return (
-    <section id="sage" className="relative py-24 px-4 sm:px-8 border-t transition-colors duration-500 border-slate-200 bg-slate-50/50 text-slate-900 dark:border-white/5 dark:bg-[#020202] dark:text-white">
+    <section id="sage" className="relative py-24 px-4 sm:px-8 border-t transition-colors duration-500 border-slate-200/80 bg-slate-50/50 text-slate-900 dark:border-white/5 dark:bg-[#07070A] dark:text-white">
       <div className="mx-auto max-w-5xl">
-        {/* Section Header: Referral Page Style Index */}
+        {/* Section Header */}
         <div className="flex flex-col items-start gap-2">
-          <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs font-semibold border-sky-500/20 bg-sky-50 text-sky-700 dark:border-[#FF1E27]/30 dark:bg-[#FF1E27]/10 dark:text-[#FF3843]">
-            <Users className="h-3.5 w-3.5 text-sky-600 dark:text-[#FF1E27]" />
-            <span>03 // FLAGSHIP PROJECT &middot; TEAM LEAD (TEAM OF 4)</span>
+          <span className="font-mono text-[11px] tracking-widest uppercase text-slate-500 dark:text-slate-400">
+            03 / SELECTED WORK
+          </span>
+          <div className="flex flex-wrap items-center justify-between w-full gap-4">
+            <h2 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-slate-900 dark:text-white">
+              SAGE — AI Tutor for B.Tech Courses
+            </h2>
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 rounded-full border font-mono text-xs border-sky-400/40 bg-sky-50 text-sky-700 dark:border-[#FF1E27]/40 dark:bg-[#FF1E27]/10 dark:text-[#FF4D55]">
+                Led Team of 4
+              </span>
+              <span className="px-3 py-1 rounded-full border font-mono text-xs border-slate-200 bg-white text-slate-600 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-300">
+                Built with AI Tools
+              </span>
+            </div>
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight">
-            SAGE — Self-Adaptive Agentic Educational Engine
-          </h2>
-          <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300 mt-1">
-            I led a team of 4 classmates to architect an offline-ready AI tutoring engine grounded in our college syllabus across 25+ B.Tech engineering courses, delivered over campus Wi-Fi.
+          <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-400 mt-1 font-sans">
+            A multi-agent course revision system designed to help engineering students understand tough topics, check their knowledge gaps, and study directly from syllabus notes.
           </p>
         </div>
 
-        {/* Executive Highlights Grid */}
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 font-mono">
-          <div className="rounded-xl border p-4 transition-all border-slate-200 bg-white hover:border-sky-500 dark:border-white/10 dark:bg-[#090909] dark:hover:border-[#FF1E27]/40 shadow-sm">
-            <span className="text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">Role</span>
-            <div className="text-lg font-bold font-display text-sky-600 dark:text-[#FF3843] mt-1">Team Lead</div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">4 student engineers</p>
+        {/* Project Showcase Container */}
+        <div className="mt-12 rounded-2xl border p-6 sm:p-8 backdrop-blur-md transition-all border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-[#09090D]">
+          {/* Honest Tech Pills */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-200/80 dark:border-white/10">
+            <div>
+              <span className="font-mono text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+                Project Role
+              </span>
+              <span className="font-serif text-base text-slate-900 dark:text-white mt-0.5 block font-normal">
+                Team Lead (4 Members) · Concept &amp; AI Workflows
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-2 font-mono text-xs">
+              <span className="px-2.5 py-1 rounded-md border border-slate-200 bg-slate-50 dark:border-white/5 dark:bg-white/[0.02]">
+                Python (Learning)
+              </span>
+              <span className="px-2.5 py-1 rounded-md border border-slate-200 bg-slate-50 dark:border-white/5 dark:bg-white/[0.02]">
+                AI Coding Tools
+              </span>
+              <span className="px-2.5 py-1 rounded-md border border-slate-200 bg-slate-50 dark:border-white/5 dark:bg-white/[0.02]">
+                Multi-Agent Design
+              </span>
+              <span className="px-2.5 py-1 rounded-md border border-slate-200 bg-slate-50 dark:border-white/5 dark:bg-white/[0.02]">
+                College Wi-Fi Hosted
+              </span>
+            </div>
           </div>
-          <div className="rounded-xl border p-4 transition-all border-slate-200 bg-white hover:border-slate-300 dark:border-white/10 dark:bg-[#090909] dark:hover:border-white/20 shadow-sm">
-            <span className="text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">Curriculum</span>
-            <div className="text-lg font-bold font-display text-slate-900 dark:text-white mt-1">25+ Courses</div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">CSE, AI, ECE, Mech, Civil</p>
-          </div>
-          <div className="rounded-xl border p-4 transition-all border-slate-200 bg-white hover:border-sky-500 dark:border-white/10 dark:bg-[#090909] dark:hover:border-[#FF1E27]/40 shadow-sm">
-            <span className="text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tech Stack</span>
-            <div className="text-lg font-bold font-display text-sky-600 dark:text-[#FF3843] mt-1">ChromaDB + Groq</div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Django + Llama 3 API</p>
-          </div>
-          <div className="rounded-xl border p-4 transition-all border-slate-200 bg-white hover:border-slate-300 dark:border-white/10 dark:bg-[#090909] dark:hover:border-white/20 shadow-sm">
-            <span className="text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">Delivery</span>
-            <div className="text-lg font-bold font-display text-slate-900 dark:text-white mt-1">Campus Wi-Fi</div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Free for all students</p>
-          </div>
-        </div>
 
-        {/* Multi-Agent Architecture Console (Referral Style) */}
-        <div className="mt-10 rounded-2xl border p-5 sm:p-7 shadow-xl border-slate-200 bg-white dark:border-white/10 dark:bg-[#070707]">
-          <div className="border-b pb-4 border-slate-200 dark:border-white/10">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-sky-600 dark:text-[#FF3843]">
-              Architecture Topology
+          {/* 4 Agent Modules Selector */}
+          <div className="mt-8">
+            <span className="font-mono text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-3">
+              Multi-Agent Architecture Breakdown
             </span>
-            <h3 className="font-display text-lg sm:text-xl font-bold mt-1 text-slate-900 dark:text-white">
-              Collaborative 4-Agent Pipeline
-            </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Select an agent to inspect its responsibilities, input stream, and syllabus-grounded output contract:
-            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {MODULES.map((mod) => {
+                const Icon = mod.icon;
+                const isSelected = activeModule.id === mod.id;
+                return (
+                  <button
+                    key={mod.id}
+                    type="button"
+                    onClick={() => setActiveModule(mod)}
+                    className={`p-4 rounded-xl border text-left transition-all ${
+                      isSelected
+                        ? "border-sky-500 bg-sky-50/70 shadow-sm dark:border-[#FF1E27]/70 dark:bg-[#FF1E27]/[0.08]"
+                        : "border-slate-200 bg-slate-50/50 hover:border-slate-300 dark:border-white/5 dark:bg-black/30 dark:hover:border-white/15"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className={`p-1.5 rounded-md ${
+                        isSelected
+                          ? "bg-sky-500/20 text-sky-600 dark:bg-[#FF1E27]/20 dark:text-[#FF4D55]"
+                          : "bg-slate-200/60 text-slate-600 dark:bg-white/[0.04] dark:text-slate-400"
+                      }`}>
+                        <Icon className="h-4 w-4" />
+                      </div>
+                      <span className="font-serif text-sm font-normal text-slate-900 dark:text-white">
+                        {mod.name}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-xs font-mono text-slate-500 dark:text-slate-400">
+                      {mod.role}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Active Module Details */}
+            <div className="mt-4 p-5 rounded-xl border border-slate-200/80 bg-slate-50/40 dark:border-white/5 dark:bg-black/40">
+              <div className="flex items-center gap-2 font-serif text-base text-slate-900 dark:text-white">
+                <span className="h-2 w-2 rounded-full bg-sky-500 dark:bg-[#FF1E27]" />
+                <span>{activeModule.name}: {activeModule.role}</span>
+              </div>
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
+                {activeModule.description}
+              </p>
+            </div>
           </div>
 
-          {/* Clean Agent Selector Tabs */}
-          <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
-            {AGENTS.map((agent) => {
-              const Icon = agent.icon;
-              const isSelected = activeAgent.id === agent.id;
-              return (
+          {/* Interactive Demo Query */}
+          <div className="mt-8 pt-6 border-t border-slate-200/80 dark:border-white/10">
+            <span className="font-mono text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+              <Zap className="h-3.5 w-3.5 text-sky-600 dark:text-[#FF1E27]" />
+              <span>Interactive Query Clarification Example</span>
+            </span>
+
+            <div className="mt-3 flex flex-wrap gap-2">
+              {sampleQuestions.map((q) => (
                 <button
-                  key={agent.id}
-                  onClick={() => setActiveAgent(agent)}
-                  className={`flex flex-col text-left p-3.5 rounded-xl border transition-all ${
-                    isSelected
-                      ? "border-sky-500 bg-sky-50/80 shadow-[0_0_15px_rgba(2,132,199,0.15)] dark:border-[#FF1E27]/70 dark:bg-[#FF1E27]/[0.08] dark:shadow-[0_0_15px_rgba(255,30,39,0.15)]"
-                      : "border-slate-200 bg-slate-50/60 hover:border-slate-300 dark:border-white/10 dark:bg-[#0C0C0C] dark:hover:border-white/20"
+                  key={q.q}
+                  type="button"
+                  onClick={() => setSelectedDemo(q.q)}
+                  className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-colors border ${
+                    selectedDemo === q.q
+                      ? "border-sky-500 bg-sky-50 text-sky-700 dark:border-[#FF1E27] dark:bg-[#FF1E27]/20 dark:text-[#FF4D55]"
+                      : "border-slate-200 bg-white text-slate-600 dark:border-white/10 dark:bg-black/40 dark:text-slate-400"
                   }`}
                 >
-                  <div className="flex items-center gap-2">
-                    <div className={`p-1.5 rounded-md ${
-                      isSelected
-                        ? "bg-sky-500/20 text-sky-600 dark:bg-[#FF1E27]/20 dark:text-[#FF3843]"
-                        : "bg-slate-200/60 text-slate-600 dark:bg-white/[0.05] dark:text-slate-300"
-                    }`}>
-                      <Icon className="h-4 w-4" />
-                    </div>
-                    <span className="font-display text-xs font-bold text-slate-900 dark:text-white">
-                      {agent.name}
-                    </span>
-                  </div>
-                  <p className="mt-2 text-[11px] line-clamp-1 font-mono text-slate-500 dark:text-slate-400">
-                    {agent.role}
-                  </p>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Active Agent Contract Card */}
-          <div className="mt-5 rounded-xl border p-4 sm:p-5 border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-[#0C0C0C]">
-            <div className="flex items-center gap-2 text-sm font-display font-bold text-slate-900 dark:text-white">
-              <span className="h-2 w-2 rounded-full bg-sky-500 shadow-[0_0_6px_rgba(2,132,199,0.8)] dark:bg-[#FF1E27] dark:shadow-[0_0_6px_#FF1E27]" />
-              <span>{activeAgent.name}: {activeAgent.role}</span>
-            </div>
-            <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-              {activeAgent.description}
-            </p>
-            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
-              <div className="p-2.5 rounded-lg border border-slate-200 bg-white dark:border-white/5 dark:bg-black/60">
-                <span className="block text-[10px] uppercase text-slate-500 dark:text-slate-400">Input Contract</span>
-                <span className="mt-0.5 block font-semibold text-sky-600 dark:text-[#FF3843]">{activeAgent.input}</span>
-              </div>
-              <div className="p-2.5 rounded-lg border border-slate-200 bg-white dark:border-white/5 dark:bg-black/60">
-                <span className="block text-[10px] uppercase text-slate-500 dark:text-slate-400">Output Payload</span>
-                <span className="mt-0.5 block text-slate-800 dark:text-slate-200">{activeAgent.output}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Interactive Simulation / Test */}
-          <div className="mt-6 pt-5 border-t border-slate-200 dark:border-white/10">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 text-sky-600 dark:text-[#FF3843]">
-              <Zap className="h-3.5 w-3.5" /> Interactive Query Simulation
-            </span>
-            <div className="mt-2.5 flex flex-wrap gap-2">
-              {sampleQuestions.map((q, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSimulatedPrompt(q.q)}
-                  className="rounded-lg border px-3 py-1.5 text-xs font-mono text-left transition-all border-slate-200 bg-slate-50 hover:border-sky-500 hover:bg-sky-50 text-slate-700 dark:border-white/10 dark:bg-black dark:text-slate-300 dark:hover:border-[#FF1E27]/50 dark:hover:bg-[#FF1E27]/10"
-                >
-                  <span className="font-bold mr-1.5 text-sky-600 dark:text-[#FF1E27]">&gt;</span>
+                  <span className="font-bold mr-1">&gt;</span>
                   {q.q}
                 </button>
               ))}
             </div>
 
-            <AnimatePresence>
-              {simulatedPrompt && (
-                <motion.div
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 6 }}
-                  className="mt-3.5 rounded-xl border p-4 font-mono text-xs shadow-lg border-sky-400/40 bg-sky-50/80 text-slate-800 dark:border-[#FF1E27]/40 dark:bg-[#0B0B0B] dark:text-slate-300"
-                >
-                  <div className="flex items-center gap-2 font-bold mb-2.5 text-slate-900 dark:text-white">
-                    <CheckCircle2 className="h-4 w-4 text-sky-600 dark:text-[#FF1E27]" />
-                    <span>Agent Pipeline Response Generated:</span>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
-                    <div className="p-2.5 rounded-lg border border-slate-200 bg-white dark:border-white/5 dark:bg-black/60">
-                      <span className="font-bold block mb-1 uppercase tracking-wider text-[10px] text-sky-600 dark:text-[#FF3843]">
-                        Diagnosed Misconception
-                      </span>
-                      <p className="leading-relaxed text-slate-700 dark:text-slate-300">
-                        {sampleQuestions.find((s) => s.q === simulatedPrompt)?.gap}
-                      </p>
-                    </div>
-                    <div className="p-2.5 rounded-lg border border-slate-200 bg-white dark:border-white/5 dark:bg-black/60">
-                      <span className="font-bold block mb-1 uppercase tracking-wider text-[10px] text-slate-900 dark:text-white">
-                        Adaptive Study Plan
-                      </span>
-                      <p className="leading-relaxed text-slate-700 dark:text-slate-300">
-                        {sampleQuestions.find((s) => s.q === simulatedPrompt)?.plan}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {selectedDemo && (
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
+                <div className="p-3.5 rounded-lg border border-slate-200 bg-white dark:border-white/5 dark:bg-black/50">
+                  <span className="font-bold text-[10px] uppercase text-sky-600 dark:text-[#FF4D55] block mb-1">
+                    Diagnosed Knowledge Gap
+                  </span>
+                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed font-sans text-xs">
+                    {sampleQuestions.find((s) => s.q === selectedDemo)?.gap}
+                  </p>
+                </div>
+
+                <div className="p-3.5 rounded-lg border border-slate-200 bg-white dark:border-white/5 dark:bg-black/50">
+                  <span className="font-bold text-[10px] uppercase text-slate-900 dark:text-white block mb-1">
+                    Generated Study Plan
+                  </span>
+                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed font-sans text-xs">
+                    {sampleQuestions.find((s) => s.q === selectedDemo)?.plan}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

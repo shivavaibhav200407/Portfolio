@@ -41,6 +41,7 @@ const config: Config = {
         sans: ["var(--font-inter)", "sans-serif"],
         display: ["var(--font-space-grotesk)", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "monospace"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
       },
       boxShadow: {
         "cyan-glow": "0 0 25px -5px rgba(0, 240, 255, 0.3)",
