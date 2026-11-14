@@ -26,18 +26,25 @@ export default function ContactDock() {
     setIsSubmitting(true);
     setErrorMessage(null);
 
+    const accessKey =
+      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+      "cac4be95-e692-4f14-8692-033ef392d01f";
+
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
+          access_key: accessKey,
           name: formState.name,
           email: formState.email,
           message: formState.message,
-          botcheck: botcheck,
+          subject: `Portfolio Message from ${formState.name || "Visitor"}`,
+          from_name: "Shiva Vaibhav Portfolio Form",
+          botcheck: botcheck ? "true" : undefined,
         }),
       });
 

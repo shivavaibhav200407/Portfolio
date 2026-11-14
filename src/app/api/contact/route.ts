@@ -22,7 +22,8 @@ export async function POST(req: Request) {
 
     const accessKey =
       process.env.WEB3FORMS_ACCESS_KEY ||
-      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+      "cac4be95-e692-4f14-8692-033ef392d01f";
 
     if (!accessKey) {
       return NextResponse.json(
