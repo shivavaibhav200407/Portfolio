@@ -6,7 +6,7 @@ export const PROFILE = {
   initials: "SV",
   location: "Hyderabad, India",
   role: "CSE (AI & ML) Student · Chief Designer at S.A.C.C",
-  tagline: "3rd-year engineering student learning Python and building with AI. Designing posters and digital experiences.",
+  tagline: "3rd-year engineering student learning Python and building with AI tools. Designing posters for college clubs and events.",
   shortBio: "B.Tech 3rd year CSE (AI & ML) student at Siddhartha Institute of Technology & Sciences, Hyderabad (graduating 2028, CGPA 8.02). Team Lead for SAGE (AI tutor for B.Tech courses built with a team of 4 using AI tools) and Chief Designer & Disciplinary Head for Siddhartha Allied Clubs Council (S.A.C.C). Seeking an internship and first job.",
 
   education: {
@@ -28,13 +28,13 @@ export const PROFILE = {
   council: {
     body: "Siddhartha Allied Clubs Council (S.A.C.C)",
     roles: ["Chief Designer", "Disciplinary Head"],
-    responsibility: "Created official event posters, workshop creatives, and banners for college clubs, while maintaining student discipline and event coordination during campus programs.",
+    responsibility: "Designed posters and promotional graphics for college clubs and events, while helping maintain student discipline during campus programs.",
   },
 
   languages: [
-    { name: "Telugu", level: "Native / Mother tongue" },
-    { name: "Hindi", level: "Conversational" },
-    { name: "English", level: "Professional working proficiency" },
+    { name: "Telugu" },
+    { name: "Hindi" },
+    { name: "English" },
   ],
 
   contact: {

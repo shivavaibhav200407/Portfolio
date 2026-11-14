@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Award, Sliders, BarChart3, CheckCircle2 } from "lucide-react";
+import { Award, Sliders, BarChart3, Info } from "lucide-react";
 
 export default function IrisMlSandbox() {
   const [sepalLength, setSepalLength] = useState(5.8);
@@ -30,15 +30,22 @@ export default function IrisMlSandbox() {
       <div className="mx-auto max-w-5xl">
         {/* Section Header */}
         <div className="flex flex-col items-start gap-2">
-          <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs font-semibold border-[#DBEAFE] bg-[#EAF2FF] text-[#2563EB] dark:border-[#FF1E27]/30 dark:bg-[#FF1E27]/10 dark:text-[#FF3843]">
-            <Award className="h-3.5 w-3.5 text-[#2563EB] dark:text-[#FF1E27]" />
-            <span>03.1 // MACHINE LEARNING &middot; SMARTUTER (SRC) CERTIFIED</span>
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs font-semibold border-[#DBEAFE] bg-[#EAF2FF] text-[#2563EB] dark:border-[#FF1E27]/30 dark:bg-[#FF1E27]/10 dark:text-[#FF3843]">
+              <Award className="h-3.5 w-3.5 text-[#2563EB] dark:text-[#FF1E27]" />
+              <span>03.1 // MACHINE LEARNING PROJECT</span>
+            </div>
+            <span className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-xs border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-300">
+              <Info className="h-3 w-3" />
+              Illustrative demo, not my trained model
+            </span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-[#0B1B3A] dark:text-white">
-            Iris Flower Species Classifier
+
+          <h2 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-[#0B1B3A] dark:text-white mt-1">
+            Iris Flower Species Classification
           </h2>
           <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-[#5B6B8C] dark:text-slate-300 mt-1 font-sans">
-            Machine learning model certified at Smartuter Research Center (Jan 2026). Drag the sliders below to test the classifier in real time:
+            Machine learning project completion certificate awarded by Smartuter Research Center (Jan 2026). The interactive widget below demonstrates how decision boundaries separate the three Iris species:
           </p>
         </div>
 
@@ -52,7 +59,7 @@ export default function IrisMlSandbox() {
                 Feature Inputs (in centimeters)
               </span>
               <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#2563EB] dark:text-[#FF3843]">
-                Interactive
+                Interactive Demo
               </span>
             </div>
 
@@ -169,10 +176,10 @@ export default function IrisMlSandbox() {
               <div className="flex items-center justify-between border-b pb-3 border-[#DCE6F7] dark:border-white/10">
                 <span className="text-xs flex items-center gap-1.5 text-[#0B1B3A] dark:text-slate-300">
                   <BarChart3 className="h-3.5 w-3.5 text-[#2563EB] dark:text-[#FF1E27]" />
-                  Inference Confidence
+                  Inference Output
                 </span>
                 <span className="text-[10px] px-2 py-0.5 rounded font-mono border border-[#DBEAFE] bg-[#EAF2FF] text-[#2563EB] font-bold dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300">
-                  98.7% Accuracy
+                  Interactive Demo
                 </span>
               </div>
 
@@ -232,13 +239,12 @@ export default function IrisMlSandbox() {
               </div>
             </div>
 
-            {/* SRC certification footer */}
+            {/* Smartuter research center footer */}
             <div className="mt-5 pt-3 border-t flex items-center justify-between text-[11px] border-[#DCE6F7] text-[#5B6B8C] dark:border-white/10 dark:text-slate-400">
-              <span className="flex items-center gap-1 text-[#0B1B3A] dark:text-slate-300">
-                <CheckCircle2 className="h-3.5 w-3.5 text-[#2563EB] dark:text-[#FF1E27]" />
+              <span className="text-[#0B1B3A] dark:text-slate-300">
                 Smartuter Research Center (SRC)
               </span>
-              <span className="font-mono text-[#5B6B8C] dark:text-slate-500">Jan 2026</span>
+              <span className="font-mono text-[#5B6B8C] dark:text-slate-500">Jan 2026 Certificate</span>
             </div>
           </div>
         </div>

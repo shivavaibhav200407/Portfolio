@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Palette, Eye, X, ExternalLink, FolderOpen, Play, ArrowUpRight } from "lucide-react";
+import { Eye, X, ExternalLink, FolderOpen, Play, ArrowUpRight } from "lucide-react";
 import { POSTERS, type Poster } from "@/data/posters";
 import { PROFILE } from "@/data/profile";
 
@@ -30,7 +30,7 @@ export default function PostersGallery() {
               College Posters &amp; Creative Direction
             </h2>
             <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-[#5B6B8C] dark:text-slate-300 mt-1 font-sans">
-              As Chief Designer &amp; Disciplinary Head for our student council (S.A.C.C), I design promotional posters, social media banners, and motion reels for campus hackathons (SIH 2026), workshops, and cultural festivals.
+              As Chief Designer &amp; Disciplinary Head for our student council (S.A.C.C), I design promotional posters, banners, and digital graphics for college clubs and events, including the internal SIH 2026 event hosted by S.A.C.C.
             </p>
           </div>
 
@@ -73,11 +73,11 @@ export default function PostersGallery() {
               transition={{ type: "spring", stiffness: 320, damping: 22 }}
               onClick={() => setSelectedPoster(poster)}
               data-cursor="view"
-              className="group cursor-pointer rounded-2xl border overflow-hidden shadow-md transition-all border-slate-200 bg-white hover:border-sky-500 hover:shadow-xl dark:border-white/10 dark:bg-[#070707] dark:hover:border-[#FF1E27]/50 dark:hover:shadow-[0_0_25px_rgba(255,30,39,0.2)] flex flex-col justify-between"
+              className="group cursor-pointer rounded-2xl border overflow-hidden shadow-md transition-all border-[#DCE6F7] bg-white hover:border-[#2563EB] hover:shadow-xl dark:border-white/10 dark:bg-[#070707] dark:hover:border-[#FF1E27]/50 dark:hover:shadow-[0_0_25px_rgba(255,30,39,0.2)] flex flex-col justify-between"
             >
               {/* Poster Canvas Visual */}
               <div
-                className="relative aspect-[4/3] p-5 flex flex-col justify-between overflow-hidden border-b border-slate-200 dark:border-white/10"
+                className="relative aspect-[4/3] p-5 flex flex-col justify-between overflow-hidden border-b border-[#DCE6F7] dark:border-white/10"
                 style={{
                   background: `linear-gradient(135deg, ${poster.accentColor} 0%, #050505 100%)`,
                 }}
@@ -117,14 +117,14 @@ export default function PostersGallery() {
               {/* Description & Action Links */}
               <div className="p-4 flex-1 flex flex-col justify-between">
                 <div>
-                  <p className="text-xs line-clamp-2 font-sans text-slate-600 dark:text-slate-300">
+                  <p className="text-xs line-clamp-2 font-sans text-[#5B6B8C] dark:text-slate-300">
                     {poster.description}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-1">
                     {poster.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 rounded text-[10px] font-mono border border-slate-200 bg-slate-50 text-slate-600 dark:border-white/5 dark:bg-white/[0.04] dark:text-slate-400"
+                        className="px-2 py-0.5 rounded text-[10px] font-mono border border-[#DBEAFE] bg-[#EAF2FF] text-[#0B1B3A] dark:border-white/5 dark:bg-white/[0.04] dark:text-slate-400"
                       >
                         {tag}
                       </span>
@@ -133,14 +133,14 @@ export default function PostersGallery() {
                 </div>
 
                 {/* Drive link action */}
-                <div className="mt-4 pt-3 border-t flex items-center justify-between font-mono text-[11px] border-slate-200 dark:border-white/5">
-                  <span className="text-slate-500 dark:text-slate-400">S.A.C.C Design Archive</span>
+                <div className="mt-4 pt-3 border-t flex items-center justify-between font-mono text-[11px] border-[#DCE6F7] dark:border-white/5">
+                  <span className="text-[#5B6B8C] dark:text-slate-400">S.A.C.C Design Archive</span>
                   <a
                     href={poster.driveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="flex items-center gap-1 font-semibold text-sky-600 hover:underline dark:text-[#FF3843]"
+                    className="flex items-center gap-1 font-semibold text-[#2563EB] hover:underline dark:text-[#FF3843]"
                   >
                     <span>View on Drive</span>
                     <ArrowUpRight className="h-3 w-3" />
@@ -159,18 +159,18 @@ export default function PostersGallery() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="relative w-full max-w-2xl rounded-2xl border p-6 sm:p-7 shadow-2xl max-h-[90vh] overflow-y-auto border-slate-200 bg-white text-slate-900 dark:border-[#FF1E27]/50 dark:bg-[#070707] dark:text-white"
+                className="relative w-full max-w-2xl rounded-2xl border p-6 sm:p-7 shadow-2xl max-h-[90vh] overflow-y-auto border-[#DCE6F7] bg-white text-[#0B1B3A] dark:border-[#FF1E27]/50 dark:bg-[#070707] dark:text-white"
               >
                 <button
                   onClick={() => setSelectedPoster(null)}
-                  className="absolute top-4 right-4 rounded-full p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 dark:hover:text-white dark:hover:bg-white/10"
+                  className="absolute top-4 right-4 rounded-full p-2 text-[#5B6B8C] hover:text-[#0B1B3A] hover:bg-[#EAF2FF] dark:hover:text-white dark:hover:bg-white/10"
                 >
                   <X className="h-5 w-5" />
                 </button>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
                   <div
-                    className="aspect-[3/4] rounded-xl p-5 flex flex-col justify-between border relative overflow-hidden border-slate-200 dark:border-white/10"
+                    className="aspect-[3/4] rounded-xl p-5 flex flex-col justify-between border relative overflow-hidden border-[#DCE6F7] dark:border-white/10"
                     style={{
                       background: `linear-gradient(135deg, ${selectedPoster.accentColor} 0%, #000000 100%)`,
                     }}
@@ -197,33 +197,33 @@ export default function PostersGallery() {
 
                   <div className="space-y-4">
                     <div>
-                      <span className="font-mono text-[10px] uppercase font-bold text-sky-600 dark:text-[#FF3843]">
+                      <span className="font-mono text-[10px] uppercase font-bold text-[#2563EB] dark:text-[#FF3843]">
                         Design Specifications
                       </span>
-                      <h3 className="font-display text-xl font-bold mt-1 text-slate-900 dark:text-white">
+                      <h3 className="font-display text-xl font-bold mt-1 text-[#0B1B3A] dark:text-white">
                         {selectedPoster.title}
                       </h3>
-                      <p className="font-mono text-xs text-slate-500 dark:text-slate-400">
+                      <p className="font-mono text-xs text-[#5B6B8C] dark:text-slate-400">
                         {selectedPoster.club} ({selectedPoster.year})
                       </p>
                     </div>
 
-                    <p className="text-xs leading-relaxed font-sans text-slate-700 dark:text-slate-300">
+                    <p className="text-xs leading-relaxed font-sans text-[#5B6B8C] dark:text-slate-300">
                       {selectedPoster.description}
                     </p>
 
-                    <div className="rounded-xl border p-3 space-y-1.5 font-mono text-xs border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/[0.02]">
+                    <div className="rounded-xl border p-3 space-y-1.5 font-mono text-xs border-[#DCE6F7] bg-[#F7FAFF] dark:border-white/10 dark:bg-white/[0.02]">
                       <div className="flex justify-between">
-                        <span className="text-slate-500 dark:text-slate-400">Format:</span>
-                        <span className="text-slate-800 dark:text-slate-200">{selectedPoster.specs.type}</span>
+                        <span className="text-[#5B6B8C] dark:text-slate-400">Format:</span>
+                        <span className="text-[#0B1B3A] dark:text-slate-200">{selectedPoster.specs.type}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-slate-500 dark:text-slate-400">Tools:</span>
-                        <span className="font-semibold text-sky-600 dark:text-[#FF3843]">{selectedPoster.specs.tool}</span>
+                        <span className="text-[#5B6B8C] dark:text-slate-400">Tools:</span>
+                        <span className="font-semibold text-[#2563EB] dark:text-[#FF3843]">{selectedPoster.specs.tool}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-slate-500 dark:text-slate-400">Target Audience:</span>
-                        <span className="text-slate-800 dark:text-slate-200">{selectedPoster.specs.audience}</span>
+                        <span className="text-[#5B6B8C] dark:text-slate-400">Audience:</span>
+                        <span className="text-[#0B1B3A] dark:text-slate-200">{selectedPoster.specs.audience}</span>
                       </div>
                     </div>
 
@@ -232,7 +232,7 @@ export default function PostersGallery() {
                         href={selectedPoster.driveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 rounded-xl py-2.5 font-mono text-xs font-semibold text-white transition-all bg-sky-600 hover:bg-sky-700 shadow-md dark:bg-gradient-to-r dark:from-[#FF1E27] dark:to-[#DC2626] dark:hover:brightness-110"
+                        className="flex items-center justify-center gap-2 rounded-xl py-2.5 font-mono text-xs font-semibold text-white transition-all bg-[#2563EB] hover:bg-[#1D4ED8] shadow-md dark:bg-gradient-to-r dark:from-[#FF1E27] dark:to-[#DC2626] dark:hover:brightness-110"
                       >
                         <FolderOpen className="h-4 w-4" />
                         <span>View High-Res File on Google Drive</span>

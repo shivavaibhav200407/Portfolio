@@ -1,54 +1,41 @@
-export interface SkillCategory {
-  title: string;
-  badge: string;
+export interface HonestSkill {
+  name: string;
+  category: string;
+  status: string;
   description: string;
-  skills: { name: string; level: string; note: string }[];
 }
 
-export const SKILL_CATEGORIES: SkillCategory[] = [
+export const HONEST_SKILLS: HonestSkill[] = [
   {
-    title: "Programming & AI (Learning & Building)",
-    badge: "Core Focus",
-    description: "What I use and practice for my college and personal AI projects.",
-    skills: [
-      { name: "Python", level: "Currently Learning", note: "Writing scripts, building logic, working with data" },
-      { name: "AI-Assisted Development", level: "Active User", note: "Using modern AI coding tools to build projects faster" },
-      { name: "Multi-Agent Concepts", level: "Applied in SAGE", note: "Splitting tasks among different AI helpers" },
-      { name: "RAG & ChromaDB", level: "Hands-on Project", note: "Connecting notes so AI answers from real textbooks" },
-      { name: "Groq API", level: "Hands-on", note: "Using fast Llama 3 models for our tutor app" },
-    ],
+    name: "Python",
+    category: "Programming",
+    status: "Learning",
+    description: "Writing scripts, building logic, and practicing core programming fundamentals.",
   },
   {
-    title: "Web & Development Tools",
-    badge: "Building Apps",
-    description: "Tools I use to turn code into working apps that anyone can use.",
-    skills: [
-      { name: "Django (Python)", level: "Project Experience", note: "Used as the backend web server for SAGE" },
-      { name: "HTML, CSS & Tailwind", level: "Comfortable", note: "Structuring and styling clean web pages" },
-      { name: "Git & GitHub", level: "Collaborative", note: "Managing code and working with project teammates" },
-      { name: "Local Network Hosting", level: "Tested", note: "Setting up apps to work over campus Wi-Fi" },
-    ],
+    name: "AI-Assisted Development",
+    category: "Workflow",
+    status: "Active Use",
+    description: "Building projects and applications using modern AI coding workflows and tools.",
   },
   {
-    title: "Graphic Design & Posters",
-    badge: "Creative Side",
-    description: "Designing visuals for our college council and campus clubs.",
-    skills: [
-      { name: "Poster & Banner Design", level: "Chief Designer", note: "Designed promotional material for 10+ college events" },
-      { name: "Typography & Layouts", level: "Hands-on", note: "Making headlines and dates easy to read at a glance" },
-      { name: "Event Promotion Graphics", level: "Active", note: "Social media and WhatsApp posters for clubs" },
-      { name: "Design Tools (Canva, Figma)", level: "Regular User", note: "Creating and editing visuals for print and digital" },
-    ],
+    name: "Poster & Graphic Design",
+    category: "Design",
+    status: "Chief Designer",
+    description: "Designing promotional posters and visual assets for college clubs and campus events.",
   },
   {
-    title: "Leadership & College Roles",
-    badge: "Personal",
-    description: "Balancing team responsibilities, council discipline, and academics.",
-    skills: [
-      { name: "Team Leadership", level: "Team Lead", note: "Led a 4-member student team to build SAGE" },
-      { name: "Disciplinary Head", level: "Appointed Role", note: "Helping maintain discipline at S.A.C.C council events" },
-      { name: "Eager & Fast Learner", level: "Mindset", note: "Constantly curious to pick up new tools and skills" },
-      { name: "Communication", level: "Trilingual", note: "Comfortable speaking English, Telugu, and Hindi" },
-    ],
+    name: "Team Leadership",
+    category: "Leadership",
+    status: "Team Lead",
+    description: "Led a 4-person student team building SAGE; serving as Disciplinary Head in S.A.C.C.",
   },
+];
+
+export const SAGE_PROJECT_TECHNOLOGIES = [
+  "Python",
+  "Django",
+  "ChromaDB",
+  "Groq",
+  "DuckDuckGo Search",
 ];

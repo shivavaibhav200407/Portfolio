@@ -14,9 +14,9 @@ export default function UniqueTechPreloader({ onComplete, isDark = true }: Prelo
   const [telemetry, setTelemetry] = useState("CALIBRATING INTERFACES...");
 
   useEffect(() => {
-    // Only run if not already shown in this session (instant on refreshes)
-    const hasLoaded = sessionStorage.getItem("sv_loaded");
-    if (hasLoaded) {
+    // Only run once per browser session/device so it doesn't show again every time
+    const hasSeen = localStorage.getItem("sv_preloader_seen") || sessionStorage.getItem("sv_loaded");
+    if (hasSeen) {
       setIsDone(true);
       onComplete?.();
       return;
@@ -41,6 +41,7 @@ export default function UniqueTechPreloader({ onComplete, isDark = true }: Prelo
         clearInterval(interval);
         setTimeout(() => {
           setIsDone(true);
+          localStorage.setItem("sv_preloader_seen", "true");
           sessionStorage.setItem("sv_loaded", "true");
           onComplete?.();
         }, 400);
@@ -169,6 +170,7 @@ export default function UniqueTechPreloader({ onComplete, isDark = true }: Prelo
           <button
             onClick={() => {
               setIsDone(true);
+              localStorage.setItem("sv_preloader_seen", "true");
               sessionStorage.setItem("sv_loaded", "true");
               onComplete?.();
             }}

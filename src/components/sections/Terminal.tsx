@@ -64,10 +64,10 @@ export default function Terminal({ isOpen, onClose, isDark = true }: TerminalPro
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-[11px]">
               <div><span className="text-sky-400 dark:text-[#FF1E27]">about</span> — Bio, college & academic CGPA</div>
               <div><span className="text-sky-400 dark:text-[#FF1E27]">sage</span> — SAGE multi-agent tutor architecture</div>
-              <div><span className="text-sky-400 dark:text-[#FF1E27]">certs</span> — Verified ML certification & workshops</div>
+              <div><span className="text-sky-400 dark:text-[#FF1E27]">certs</span> — ML certification & workshops</div>
               <div><span className="text-sky-400 dark:text-[#FF1E27]">posters</span> — S.A.C.C posters + Google Drive link</div>
               <div><span className="text-sky-400 dark:text-[#FF1E27]">skills</span> — Technical toolbox & languages</div>
-              <div><span className="text-sky-400 dark:text-[#FF1E27]">contact</span> — Direct email, phone, and links</div>
+              <div><span className="text-sky-400 dark:text-[#FF1E27]">contact</span> — Direct email and links</div>
               <div><span className="text-sky-400 dark:text-[#FF1E27]">clear</span> — Clear console output</div>
             </div>
           </div>
@@ -91,11 +91,11 @@ export default function Terminal({ isOpen, onClose, isDark = true }: TerminalPro
       case "certificates":
         output = (
           <div className="space-y-1.5 text-xs text-slate-300 font-mono">
-            <p className="font-semibold uppercase text-[10px] tracking-wider text-sky-400 dark:text-[#FF3843]">Verified Credentials:</p>
+            <p className="font-semibold uppercase text-[10px] tracking-wider text-sky-400 dark:text-[#FF3843]">Certificates & Workshops:</p>
             <ul className="space-y-1 text-[11px]">
               {CERTIFICATES.map((c) => (
                 <li key={c.id} className="text-slate-300">
-                  <span className="text-white font-bold">&gt; {c.title}</span> — {c.issuer} ({c.date})
+                  <span className="text-white font-bold">&gt; {c.title}</span> — {c.issuer} ({c.date}, {c.duration})
                 </li>
               ))}
             </ul>
@@ -106,13 +106,10 @@ export default function Terminal({ isOpen, onClose, isDark = true }: TerminalPro
       case "sage":
         output = (
           <div className="space-y-1 text-xs text-slate-300 font-mono">
-            <p className="font-bold text-sky-400 dark:text-[#FF3843]">SAGE (Self-Adaptive Agentic Educational Engine):</p>
-            <p className="text-slate-400">Team Lead (Team of 4) | Stack: Python, Django, ChromaDB, Groq Llama 3</p>
-            <ul className="list-disc pl-4 space-y-0.5 text-slate-300 text-[11px]">
-              <li>Engineered syllabus-grounded multi-agent tutor across 25+ B.Tech courses.</li>
-              <li>Connected ChromaDB vector notes to eliminate hallucinations.</li>
-              <li>Deployed locally over campus Wi-Fi for free student access.</li>
-            </ul>
+            <p className="font-bold text-sky-400 dark:text-[#FF3843]">SAGE (Multi-Agent AI Tutor for B.Tech Courses):</p>
+            <p className="text-slate-400">Team Lead (Team of 4) | Built with AI coding tools</p>
+            <p className="text-slate-400">Agents: Supervisor, Diagnostic, Curriculum, Evaluator, Verifier, Research</p>
+            <p className="text-slate-400">Technologies used: Python, Django, ChromaDB, Groq, DuckDuckGo search</p>
           </div>
         );
         break;
@@ -122,7 +119,7 @@ export default function Terminal({ isOpen, onClose, isDark = true }: TerminalPro
         output = (
           <div className="space-y-1 text-xs text-slate-300 font-mono">
             <p className="font-semibold text-sky-400 dark:text-[#FF3843]">{PROFILE.council.roles.join(" & ")} — {PROFILE.council.body}:</p>
-            <p className="text-slate-300">Author of 20+ promotional posters, SIH 2026 hackathon graphics, and video motion reels.</p>
+            <p className="text-slate-300">Designed many promotional posters and graphics for college clubs and events.</p>
             <p className="pt-1">
               Google Drive Vault: <a href={PROFILE.contact.drivePostersFolder} target="_blank" rel="noopener noreferrer" className="underline font-bold text-sky-400 dark:text-[#FF3843]">{PROFILE.contact.drivePostersFolder}</a>
             </p>
@@ -133,10 +130,9 @@ export default function Terminal({ isOpen, onClose, isDark = true }: TerminalPro
       case "skills":
         output = (
           <div className="space-y-1 text-xs text-slate-300 font-mono">
-            <p><span className="text-sky-400 dark:text-[#FF3843]">[Core]:</span> Python (learning & active practice), AI-assisted development</p>
-            <p><span className="text-slate-300">[AI & ML]:</span> ChromaDB RAG, Groq API, Scikit-Learn classification</p>
-            <p><span className="text-slate-300">[Web & Design]:</span> Django, HTML/CSS, Tailwind, Graphic Design, Figma/Canva</p>
-            <p><span className="text-slate-300">[Languages]:</span> Telugu (Native), English (Professional), Hindi (Fluent)</p>
+            <p><span className="text-sky-400 dark:text-[#FF3843]">[Skills]:</span> Python (learning), AI-assisted development, Poster and graphic design, Team leadership</p>
+            <p><span className="text-slate-300">[Technologies used in SAGE (built with AI tools)]:</span> Python, Django, ChromaDB, Groq, DuckDuckGo search</p>
+            <p><span className="text-slate-300">[Languages]:</span> Telugu, Hindi, English</p>
           </div>
         );
         break;
@@ -145,7 +141,7 @@ export default function Terminal({ isOpen, onClose, isDark = true }: TerminalPro
         output = (
           <div className="space-y-1 text-xs text-slate-300 font-mono">
             <p>Email: <a href={`mailto:${PROFILE.contact.email}`} className="underline text-sky-400 dark:text-[#FF3843]">{PROFILE.contact.email}</a></p>
-            <p>Phone: <span className="text-white font-mono">{PROFILE.contact.phone}</span> ({PROFILE.location})</p>
+            <p>Location: <span className="text-white font-mono">{PROFILE.location}</span></p>
             <p>GitHub: <a href={PROFILE.contact.github} target="_blank" rel="noopener noreferrer" className="text-slate-300 underline">{PROFILE.contact.github}</a></p>
             <p>LinkedIn: <a href={PROFILE.contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-300 underline">{PROFILE.contact.linkedin}</a></p>
           </div>

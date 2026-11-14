@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, CheckCircle2, Calendar, FileBadge } from "lucide-react";
+import { Calendar, FileBadge, Clock } from "lucide-react";
 import { CERTIFICATES } from "@/data/certificates";
 
 export default function CertificatesSection() {
@@ -11,13 +11,13 @@ export default function CertificatesSection() {
         {/* Section Header */}
         <div className="flex flex-col items-start gap-2">
           <span className="font-mono text-[11px] tracking-widest uppercase text-[#5B6B8C] dark:text-slate-400">
-            05 / CREDENTIALS &middot; VERIFIED CERTIFICATION
+            05 / CREDENTIALS
           </span>
           <h2 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-[#0B1B3A] dark:text-white">
             Certificates &amp; College Workshops
           </h2>
           <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-[#5B6B8C] dark:text-slate-300 mt-1 font-sans">
-            Machine learning project certification awarded by Smartuter Research Center alongside technical departmental workshops at SITS.
+            Machine learning project certificate from Smartuter Research Center alongside technical workshops by the Dept. of CSE (AI &amp; ML), SITS.
           </p>
         </div>
 
@@ -32,12 +32,12 @@ export default function CertificatesSection() {
             >
               <div>
                 <div className="flex items-center justify-between border-b pb-3 border-[#DCE6F7] dark:border-white/10">
-                  <div className="flex items-center gap-2 font-mono text-[11px] text-[#5B6B8C] dark:text-slate-400">
+                  <div className="flex items-center gap-1.5 font-mono text-[11px] text-[#5B6B8C] dark:text-slate-400">
                     <Calendar className="h-3.5 w-3.5 text-[#2563EB] dark:text-[#FF1E27]" />
                     <span>{cert.date}</span>
                   </div>
                   <span className="px-2 py-0.5 rounded-full border font-mono text-[10px] font-semibold border-[#DBEAFE] bg-[#EAF2FF] text-[#2563EB] dark:border-[#FF1E27]/30 dark:bg-[#FF1E27]/10 dark:text-[#FF3843]">
-                    {cert.verificationBadge}
+                    {cert.duration}
                   </span>
                 </div>
 
@@ -61,9 +61,11 @@ export default function CertificatesSection() {
               </div>
 
               <div className="mt-5 pt-3.5 border-t border-[#DCE6F7] dark:border-white/5 flex items-center justify-between font-mono text-[11px] text-[#5B6B8C] dark:text-slate-400">
-                <span>Verification</span>
-                <span className="flex items-center gap-1 text-[#2563EB] dark:text-[#FF3843]">
-                  <CheckCircle2 className="h-3.5 w-3.5" /> Authenticated
+                <span className="flex items-center gap-1">
+                  <Clock className="h-3 w-3 text-[#2563EB] dark:text-[#FF1E27]" /> Duration
+                </span>
+                <span className="font-semibold text-[#0B1B3A] dark:text-slate-200">
+                  {cert.duration}
                 </span>
               </div>
             </motion.div>

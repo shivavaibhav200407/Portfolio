@@ -12,154 +12,156 @@ export interface Project {
   summary: string;
   problem: string;
   solution: string;
+  agents?: string[];
   steps: { title: string; desc: string; agent: string }[];
   learnings: string[];
-  links?: { github?: string; cert?: string };
 }
 
 export const PROJECTS: Project[] = [
   {
     id: "sage-ai-tutor",
-    title: "SAGE: Self-Adaptive Agentic Educational Engine",
-    tagline: "An AI tutor we built for our college that knows our 25+ B.Tech courses and runs over local Wi-Fi.",
-    role: "Team Lead (Team of 4)",
-    team: "College Project Team",
+    title: "SAGE: Multi-Agent AI Tutor for B.Tech Courses",
+    tagline: "A multi-agent AI tutor for B.Tech courses built with AI coding tools, coordinating 6 specialized agents.",
+    role: "Team Lead",
+    team: "Team of 4",
     period: "2025 – Present",
     category: "AI & Projects",
     featured: true,
-    stack: ["Python", "Django", "ChromaDB", "Groq (Llama 3)", "RAG", "AI Coding Tools"],
+    stack: ["Python", "Django", "ChromaDB", "Groq", "DuckDuckGo search"],
     metrics: [
-      { label: "My Role", value: "Team Lead" },
-      { label: "Team Size", value: "4 Students" },
-      { label: "Courses Covered", value: "25+ B.Tech" },
-      { label: "Hosting", value: "Local Campus Wi-Fi" },
+      { label: "Role", value: "Team Lead" },
+      { label: "Team", value: "4 Students" },
+      { label: "Scope", value: "B.Tech Courses" },
+      { label: "Built With", value: "AI Tools" },
     ],
     summary:
-      "As engineering students, we noticed general AI tools often gave answers that didn't match our college syllabus. I led a team of 4 classmates to build an AI tutor that searches our actual textbook notes using RAG (ChromaDB) and breaks down study topics into friendly steps.",
+      "A multi-agent AI tutor designed to assist B.Tech students by answering course questions grounded in syllabus notes. Led a 4-person student team to build the project using AI coding tools.",
     problem:
-      "Most online AI tools are generic, hallucinate non-syllabus formulas, and need expensive cloud subscriptions that students can't afford.",
+      "Standard AI responses often produce answers that depart from college syllabus requirements.",
     solution:
-      "We built a multi-agent system where different AI helpers work together: one tests the student, one finds what they are stuck on, one suggests a study plan, and one checks textbook notes in ChromaDB using fast Groq inference over local Wi-Fi.",
+      "Engineered a multi-agent system where 6 cooperating agents handle inquiry routing, concept diagnosis, curriculum mapping, answer evaluation, citation verification, and supplemental research.",
+    agents: [
+      "Supervisor",
+      "Diagnostic",
+      "Curriculum",
+      "Evaluator",
+      "Verifier",
+      "Research",
+    ],
     steps: [
       {
-        title: "1. Storing College Notes",
-        desc: "We split course PDFs and reference notes into chunks and saved them in ChromaDB so the AI searches real syllabus content.",
-        agent: "Textbook Notes Search (ChromaDB)",
+        title: "1. Inquiry Supervision & Routing",
+        desc: "Routes incoming student questions to appropriate course materials and agents.",
+        agent: "Supervisor",
       },
       {
-        title: "2. Finding Learning Gaps",
-        desc: "When a student answers a question, this helper checks if they missed a core concept or just made a small formula mistake.",
-        agent: "Gap Finder Helper",
+        title: "2. Conceptual Diagnosis",
+        desc: "Identifies whether an error is a minor calculation oversight or a core conceptual gap.",
+        agent: "Diagnostic",
       },
       {
-        title: "3. Creating a Study Path",
-        desc: "Suggests what topic to review next so the student doesn't feel overwhelmed.",
-        agent: "Study Planner Helper",
+        title: "3. Curriculum Structuring",
+        desc: "Structures recommendations aligned with the B.Tech syllabus progression.",
+        agent: "Curriculum",
       },
       {
-        title: "4. Fast & Free Local Wi-Fi Access",
-        desc: "Runs as a web app on college Wi-Fi so any student can open it on their phone or laptop without paid hosting.",
-        agent: "Django Web App + Groq",
+        title: "4. Response Evaluation & Verification",
+        desc: "Evaluates explanation clarity, verifies factual grounding in notes, and conducts research if needed.",
+        agent: "Evaluator, Verifier & Research",
       },
     ],
     learnings: [
-      "How to lead a 4-person team, divide tasks, and solve bugs together.",
-      "How to use AI coding tools to build real working web apps faster.",
-      "How RAG works in simple terms: giving the AI real documents so it doesn't make things up.",
+      "Leading a 4-person student development team and coordinating project deliverables.",
+      "Building full-stack software applications using modern AI coding workflows.",
+      "Structuring multi-agent architectures and retrieval-augmented pipelines.",
     ],
-    links: {
-      github: "https://github.com",
-    },
   },
   {
     id: "iris-ml-project",
-    title: "Iris Flower Species Classification",
-    tagline: "My machine learning classification project completed at Smartuter Research Center.",
-    role: "Student ML Learner",
+    title: "Iris Species Classification",
+    tagline: "Machine learning project certified by Smartuter Research Center (Jan 2026).",
+    role: "Individual Learner",
     team: "Individual Project",
     period: "Jan 2026",
     category: "Machine Learning",
     featured: true,
-    stack: ["Python", "Scikit-Learn", "NumPy", "Pandas", "Matplotlib"],
+    stack: ["Python", "Machine Learning"],
     metrics: [
       { label: "Dataset", value: "Iris Dataset" },
-      { label: "Accuracy", value: "98.7%" },
-      { label: "Certificate", value: "SRC Awarded" },
-      { label: "Focus", value: "ML Basics" },
+      { label: "Awarded By", value: "Smartuter Research Center" },
+      { label: "Date", value: "Jan 2026" },
+      { label: "Credential", value: "Project Completion" },
     ],
     summary:
-      "Completed a hands-on machine learning classification project on the Iris dataset. Learned how ML algorithms use features like petal and sepal measurements to predict flower species accurately.",
+      "Machine learning classification project analyzing the Iris dataset. Awarded project completion certificate by Smartuter Research Center in January 2026.",
     problem:
-      "I wanted to understand how machine learning works from scratch before jumping into advanced neural networks.",
+      "Practicing machine learning fundamentals and classification concepts with Python.",
     solution:
-      "Built a Python workflow using Scikit-Learn to clean data, plot correlation graphs, train classifiers (Logistic Regression & Decision Trees), and measure accuracy.",
+      "Evaluated flower measurements (sepal and petal dimensions) using machine learning classification techniques in Python.",
     steps: [
       {
-        title: "1. Exploring Data",
-        desc: "Plotting petal and sepal lengths to see which features help separate the flower types best.",
-        agent: "Data Analysis (Pandas & Seaborn)",
+        title: "1. Data Exploration",
+        desc: "Examining feature distributions across Iris flower species.",
+        agent: "Data Analysis",
       },
       {
-        title: "2. Training Classifiers",
-        desc: "Trained standard algorithms like KNN and Decision Trees to classify the 3 flower classes.",
-        agent: "Model Training",
+        title: "2. Model Training",
+        desc: "Training classification algorithms on Iris measurement data.",
+        agent: "Classifier Training",
       },
       {
-        title: "3. Certificate of Completion",
-        desc: "Successfully submitted and evaluated by Smartuter Research Center (SRC) with an official certificate.",
+        title: "3. Evaluation & Certification",
+        desc: "Project reviewed and awarded completion certificate by Smartuter Research Center.",
         agent: "SRC Evaluation",
       },
     ],
     learnings: [
-      "Hands-on experience with Python data science libraries (Pandas, Scikit-Learn).",
-      "Understanding accuracy, training vs testing splits, and classification.",
+      "Hands-on practice applying machine learning workflows in Python.",
+      "Understanding classification concepts and feature evaluation.",
     ],
-    links: {
-      cert: "#",
-    },
   },
   {
     id: "sacc-college-posters",
-    title: "College Event Posters & Branding (S.A.C.C)",
-    tagline: "Designing posters and promotional graphics for college fests, workshops, and student clubs.",
+    title: "College Club Posters & Visual Design",
+    tagline: "Designing posters and promotional graphics for college clubs and events as S.A.C.C Chief Designer.",
     role: "Chief Designer & Disciplinary Head",
     team: "Siddhartha Allied Clubs Council (S.A.C.C)",
     period: "Present",
     category: "Design & Posters",
     featured: true,
-    stack: ["Graphic Design", "Poster Design", "Event Branding", "Typography", "Canva / Figma"],
+    stack: ["Poster Design", "Graphic Design", "Typography", "Visual Communication"],
     metrics: [
-      { label: "Design Role", value: "Chief Designer" },
-      { label: "Leadership Role", value: "Disciplinary Head" },
-      { label: "Council Events", value: "10+ College Events" },
-      { label: "Reach", value: "Campus Students" },
+      { label: "Role", value: "Chief Designer" },
+      { label: "Council", value: "S.A.C.C" },
+      { label: "Leadership", value: "Disciplinary Head" },
+      { label: "Reach", value: "Campus Clubs & Events" },
     ],
     summary:
-      "As Chief Designer for our college council (S.A.C.C), I design posters, Instagram banners, and announcements for technical workshops, fests, and hackathons. I also help maintain discipline at council events.",
+      "Chief Designer & Disciplinary Head of the Siddhartha Allied Clubs Council (S.A.C.C). Designed many promotional posters, banners, and digital graphics for college clubs, internal hackathons, and cultural events.",
     problem:
-      "College events need clear, eye-catching posters so students know the dates, topics, and how to register without getting confused.",
+      "Campus events need clear, legible, and visually engaging designs to communicate schedules and details to students.",
     solution:
-      "Created clean, bold posters with strong headlines, organized schedules, and modern colors that got shared across WhatsApp groups and campus noticeboards.",
+      "Designed event banners and social media posters focusing on strong typography, clear information hierarchy, and dynamic visual composition.",
     steps: [
       {
-        title: "1. Understanding the Event",
-        desc: "Talking to club heads to understand what the workshop or fest is about.",
-        agent: "Planning & Content",
+        title: "1. Event Coordination",
+        desc: "Collaborating with club leaders to collect event briefs, schedules, and themes.",
+        agent: "Event Coordination",
       },
       {
-        title: "2. Designing Visuals",
-        desc: "Choosing clear fonts, high-contrast colors, and eye-catching layouts.",
+        title: "2. Visual Design & Layout",
+        desc: "Crafting posters with clear typography, color harmony, and balanced compositions.",
         agent: "Graphic Design",
       },
       {
-        title: "3. Campus Promotion",
-        desc: "Exporting formats for WhatsApp stories, Instagram posts, and print banners.",
-        agent: "Publishing",
+        title: "3. Production & Disciplinary Support",
+        desc: "Delivering graphics for digital channels and campus boards, while supporting council discipline during events.",
+        agent: "Delivery & Coordination",
       },
     ],
     learnings: [
-      "How to balance creativity with readability so key details are easy to spot.",
-      "How to manage event discipline and handle responsibilities in a student council.",
+      "Balancing aesthetic impact with information hierarchy and legibility.",
+      "Managing student council responsibilities and event discipline.",
     ],
   },
 ];

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Shield, Globe, MapPin, CheckCircle2 } from "lucide-react";
+import { GraduationCap, Shield, Globe } from "lucide-react";
 import { PROFILE } from "@/data/profile";
 
 export default function AboutTimeline() {
@@ -64,7 +64,7 @@ export default function AboutTimeline() {
                   MPC Stream · {PROFILE.education.intermediate.score}
                 </div>
                 <div className="text-xs text-[#5B6B8C] dark:text-slate-400 mt-1 font-sans">
-                  Mathematics, Physics, Chemistry
+                  Maths, Physics, Chemistry
                 </div>
               </div>
 
@@ -76,7 +76,7 @@ export default function AboutTimeline() {
                   SSC Board · {PROFILE.education.secondary.score}
                 </div>
                 <div className="text-xs text-[#5B6B8C] dark:text-slate-400 mt-1 font-sans">
-                  Strong foundational academics
+                  Foundational academics
                 </div>
               </div>
             </div>
@@ -107,25 +107,20 @@ export default function AboutTimeline() {
               </p>
             </div>
 
-            {/* Languages */}
+            {/* Languages (Without proficiency labels) */}
             <div className="rounded-2xl border p-5 border-[#DCE6F7] bg-white shadow-[0_4px_20px_-2px_rgba(37,99,235,0.06)] dark:border-white/10 dark:bg-[#0A0A0D] dark:shadow-none">
               <h4 className="font-serif text-base flex items-center gap-2 text-[#0B1B3A] dark:text-white mb-3">
                 <Globe className="h-4 w-4 text-[#2563EB] dark:text-[#FF1E27]" />
-                <span>Languages Spoken</span>
+                <span>Languages</span>
               </h4>
-              <div className="space-y-2">
+              <div className="flex flex-wrap gap-2">
                 {PROFILE.languages.map((lang) => (
-                  <div
+                  <span
                     key={lang.name}
-                    className="flex items-center justify-between rounded-lg p-2.5 border border-[#DBEAFE] bg-[#EAF2FF] dark:border-white/5 dark:bg-black/40 font-mono text-xs"
+                    className="rounded-lg px-3 py-2 border font-mono text-xs font-medium border-[#DBEAFE] bg-[#EAF2FF] text-[#0B1B3A] dark:border-white/5 dark:bg-black/40 dark:text-slate-200"
                   >
-                    <span className="font-semibold text-[#0B1B3A] dark:text-slate-200">
-                      {lang.name}
-                    </span>
-                    <span className="text-[11px] text-[#5B6B8C] dark:text-slate-400">
-                      {lang.level}
-                    </span>
-                  </div>
+                    {lang.name}
+                  </span>
                 ))}
               </div>
             </div>

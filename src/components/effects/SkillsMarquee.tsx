@@ -2,19 +2,15 @@
 
 import { motion } from "framer-motion";
 
-const SKILLS = [
-  "Python (Learning & Building)",
-  "SAGE Multi-Agent Lead",
-  "ChromaDB RAG Vector Store",
-  "Groq Llama 3 API",
-  "Django Web Server",
-  "Swiss Typography & Posters",
+const HONEST_TICKER_ITEMS = [
+  "Python (Learning)",
+  "AI-Assisted Development",
+  "Poster & Graphic Design",
+  "Team Leadership",
   "S.A.C.C Chief Designer",
-  "Smart India Hackathon 2026",
-  "Scikit-Learn ML",
-  "Campus Wi-Fi Local Hosting",
-  "Figma & Canva",
   "Disciplinary Head",
+  "SAGE Team Lead",
+  "SITS Hyderabad · B.Tech CSE (AI & ML)",
 ];
 
 export default function SkillsMarquee() {
@@ -33,11 +29,11 @@ export default function SkillsMarquee() {
           duration: 26,
         }}
       >
-        {[...SKILLS, ...SKILLS].map((skill, i) => (
+        {[...HONEST_TICKER_ITEMS, ...HONEST_TICKER_ITEMS, ...HONEST_TICKER_ITEMS].map((item, i) => (
           <div key={i} className="flex items-center gap-3 shrink-0">
             <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] shadow-[0_0_6px_rgba(37,99,235,0.8)] dark:bg-[#FF1E27] dark:shadow-[0_0_6px_#FF1E27]" />
             <span className="tracking-wider hover:text-[#2563EB] dark:hover:text-white transition-colors cursor-default">
-              {skill}
+              {item}
             </span>
           </div>
         ))}
