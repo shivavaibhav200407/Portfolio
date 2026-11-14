@@ -96,6 +96,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal, isDark = true }:
             href={PROFILE.contact.resumePath}
             target="_blank"
             rel="noopener noreferrer"
+            download="A_Shiva_Vaibhav_Resume.pdf"
             className="hidden items-center gap-1.5 rounded-xl border px-3 py-1.5 font-mono text-xs font-semibold border-[#DCE6F7] bg-[#EAF2FF] text-[#2563EB] hover:bg-[#DBEAFE] hover:border-[#2563EB] dark:border-[#FF1E27]/40 dark:bg-[#FF1E27]/10 dark:text-[#FF3843] dark:hover:bg-[#FF1E27]/20 sm:flex transition-all"
           >
             <Download className="h-3.5 w-3.5" />
@@ -132,6 +133,7 @@ export default function Navbar({ onToggleTheme, onOpenTerminal, isDark = true }:
                 href={PROFILE.contact.resumePath}
                 target="_blank"
                 rel="noopener noreferrer"
+                download="A_Shiva_Vaibhav_Resume.pdf"
                 className="flex items-center gap-1.5 text-[#2563EB] dark:text-[#FF3843] font-semibold"
               >
                 <Download className="h-3.5 w-3.5" />

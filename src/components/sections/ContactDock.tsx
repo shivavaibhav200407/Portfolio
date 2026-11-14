@@ -87,13 +87,16 @@ export default function ContactDock() {
                   <Github className="h-4 w-4" />
                 </MagneticButton>
 
-                <MagneticButton
+                <a
                   href={PROFILE.contact.resumePath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="A_Shiva_Vaibhav_Resume.pdf"
                   className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-xs font-mono transition-all border-[#DCE6F7] bg-[#EAF2FF] text-[#0B1B3A] hover:border-[#2563EB] hover:text-[#2563EB] dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-300 dark:hover:border-[#FF1E27]/50 dark:hover:text-[#FF3843]"
                 >
                   <Download className="h-3.5 w-3.5" />
                   <span>Résumé PDF</span>
-                </MagneticButton>
+                </a>
               </div>
             </div>
 

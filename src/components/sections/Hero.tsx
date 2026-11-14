@@ -138,7 +138,9 @@ export default function Hero({ onToggleTheme, onOpenTerminal, isDark = true }: H
 
           <a
             href={PROFILE.contact.resumePath}
-            download
+            target="_blank"
+            rel="noopener noreferrer"
+            download="A_Shiva_Vaibhav_Resume.pdf"
             className="rounded-full border px-5 py-3 font-mono text-xs uppercase tracking-wider transition-all duration-300 border-[#DCE6F7] bg-[#EAF2FF] text-[#0B1B3A] hover:border-[#2563EB] hover:text-[#2563EB] dark:border-white/5 dark:bg-white/[0.02] dark:text-slate-400 dark:hover:text-white"
           >
             <span className="flex items-center gap-1.5">
