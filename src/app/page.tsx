@@ -19,7 +19,6 @@ import DoodlePlayground from "@/components/sections/DoodlePlayground";
 import ContactDock from "@/components/sections/ContactDock";
 import Footer from "@/components/sections/Footer";
 
-import SkillsMarquee from "@/components/effects/SkillsMarquee";
 import ScrollReveal from "@/components/effects/ScrollReveal";
 
 export default function Home() {
@@ -105,9 +104,6 @@ export default function Home() {
         onOpenTerminal={() => setTerminalOpen(true)}
         isDark={isDarkMode}
       />
-
-      {/* Infinite Skills Marquee */}
-      <SkillsMarquee />
 
       {/* 01 // Introduction & Academic Journey */}
       <ScrollReveal delay={0.05}>
