@@ -19,7 +19,7 @@ export default function Hero({ onToggleTheme, onOpenTerminal, isDark = true }: H
       <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full blur-[160px] bg-blue-500/[0.07] dark:bg-[#FF1E27]/[0.08]" />
 
       <div className="mx-auto w-full max-w-5xl relative z-10 flex flex-col items-center text-center">
-        {/* Minimal Status Pill */}
+        {/* Minimal Status Pill (No location at the top) */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -28,17 +28,17 @@ export default function Hero({ onToggleTheme, onOpenTerminal, isDark = true }: H
         >
           <span className="flex h-2 w-2 rounded-full bg-[#2563EB] shadow-[0_0_8px_rgba(37,99,235,0.8)] dark:bg-[#FF1E27] dark:shadow-[0_0_8px_#FF1E27]" />
           <span className="font-mono text-xs tracking-wider">
-            {PROFILE.location} · 3rd Year B.Tech CSE (AI & ML)
+            3rd Year B.Tech CSE (AI &amp; ML)
           </span>
         </motion.div>
 
-        {/* Massive Editorial Name: Pure typography with normal letter A in VAIBHAV */}
+        {/* Massive Editorial Name in Bricolage Grotesque */}
         <div className="relative select-none text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-serif text-6xl sm:text-8xl md:text-9xl lg:text-[140px] font-normal tracking-tight leading-[0.9] text-[#0B1B3A] dark:text-white"
+            className="font-heading text-6xl sm:text-8xl md:text-9xl lg:text-[130px] font-extrabold tracking-tight leading-[0.95] text-[#0B1B3A] dark:text-white"
           >
             SHIVA
           </motion.h1>
@@ -47,7 +47,7 @@ export default function Hero({ onToggleTheme, onOpenTerminal, isDark = true }: H
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-serif text-6xl sm:text-8xl md:text-9xl lg:text-[140px] font-normal tracking-tight leading-[0.9] text-[#0B1B3A] dark:text-white"
+            className="font-heading text-6xl sm:text-8xl md:text-9xl lg:text-[130px] font-extrabold tracking-tight leading-[0.95] text-[#0B1B3A] dark:text-white"
           >
             VAIBHAV
           </motion.h1>
@@ -58,12 +58,12 @@ export default function Hero({ onToggleTheme, onOpenTerminal, isDark = true }: H
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-6 font-serif italic text-lg sm:text-2xl text-[#5B6B8C] dark:text-slate-300 tracking-wide"
+          className="mt-6 font-sans font-medium text-lg sm:text-2xl text-[#5B6B8C] dark:text-slate-300 tracking-wide"
         >
           {PROFILE.role}
         </motion.p>
 
-        {/* Minimal Bio Copy */}
+        {/* Minimal Bio Copy in DM Sans */}
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ export default function Hero({ onToggleTheme, onOpenTerminal, isDark = true }: H
           </span>
           <span className="hidden sm:inline">·</span>
           <span className="px-3 py-1 rounded-md border border-[#DBEAFE] bg-[#EAF2FF] text-[#0B1B3A] dark:border-white/5 dark:bg-white/[0.02] dark:text-slate-300">
-            SITS Hyderabad (Graduating 2028)
+            SITS (Graduating 2028)
           </span>
           <span className="hidden sm:inline">·</span>
           <span className="px-3 py-1 rounded-md border border-[#DBEAFE] bg-[#EAF2FF] text-[#0B1B3A] dark:border-white/5 dark:bg-white/[0.02] dark:text-slate-300">

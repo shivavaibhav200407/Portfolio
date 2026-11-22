@@ -38,10 +38,11 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
-        display: ["var(--font-space-grotesk)", "sans-serif"],
-        mono: ["var(--font-jetbrains-mono)", "monospace"],
-        serif: ["var(--font-serif)", "Georgia", "serif"],
+        sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
+        heading: ["var(--font-bricolage)", "sans-serif"],
+        display: ["var(--font-bricolage)", "sans-serif"],
+        serif: ["var(--font-bricolage)", "sans-serif"],
+        mono: ["var(--font-space-mono)", "monospace"],
       },
       boxShadow: {
         "cyan-glow": "0 0 25px -5px rgba(0, 240, 255, 0.3)",

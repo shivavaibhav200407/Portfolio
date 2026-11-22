@@ -20,8 +20,8 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     id: "sage-ai-tutor",
-    title: "SAGE: Multi-Agent AI Tutor for B.Tech Courses",
-    tagline: "A multi-agent AI tutor for B.Tech courses built with AI coding tools, coordinating 6 specialized agents.",
+    title: "SAGE",
+    tagline: "An AI tutor for B.Tech students built with AI coding tools.",
     role: "Team Lead",
     team: "Team of 4",
     period: "2025 – Present",
@@ -35,51 +35,21 @@ export const PROJECTS: Project[] = [
       { label: "Built With", value: "AI Tools" },
     ],
     summary:
-      "A multi-agent AI tutor designed to assist B.Tech students by answering course questions grounded in syllabus notes. Led a 4-person student team to build the project using AI coding tools.",
+      "An AI tutor for B.Tech students. A team of AI agents finds what you don't understand, plans what to study, and answers from reference notes. I led a team of 4 and we built it with AI coding tools.",
     problem:
-      "Standard AI responses often produce answers that depart from college syllabus requirements.",
+      "An AI tutor for B.Tech students built to help students study from reference notes.",
     solution:
-      "Engineered a multi-agent system where 6 cooperating agents handle inquiry routing, concept diagnosis, curriculum mapping, answer evaluation, citation verification, and supplemental research.",
-    agents: [
-      "Supervisor",
-      "Diagnostic",
-      "Curriculum",
-      "Evaluator",
-      "Verifier",
-      "Research",
-    ],
-    steps: [
-      {
-        title: "1. Inquiry Supervision & Routing",
-        desc: "Routes incoming student questions to appropriate course materials and agents.",
-        agent: "Supervisor",
-      },
-      {
-        title: "2. Conceptual Diagnosis",
-        desc: "Identifies whether an error is a minor calculation oversight or a core conceptual gap.",
-        agent: "Diagnostic",
-      },
-      {
-        title: "3. Curriculum Structuring",
-        desc: "Structures recommendations aligned with the B.Tech syllabus progression.",
-        agent: "Curriculum",
-      },
-      {
-        title: "4. Response Evaluation & Verification",
-        desc: "Evaluates explanation clarity, verifies factual grounding in notes, and conducts research if needed.",
-        agent: "Evaluator, Verifier & Research",
-      },
-    ],
+      "A team of AI agents finds what you don't understand, plans what to study, and answers from reference notes.",
+    steps: [],
     learnings: [
       "Leading a 4-person student development team and coordinating project deliverables.",
       "Building full-stack software applications using modern AI coding workflows.",
-      "Structuring multi-agent architectures and retrieval-augmented pipelines.",
     ],
   },
   {
     id: "iris-ml-project",
     title: "Iris Species Classification",
-    tagline: "Machine learning project certified by Smartuter Research Center (Jan 2026).",
+    tagline: "A machine learning project that classifies iris flowers into species.",
     role: "Individual Learner",
     team: "Individual Project",
     period: "Jan 2026",
@@ -93,28 +63,12 @@ export const PROJECTS: Project[] = [
       { label: "Credential", value: "Project Completion" },
     ],
     summary:
-      "Machine learning classification project analyzing the Iris dataset. Awarded project completion certificate by Smartuter Research Center in January 2026.",
+      "A machine learning project that classifies iris flowers into species. Completed with a certificate from Smartuter Research Center (Jan 2026).",
     problem:
-      "Practicing machine learning fundamentals and classification concepts with Python.",
+      "Practicing machine learning classification in Python.",
     solution:
-      "Evaluated flower measurements (sepal and petal dimensions) using machine learning classification techniques in Python.",
-    steps: [
-      {
-        title: "1. Data Exploration",
-        desc: "Examining feature distributions across Iris flower species.",
-        agent: "Data Analysis",
-      },
-      {
-        title: "2. Model Training",
-        desc: "Training classification algorithms on Iris measurement data.",
-        agent: "Classifier Training",
-      },
-      {
-        title: "3. Evaluation & Certification",
-        desc: "Project reviewed and awarded completion certificate by Smartuter Research Center.",
-        agent: "SRC Evaluation",
-      },
-    ],
+      "Classifies iris flowers into species based on measurement features.",
+    steps: [],
     learnings: [
       "Hands-on practice applying machine learning workflows in Python.",
       "Understanding classification concepts and feature evaluation.",

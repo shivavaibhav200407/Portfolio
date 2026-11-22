@@ -26,7 +26,7 @@ export default function PostersGallery() {
             <span className="font-mono text-[11px] tracking-widest uppercase text-[#5B6B8C] dark:text-slate-400">
               04 // COLLEGE POSTERS &middot; S.A.C.C CHIEF DESIGNER
             </span>
-            <h2 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-[#0B1B3A] dark:text-white">
+            <h2 className="font-heading text-3xl sm:text-5xl font-bold tracking-tight text-[#0B1B3A] dark:text-white">
               College Posters &amp; Creative Direction
             </h2>
             <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-[#5B6B8C] dark:text-slate-300 mt-1 font-sans">

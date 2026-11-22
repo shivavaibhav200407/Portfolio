@@ -15,7 +15,6 @@ import SageCaseStudy from "@/components/sections/SageCaseStudy";
 import IrisMlSandbox from "@/components/sections/IrisMlSandbox";
 import PostersGallery from "@/components/sections/PostersGallery";
 import CertificatesSection from "@/components/sections/CertificatesSection";
-import DoodlePlayground from "@/components/sections/DoodlePlayground";
 import ContactDock from "@/components/sections/ContactDock";
 import Footer from "@/components/sections/Footer";
 
@@ -135,12 +134,7 @@ export default function Home() {
         <CertificatesSection />
       </ScrollReveal>
 
-      {/* 06 // Playground: Interactive Doodle Board */}
-      <ScrollReveal delay={0.05}>
-        <DoodlePlayground isDark={isDarkMode} />
-      </ScrollReveal>
-
-      {/* 07 // Contact Dock */}
+      {/* 06 // Contact Dock */}
       <ScrollReveal delay={0.05}>
         <ContactDock />
       </ScrollReveal>

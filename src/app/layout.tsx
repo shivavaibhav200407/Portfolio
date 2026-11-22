@@ -1,31 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono, Cormorant_Garamond } from "next/font/google";
+import { Bricolage_Grotesque, DM_Sans, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { PROFILE } from "@/data/profile";
 
-const inter = Inter({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-bricolage",
   display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
-const spaceGrotesk = Space_Grotesk({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-dm-sans",
   display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
   subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
+  variable: "--font-space-mono",
   display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
+  fallback: ["monospace"],
 });
 
 export const viewport: Viewport = {
@@ -42,7 +39,7 @@ export const metadata: Metadata = {
     "A. Shiva Vaibhav",
     "Shiva Vaibhav",
     "B.Tech CSE AI ML",
-    "SITS Hyderabad",
+    "SITS",
     "SAGE AI Tutor",
     "Student Portfolio",
     "Chief Designer S.A.C.C",
@@ -70,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${cormorant.variable} font-sans antialiased bg-black text-white selection:bg-[#FF1E27]/30 selection:text-[#FF1E27]`}
+        className={`${bricolage.variable} ${dmSans.variable} ${spaceMono.variable} font-sans antialiased bg-black text-white selection:bg-[#FF1E27]/30 selection:text-[#FF1E27]`}
       >
         {children}
       </body>

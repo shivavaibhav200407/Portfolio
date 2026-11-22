@@ -29,7 +29,6 @@ export default function Navbar({ onToggleTheme, onOpenTerminal, isDark = true }:
     { name: "Toolbox", href: "#skills" },
     { name: "Work", href: "#sage" },
     { name: "Posters", href: "#posters" },
-    { name: "Playground", href: "#playground" },
     { name: "Contact", href: "#contact" },
   ];
 

@@ -78,10 +78,10 @@ export default function ContactDock() {
             {/* Left Column: Bio & Direct Links */}
             <div className="lg:col-span-6 space-y-4">
               <span className="font-mono text-[11px] tracking-widest uppercase text-[#5B6B8C] dark:text-slate-400 block">
-                07 // CONTACT &middot; OPEN FOR ROLES
+                06 // CONTACT &middot; OPEN FOR ROLES
               </span>
 
-              <h2 className="font-serif text-2xl sm:text-4xl font-normal tracking-tight text-[#0B1B3A] dark:text-white">
+              <h2 className="font-heading text-2xl sm:text-4xl font-bold tracking-tight text-[#0B1B3A] dark:text-white">
                 Let&apos;s build together.
               </h2>
 

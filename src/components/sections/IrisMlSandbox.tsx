@@ -26,26 +26,26 @@ export default function IrisMlSandbox() {
   const { setosa, versicolor, virginica, predicted } = calculatePredictions();
 
   return (
-    <section id="ml-sandbox" className="relative py-24 px-4 sm:px-8 border-t transition-colors duration-500 border-[#DCE6F7] bg-[#F7FAFF] text-[#0B1B3A] dark:border-white/5 dark:bg-[#040404] dark:text-white">
+    <section id="ml-sandbox" className="relative py-20 px-4 sm:px-8 border-t transition-colors duration-500 border-[#DCE6F7] bg-[#F7FAFF] text-[#0B1B3A] dark:border-white/5 dark:bg-[#040404] dark:text-white">
       <div className="mx-auto max-w-5xl">
         {/* Section Header */}
         <div className="flex flex-col items-start gap-2">
           <div className="flex flex-wrap items-center gap-2">
             <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs font-semibold border-[#DBEAFE] bg-[#EAF2FF] text-[#2563EB] dark:border-[#FF1E27]/30 dark:bg-[#FF1E27]/10 dark:text-[#FF3843]">
               <Award className="h-3.5 w-3.5 text-[#2563EB] dark:text-[#FF1E27]" />
-              <span>03.1 // MACHINE LEARNING PROJECT</span>
+              <span>03.1 // MACHINE LEARNING</span>
             </div>
             <span className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-xs border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-300">
               <Info className="h-3 w-3" />
-              Illustrative demo, not my trained model
+              Illustrative demo
             </span>
           </div>
 
-          <h2 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-[#0B1B3A] dark:text-white mt-1">
-            Iris Flower Species Classification
+          <h2 className="font-heading text-3xl sm:text-5xl font-bold tracking-tight text-[#0B1B3A] dark:text-white mt-1">
+            Iris Species Classification
           </h2>
           <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-[#5B6B8C] dark:text-slate-300 mt-1 font-sans">
-            Machine learning project completion certificate awarded by Smartuter Research Center (Jan 2026). The interactive widget below demonstrates how decision boundaries separate the three Iris species:
+            A machine learning project that classifies iris flowers into species. Completed with a certificate from Smartuter Research Center (Jan 2026).
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function IrisMlSandbox() {
                 Feature Inputs (in centimeters)
               </span>
               <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-[#2563EB] dark:text-[#FF3843]">
-                Interactive Demo
+                Illustrative demo
               </span>
             </div>
 
@@ -100,7 +100,7 @@ export default function IrisMlSandbox() {
             {/* Slider: Petal Length */}
             <div className="space-y-1">
               <div className="flex justify-between font-mono text-xs">
-                <span className="text-[#5B6B8C] dark:text-slate-300">Petal Length (Decision Boundary)</span>
+                <span className="text-[#5B6B8C] dark:text-slate-300">Petal Length</span>
                 <span className="font-bold text-[#2563EB] dark:text-[#FF1E27]">{petalLength.toFixed(1)} cm</span>
               </div>
               <input
@@ -179,7 +179,7 @@ export default function IrisMlSandbox() {
                   Inference Output
                 </span>
                 <span className="text-[10px] px-2 py-0.5 rounded font-mono border border-[#DBEAFE] bg-[#EAF2FF] text-[#2563EB] font-bold dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300">
-                  Interactive Demo
+                  Illustrative demo
                 </span>
               </div>
 
@@ -188,7 +188,7 @@ export default function IrisMlSandbox() {
                 <span className="text-[10px] uppercase tracking-widest block font-bold text-[#2563EB] dark:text-[#FF3843]">
                   Classified Species:
                 </span>
-                <div className="text-2xl font-serif font-normal mt-1 text-[#0B1B3A] dark:text-white">
+                <div className="text-2xl font-heading font-bold mt-1 text-[#0B1B3A] dark:text-white">
                   {predicted}
                 </div>
               </div>
