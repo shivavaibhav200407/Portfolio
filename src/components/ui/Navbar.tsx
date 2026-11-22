@@ -26,9 +26,11 @@ export default function Navbar({ onToggleTheme, onOpenTerminal, isDark = true }:
 
   const navLinks = [
     { name: "About", href: "#about" },
+    { name: "Journey", href: "#journey" },
     { name: "Toolbox", href: "#skills" },
     { name: "Work", href: "#sage" },
     { name: "Posters", href: "#posters" },
+    { name: "Studio", href: "#studio" },
     { name: "Contact", href: "#contact" },
   ];
 

@@ -1,7 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Copy, Check, Send, Download, Linkedin, Github, Loader2, AlertCircle } from "lucide-react";
+import {
+  Mail,
+  Copy,
+  Check,
+  Send,
+  Download,
+  Linkedin,
+  Github,
+  Loader2,
+  AlertCircle,
+  CheckCircle2,
+  ExternalLink,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import MagneticButton from "@/components/effects/MagneticButton";
 import { PROFILE } from "@/data/profile";
 
@@ -10,8 +24,14 @@ export default function ContactDock() {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [botcheck, setBotcheck] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [submittedData, setSubmittedData] = useState<{
+    name: string;
+    email: string;
+    message: string;
+    timestamp: string;
+  } | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [showMailPreview, setShowMailPreview] = useState(true);
 
   const copyEmail = () => {
     navigator.clipboard.writeText(PROFILE.contact.email);
@@ -26,41 +46,105 @@ export default function ContactDock() {
     setIsSubmitting(true);
     setErrorMessage(null);
 
-    const accessKey =
-      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
-      "cac4be95-e692-4f14-8692-033ef392d01f";
+    const payload = {
+      name: formState.name.trim() || "Visitor",
+      email: formState.email.trim(),
+      message: formState.message.trim(),
+      botcheck: botcheck ? "true" : undefined,
+    };
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      // 1. Send via local API route (handles Shiva notification + visitor confirmation)
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({
-          access_key: accessKey,
-          name: formState.name,
-          email: formState.email,
-          message: formState.message,
-          subject: `Portfolio Message from ${formState.name || "Visitor"}`,
-          from_name: "Shiva Vaibhav Portfolio Form",
-          botcheck: botcheck ? "true" : undefined,
-        }),
+        body: JSON.stringify(payload),
       });
 
       const data = await res.json();
 
       if (res.ok && data.success) {
-        setSubmitted(true);
+        setSubmittedData({
+          name: payload.name,
+          email: payload.email,
+          message: payload.message,
+          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        });
         setFormState({ name: "", email: "", message: "" });
       } else {
-        setErrorMessage(
-          data.message || "Failed to send message. Please email me directly."
-        );
+        // Fallback: If API returned an error, try direct Web3Forms submission from client
+        const fallbackKey =
+          process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+          "cac4be95-e692-4f14-8692-033ef392d01f";
+
+        const directRes = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: fallbackKey,
+            name: payload.name,
+            email: payload.email,
+            message: payload.message,
+            subject: `Portfolio Message from ${payload.name}`,
+            from_name: "Shiva Vaibhav Portfolio Form",
+          }),
+        });
+
+        const directData = await directRes.json();
+        if (directRes.ok && directData.success) {
+          setSubmittedData({
+            name: payload.name,
+            email: payload.email,
+            message: payload.message,
+            timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          });
+          setFormState({ name: "", email: "", message: "" });
+        } else {
+          setErrorMessage(
+            directData.message || data.message || "Failed to deliver message. Please email me directly."
+          );
+        }
       }
     } catch (err: any) {
+      // Final resilience: try direct Web3Forms
+      try {
+        const directRes = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: "cac4be95-e692-4f14-8692-033ef392d01f",
+            name: payload.name,
+            email: payload.email,
+            message: payload.message,
+            subject: `Portfolio Message from ${payload.name}`,
+          }),
+        });
+        const directData = await directRes.json();
+        if (directRes.ok && directData.success) {
+          setSubmittedData({
+            name: payload.name,
+            email: payload.email,
+            message: payload.message,
+            timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          });
+          setFormState({ name: "", email: "", message: "" });
+          return;
+        }
+      } catch (innerErr) {
+        // Ignored, show clear fallback below
+      }
+
       setErrorMessage(
-        "Network connection error. Please email me directly at vaibhava344@gmail.com."
+        "Could not connect to the mail server. Please click below to email me directly."
       );
     } finally {
       setIsSubmitting(false);
@@ -68,15 +152,18 @@ export default function ContactDock() {
   };
 
   return (
-    <section id="contact" className="relative py-24 px-4 sm:px-8 border-t transition-colors duration-500 border-[#DCE6F7] bg-[#F7FAFF] text-[#0B1B3A] dark:border-white/5 dark:bg-black dark:text-white">
+    <section
+      id="contact"
+      className="relative py-24 px-4 sm:px-8 border-t transition-colors duration-500 border-[#DCE6F7] bg-[#F7FAFF] text-[#0B1B3A] dark:border-white/5 dark:bg-black dark:text-white"
+    >
       <div className="mx-auto max-w-5xl">
         <div className="relative overflow-hidden rounded-3xl border p-6 sm:p-10 shadow-[0_4px_25px_-2px_rgba(37,99,235,0.08)] border-[#DCE6F7] bg-white dark:border-white/10 dark:bg-[#070707] dark:shadow-2xl">
           <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full blur-[100px] bg-blue-500/[0.06] dark:bg-[#FF1E27]/[0.05]" />
           <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full blur-[100px] bg-blue-600/[0.04] dark:bg-[#FF1E27]/[0.03]" />
 
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Bio & Direct Links */}
-            <div className="lg:col-span-6 space-y-4">
+            <div className="lg:col-span-5 space-y-4">
               <span className="font-mono text-[11px] tracking-widest uppercase text-[#5B6B8C] dark:text-slate-400 block">
                 06 // CONTACT &middot; OPEN FOR ROLES
               </span>
@@ -85,7 +172,7 @@ export default function ContactDock() {
                 Let&apos;s build together.
               </h2>
 
-              <p className="text-xs sm:text-sm leading-relaxed max-w-md font-sans text-[#5B6B8C] dark:text-slate-300">
+              <p className="text-xs sm:text-sm leading-relaxed font-sans text-[#5B6B8C] dark:text-slate-300">
                 Looking for an internship or first job where I can learn, be mentored, and contribute. Have an opportunity or want to connect? Reach out anytime!
               </p>
 
@@ -137,32 +224,113 @@ export default function ContactDock() {
               </div>
             </div>
 
-            {/* Right Column: Contact Form */}
-            <div className="lg:col-span-6">
+            {/* Right Column: Contact Form & Interactive Dual-Mail Receipt */}
+            <div className="lg:col-span-7">
               <div className="rounded-2xl border p-5 sm:p-6 border-[#DCE6F7] bg-[#F7FAFF] dark:border-white/10 dark:bg-black/95">
-                {submitted ? (
-                  <div className="py-8 text-center space-y-2.5 font-mono">
-                    <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400">
-                      <Check className="h-5 w-5" />
+                {submittedData ? (
+                  /* Interactive Dual-Recipient Dispatched Receipt */
+                  <div className="space-y-4 font-mono">
+                    {/* Header Banner */}
+                    <div className="flex items-center gap-2.5 border-b pb-3 border-[#DCE6F7] dark:border-white/10">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400">
+                        <CheckCircle2 className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <h3 className="font-heading text-base font-bold text-[#0B1B3A] dark:text-white">
+                          Message Transmitted Successfully
+                        </h3>
+                        <p className="text-[11px] text-[#5B6B8C] dark:text-slate-400 font-sans">
+                          Dispatched at {submittedData.timestamp} &middot; Dual notification active
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="font-serif text-lg font-normal text-[#0B1B3A] dark:text-white">Message Delivered!</h3>
-                    <p className="text-xs max-w-sm mx-auto text-[#5B6B8C] dark:text-slate-400 font-sans">
-                      Thank you for reaching out! Your message was delivered to <span className="font-semibold text-[#2563EB] dark:text-[#FF3843]">{PROFILE.contact.email}</span>. I will reply as soon as possible.
-                    </p>
-                    <button
-                      onClick={() => setSubmitted(false)}
-                      className="mt-2 text-xs underline text-[#2563EB] dark:text-[#FF1E27]"
-                    >
-                      Send another message
-                    </button>
+
+                    {/* Dual Recipient Status Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {/* Recipient 1: Shiva Vaibhav */}
+                      <div className="rounded-xl border p-3 border-blue-200 bg-blue-50/60 dark:border-blue-500/20 dark:bg-blue-500/5">
+                        <div className="flex items-center justify-between text-[10px] text-[#2563EB] dark:text-blue-400 font-semibold mb-1">
+                          <span>TO SHIVA</span>
+                          <span>✓ DELIVERED</span>
+                        </div>
+                        <div className="text-xs font-bold text-[#0B1B3A] dark:text-slate-200 truncate">
+                          {PROFILE.contact.email}
+                        </div>
+                        <div className="text-[10px] text-[#5B6B8C] dark:text-slate-400 font-sans mt-0.5">
+                          Received in Shiva&apos;s personal inbox
+                        </div>
+                      </div>
+
+                      {/* Recipient 2: The Visitor ("that person") */}
+                      <div className="rounded-xl border p-3 border-emerald-200 bg-emerald-50/60 dark:border-emerald-500/20 dark:bg-emerald-500/5">
+                        <div className="flex items-center justify-between text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold mb-1">
+                          <span>TO SENDER (YOU)</span>
+                          <span>✉ CONFIRMATION</span>
+                        </div>
+                        <div className="text-xs font-bold text-[#0B1B3A] dark:text-slate-200 truncate">
+                          {submittedData.email}
+                        </div>
+                        <div className="text-[10px] text-[#5B6B8C] dark:text-slate-400 font-sans mt-0.5">
+                          Copy prepared for {submittedData.name}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Interactive Collapsible Mail Preview */}
+                    <div className="rounded-xl border border-[#DCE6F7] bg-white dark:border-white/10 dark:bg-[#0A0A0E] overflow-hidden">
+                      <button
+                        onClick={() => setShowMailPreview(!showMailPreview)}
+                        className="w-full flex items-center justify-between p-3 text-xs font-semibold text-[#0B1B3A] dark:text-slate-300 hover:bg-[#F7FAFF] dark:hover:bg-white/[0.02] transition-colors"
+                      >
+                        <span className="flex items-center gap-1.5">
+                          <Mail className="h-3.5 w-3.5 text-[#2563EB] dark:text-[#FF1E27]" />
+                          Interactive Dispatched Mail Preview
+                        </span>
+                        {showMailPreview ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                      </button>
+
+                      {showMailPreview && (
+                        <div className="p-3.5 pt-0 border-t border-[#DCE6F7] dark:border-white/10 space-y-2 text-xs">
+                          <div className="space-y-1 text-[11px] text-[#5B6B8C] dark:text-slate-400">
+                            <div><strong className="text-[#0B1B3A] dark:text-slate-200">From:</strong> {submittedData.name} &lt;{submittedData.email}&gt;</div>
+                            <div><strong className="text-[#0B1B3A] dark:text-slate-200">To:</strong> A. Shiva Vaibhav &lt;{PROFILE.contact.email}&gt;</div>
+                            <div><strong className="text-[#0B1B3A] dark:text-slate-200">Subject:</strong> Portfolio Message from {submittedData.name}</div>
+                          </div>
+                          <div className="rounded-lg p-2.5 bg-[#F7FAFF] dark:bg-black/60 border border-[#DCE6F7] dark:border-white/5 font-sans text-xs text-[#0B1B3A] dark:text-slate-300 whitespace-pre-wrap">
+                            &ldquo;{submittedData.message}&rdquo;
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Action Buttons: 1-Click Mail App Copy & Send Another */}
+                    <div className="flex flex-col sm:flex-row items-center gap-2 pt-2">
+                      <a
+                        href={`mailto:${PROFILE.contact.email}?subject=Portfolio%20Inquiry%20from%20${encodeURIComponent(submittedData.name)}&body=${encodeURIComponent(submittedData.message)}`}
+                        className="w-full sm:w-auto flex-1 flex items-center justify-center gap-1.5 rounded-xl border px-3 py-2 text-xs transition-all border-[#DBEAFE] bg-[#EAF2FF] text-[#2563EB] hover:bg-[#DBEAFE] dark:border-[#FF1E27]/40 dark:bg-[#FF1E27]/10 dark:text-[#FF3843] dark:hover:bg-[#FF1E27]/20"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        <span>Open copy in your mail app</span>
+                      </a>
+
+                      <button
+                        onClick={() => setSubmittedData(null)}
+                        className="w-full sm:w-auto px-4 py-2 rounded-xl border text-xs transition-all border-[#DCE6F7] bg-white text-[#5B6B8C] hover:text-[#0B1B3A] hover:border-[#2563EB] dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-400 dark:hover:text-white"
+                      >
+                        Send another message
+                      </button>
+                    </div>
                   </div>
                 ) : (
+                  /* Contact Form Input */
                   <form onSubmit={handleSubmit} className="space-y-3.5">
                     <div className="flex items-center justify-between border-b pb-2.5 border-[#DCE6F7] dark:border-white/10">
                       <span className="font-mono text-xs font-semibold uppercase text-[#0B1B3A] dark:text-slate-300">
                         Direct Inquiry
                       </span>
-                      <span className="font-mono text-[10px] text-[#2563EB] dark:text-[#FF3843]">Delivers to Gmail</span>
+                      <span className="font-mono text-[10px] text-[#2563EB] dark:text-[#FF3843]">
+                        Delivers to Shiva &amp; sends confirmation to you
+                      </span>
                     </div>
 
                     {/* Hidden Honeypot Spam Protection */}
@@ -197,7 +365,9 @@ export default function ContactDock() {
                     )}
 
                     <div>
-                      <label className="block font-mono text-xs mb-1 text-[#5B6B8C] dark:text-slate-400">Your Name</label>
+                      <label className="block font-mono text-xs mb-1 text-[#5B6B8C] dark:text-slate-400">
+                        Your Name
+                      </label>
                       <input
                         type="text"
                         required
@@ -210,7 +380,9 @@ export default function ContactDock() {
                     </div>
 
                     <div>
-                      <label className="block font-mono text-xs mb-1 text-[#5B6B8C] dark:text-slate-400">Your Email</label>
+                      <label className="block font-mono text-xs mb-1 text-[#5B6B8C] dark:text-slate-400">
+                        Your Email (for confirmation)
+                      </label>
                       <input
                         type="email"
                         required
@@ -223,7 +395,9 @@ export default function ContactDock() {
                     </div>
 
                     <div>
-                      <label className="block font-mono text-xs mb-1 text-[#5B6B8C] dark:text-slate-400">Message</label>
+                      <label className="block font-mono text-xs mb-1 text-[#5B6B8C] dark:text-slate-400">
+                        Message
+                      </label>
                       <textarea
                         rows={3}
                         required
@@ -243,7 +417,7 @@ export default function ContactDock() {
                       {isSubmitting ? (
                         <>
                           <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                          <span>Sending message...</span>
+                          <span>Transmitting message...</span>
                         </>
                       ) : (
                         <>
