@@ -66,7 +66,7 @@ export default function Terminal({ isOpen, onClose, isDark = true }: TerminalPro
               <div><span className="text-sky-400 dark:text-[#FF1E27]">sage</span> — SAGE multi-agent tutor architecture</div>
               <div><span className="text-sky-400 dark:text-[#FF1E27]">certs</span> — ML certification & workshops</div>
               <div><span className="text-sky-400 dark:text-[#FF1E27]">posters</span> — S.A.C.C posters + Google Drive link</div>
-              <div><span className="text-sky-400 dark:text-[#FF1E27]">skills</span> — Technical toolbox & languages</div>
+              <div><span className="text-sky-400 dark:text-[#FF1E27]">skills</span> — Technical toolbox</div>
               <div><span className="text-sky-400 dark:text-[#FF1E27]">contact</span> — Direct email and links</div>
               <div><span className="text-sky-400 dark:text-[#FF1E27]">clear</span> — Clear console output</div>
             </div>
@@ -132,7 +132,6 @@ export default function Terminal({ isOpen, onClose, isDark = true }: TerminalPro
           <div className="space-y-1 text-xs text-slate-300 font-mono">
             <p><span className="text-sky-400 dark:text-[#FF3843]">[Skills]:</span> Python (learning), AI-assisted development, Poster and graphic design, Team leadership</p>
             <p><span className="text-slate-300">[Technologies used in SAGE (built with AI tools)]:</span> Python, Django, ChromaDB, Groq, DuckDuckGo search</p>
-            <p><span className="text-slate-300">[Languages]:</span> Telugu, Hindi, English</p>
           </div>
         );
         break;

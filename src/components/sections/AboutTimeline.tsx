@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Shield, Globe } from "lucide-react";
+import { GraduationCap, Shield } from "lucide-react";
 import { PROFILE } from "@/data/profile";
 
 export default function AboutTimeline() {
@@ -82,7 +82,7 @@ export default function AboutTimeline() {
             </div>
           </div>
 
-          {/* Right Column: Council Leadership & Languages */}
+          {/* Right Column: Council Leadership */}
           <div className="lg:col-span-5 space-y-5">
             <h3 className="font-serif text-xl flex items-center gap-2 text-[#0B1B3A] dark:text-white">
               <Shield className="h-4 w-4 text-[#2563EB] dark:text-[#FF1E27]" />
@@ -105,24 +105,6 @@ export default function AboutTimeline() {
               <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#5B6B8C] dark:text-slate-300 font-sans">
                 {PROFILE.council.responsibility}
               </p>
-            </div>
-
-            {/* Languages (Without proficiency labels) */}
-            <div className="rounded-2xl border p-5 border-[#DCE6F7] bg-white shadow-[0_4px_20px_-2px_rgba(37,99,235,0.06)] dark:border-white/10 dark:bg-[#0A0A0D] dark:shadow-none">
-              <h4 className="font-serif text-base flex items-center gap-2 text-[#0B1B3A] dark:text-white mb-3">
-                <Globe className="h-4 w-4 text-[#2563EB] dark:text-[#FF1E27]" />
-                <span>Languages</span>
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {PROFILE.languages.map((lang) => (
-                  <span
-                    key={lang.name}
-                    className="rounded-lg px-3 py-2 border font-mono text-xs font-medium border-[#DBEAFE] bg-[#EAF2FF] text-[#0B1B3A] dark:border-white/5 dark:bg-black/40 dark:text-slate-200"
-                  >
-                    {lang.name}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         </div>

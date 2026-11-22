@@ -31,12 +31,6 @@ export const PROFILE = {
     responsibility: "Designed posters and promotional graphics for college clubs and events, while helping maintain student discipline during campus programs.",
   },
 
-  languages: [
-    { name: "Telugu" },
-    { name: "Hindi" },
-    { name: "English" },
-  ],
-
   contact: {
     email: "vaibhava344@gmail.com",
     phone: "+91 9493721105",
