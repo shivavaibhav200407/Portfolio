@@ -14,8 +14,6 @@ import SkillsBento from "@/components/sections/SkillsBento";
 import SageCaseStudy from "@/components/sections/SageCaseStudy";
 import IrisMlSandbox from "@/components/sections/IrisMlSandbox";
 import PostersGallery from "@/components/sections/PostersGallery";
-import MiniPosterStudio from "@/components/sections/MiniPosterStudio";
-import JourneyRoadmap from "@/components/sections/JourneyRoadmap";
 import CertificatesSection from "@/components/sections/CertificatesSection";
 import ContactDock from "@/components/sections/ContactDock";
 import Footer from "@/components/sections/Footer";
@@ -111,11 +109,6 @@ export default function Home() {
         <AboutTimeline />
       </ScrollReveal>
 
-      {/* 01.1 // Chronological Roadmap */}
-      <ScrollReveal delay={0.05}>
-        <JourneyRoadmap />
-      </ScrollReveal>
-
       {/* 02 // Toolbox & Competencies Bento */}
       <ScrollReveal delay={0.05}>
         <SkillsBento />
@@ -134,11 +127,6 @@ export default function Home() {
       {/* 04 // S.A.C.C College Posters Gallery (Google Drive Connected) */}
       <ScrollReveal delay={0.05}>
         <PostersGallery />
-      </ScrollReveal>
-
-      {/* 04.1 // S.A.C.C Interactive Poster Studio */}
-      <ScrollReveal delay={0.05}>
-        <MiniPosterStudio />
       </ScrollReveal>
 
       {/* 05 // Verified Certifications & College Workshops */}
